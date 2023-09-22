@@ -1,16 +1,15 @@
 /*************************************************************
  * 1. Name:
- *      Jarom Anderson & Steven Sellers
+ *      -your name-
  * 2. Assignment Name:
- *      Practice 02: Physics simulator
+ *      Lab 02: Apollo 11
  * 3. Assignment Description:
- *      Compute how the Apollo lander will move across the screen
+ *      Simulate the Apollo 11 landing
  * 4. What was the hardest part? Be as specific as possible.
- *      The hardest part was implementing the calculations in the main
- *      code. Particularly understanding that 'ddx' only changes by thrust.
+ *      -a paragraph or two about how the assignment went for you-
  * 5. How long did it take for you to complete the assignment?
- *      It took 7 hours.
- **************************************************************/
+ *      -total time in hours: reading the assignment, submitting, and writing code-
+ *****************************************************************/
 
 #include <iostream>  // for CIN and COUT
 #include <numbers>  // for pi
@@ -198,15 +197,43 @@ double prompt(string message)
  * Given the formula:
  * s = s_0 + v * t + (a * (t * t) / 2)
  * INPUT
- * s_0 : Initial Position
- * v   : Velocity
- * a   : Acceleration
- * t   : Time
+ *     s_0 : Initial Position
+ *     v   : Velocity
+ *     a   : Acceleration
+ *     t   : Time
+ * OUTPUT:
+ *     s   : The new position
  ****************************************************************************/
  double computeNewPosition(double s_0, double v, double a, double t)
  {
-    double newPosition = s_0 + v * t + (a * (t * t) / 2);
-    return newPosition;
+    double s = s_0 + v * t + (a * (t * t) / 2);
+    return s;
+ }
+
+ /****************************************************************************
+ * DISPLAY MOTION
+ * Displays the motion of the LM at the instance it is called 
+ * INPUT
+ *     x        : Position
+ *     y        : Altitude
+ *     dx       : Horizontal Velocity
+ *     dy       : Vertical Velocity
+ *     v        : Total Velocity
+ *     adegrees : angle of LM in degrees where 0 is up
+ *     t        : Time interval
+ * OUTPUT
+ *     1s - x,y:(7.37, 86.76)m  dx,dy:(8.42, -13.48)m/s  speed:15.89m/s  angle:-45.00deg
+ ****************************************************************************/
+ int displayMotion(double x, double y, double dx, double dy, double v, double t, double aDegrees)
+ {
+     cout.setf(ios::fixed | ios::showpoint);
+     cout.precision(2);
+     cout << t << "s - x,y:(" << x << ", " << y << ")m dx, dy:(" << dx << ", " << dy << ")m/s speed:" << v << "m/s angle:"
+         << aDegrees << "deg" << endl;
+     /*cout << "\tNew position:   (" << x << ", " << y << ")m\n";
+     cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
+     cout << "\tTotal velocity:  " << v << "m/s\n\n";*/
+     return 0;
  }
 
 /****************************************************************
@@ -219,9 +246,9 @@ int main()
     double dx = prompt("What is your horizontal velocity (m/s)? ");
     double dy = prompt("What is your vertical velocity (m/s)? ");
     double y = prompt("What is your altitude (m)? ");
-    double x = prompt("What is your position (m)? ");
     double aDegrees = prompt("What is the angle of the LM where 0 is up (degrees)? ");
-    double t = prompt("What is the time interval (s)? ");
+    double x = 0;               // Starting position is 
+    double t = 1;               // Time interval in seconds
     double aRadians;            // Angle in radians
     double accelerationThrust;  // Acceleration due to thrust 
     double ddxThrust;           // Horizontal acceleration due to thrust
@@ -236,28 +263,31 @@ int main()
     accelerationThrust = computeAcceleration(THRUST, WEIGHT);
     ddxThrust = computeHorizontalComponent(aRadians, accelerationThrust); 
     ddyThrust = computeVerticalComponent(aRadians, accelerationThrust);
-    ddx = ddxThrust;
-    ddy = ddyThrust + GRAVITY;
     
-    // Loop 5 times
-    for (int i = 0; i < 5; i++)
+    
+    while (y > 0) 
     {
-        // Calculate
-        dx = dx + (ddx * t);
-        dy = dy + (ddy * t);
-        v = computeTotalComponent(dx, dy);
-        x = computeNewPosition(x, dx, ddx, t);
-        y = computeNewPosition(y, dy, ddy, t);
+        // Loop 5 times
+        for (int i = 1; i < 6; i++)
+        {
+            // Calculate
+            ddx = ddxThrust;
+            ddy = ddyThrust + GRAVITY;
+            dx = dx + (ddx * t);
+            dy = dy + (ddy * t);
+            v = computeTotalComponent(dx, dy);
+            x = computeNewPosition(x, dx, ddx, t);
+            y = computeNewPosition(y, dy, ddy, t);
 
-        // Output
-        cout.setf(ios::fixed | ios::showpoint);
-        cout.precision(2);
-        cout << "\tNew position:   (" << x << ", " << y << ")m\n";
-        cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
-        cout << "\tTotal velocity:  " << v << "m/s\n\n";
+            // Output
+            displayMotion(x, y, dx, dy, v, i, aDegrees);
+            
+        }
+
+        // Ask user for new angle
+        aDegrees = prompt("What is the new angle of the LM where 0 is up (degrees)? ");
+        aRadians = convertDegreesToRadians(aDegrees);
     }
-    
-
     
 
     
