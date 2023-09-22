@@ -1,14 +1,15 @@
 /*************************************************************
  * 1. Name:
- *      -your name-
+ *      Jarom Anderson & Steven Sellers
  * 2. Assignment Name:
  *      Lab 02: Apollo 11
  * 3. Assignment Description:
  *      Simulate the Apollo 11 landing
  * 4. What was the hardest part? Be as specific as possible.
- *      -a paragraph or two about how the assignment went for you-
+ *      Figureing out which variables needed recalculated each time the angle
+ *      changed.
  * 5. How long did it take for you to complete the assignment?
- *      -total time in hours: reading the assignment, submitting, and writing code-
+ *      3 Hours
  *****************************************************************/
 
 #include <iostream>  // for CIN and COUT
@@ -261,10 +262,10 @@ int main()
     
     aRadians = convertDegreesToRadians(aDegrees);
     accelerationThrust = computeAcceleration(THRUST, WEIGHT);
+
     
     
-    
-    while (y > 0) 
+    do
     {
         // Loop 5 times
         for (int i = 1; i < 6; i++)
@@ -288,8 +289,7 @@ int main()
         // Ask user for new angle
         aDegrees = prompt("What is the new angle of the LM where 0 is up (degrees)? ");
         aRadians = convertDegreesToRadians(aDegrees);
-    }
-    
+    } while (y > 0);
 
     
 
