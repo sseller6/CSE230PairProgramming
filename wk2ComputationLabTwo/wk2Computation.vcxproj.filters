@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="wk2Computation.cpp">
+    <ClCompile Include="apollo11Physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
