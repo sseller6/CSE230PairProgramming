@@ -6,9 +6,10 @@
  * 3. Assignment Description:
  *      Compute how the Apollo lander will move across the screen
  * 4. What was the hardest part? Be as specific as possible.
- *      -a paragraph or two about how the assignment went for you-
+ *      The hardest part was implementing the calculations in the main
+ *      code. Particularly understanding that 'ddx' only changes by thrust.
  * 5. How long did it take for you to complete the assignment?
- *      -total time in hours: reading the assignment, submitting, etc.
+ *      It took 7 hours.
  **************************************************************/
 
 #include <iostream>  // for CIN and COUT
