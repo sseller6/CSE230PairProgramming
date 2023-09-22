@@ -1,0 +1,3 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (wk2Computation.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  apollo11Physics.cpp
+  wk2Computation.vcxproj -> C:\Users\jarbe\Documents\cse230\CSE230W02\wk2\wk2ComputationLabTwo\x64\Debug\apollo11Physics.exe
