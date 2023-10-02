@@ -1,20 +1,100 @@
-// practiceW04VectorAndList.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <list>
+#include <vector>
+using namespace std;
 
-int main()
+/*****************************************************************************
+* ARRAY TO LIST
+* INPUT: 
+*     a[]           : Array.
+*     num           : Number of elements in array.
+* OUTPUT:
+*     listOfStrings : List of strings taken from an array.
+*****************************************************************************/
+list<string> arrayToList(string a[], int num)
 {
-    std::cout << "Hello World!\n";
+    list<string> listOfStrings;
+    for (int index = 0; index < num; index++) {
+        listOfStrings.push_back(a[index]);
+    }
+    return listOfStrings;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+/*****************************************************************************
+* ARRYAY TO LIST BACKWARDS
+* INPUT:
+*     a[]           :  An array of strings.
+*     num           :  Number of elements in the array.
+* OUTPUT:
+*     backwardsList :  List of strings in reverse order from the array.
+*****************************************************************************/
+list<string> arrayToListBackwards(string a[], int num)
+{
+    // Initialize
+    list<string> backwardsList;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    for (int index = num; index >= 0; index--)
+    {
+        backwardsList.push_back(a[index]);
+    }
+	return backwardsList;
+}
+
+/*****************************************************************************
+* COPY A LIST TO A VECTOR
+* INPUT:
+*     l               : A list of strings.
+* OUTPUT:
+*     vectorOfStrings : Vector of Strings taken from a list.
+*****************************************************************************/
+
+vector<string> listToVector(const list<string>& l)
+{
+    vector<string> vectorOfStrings;
+    //our function will itrate through the list and push each element onto the back of the vector.
+    for (auto iterator = l.begin(); iterator != l.end(); ++iterator)
+    {
+        vectorOfStrings.push_back(*iterator);
+    }
+    return vectorOfStrings;
+}
+
+/*****************************************************************************
+* LIST TO VECTOR BACKWARDS
+* INPUT:
+*     l             :  A list of strings.
+* OUTPUT:
+*     backwardsVec :  A vector of strings in reverse order from the list.
+*****************************************************************************/
+vector<string> listToVectorBackwards(const list<string>& l)
+{
+    vector<string> backwardsVec;
+    
+	for (auto rit = l.rbegin(); rit != l.rend(); rit++)
+    {
+		backwardsVec.push_back(*rit);
+    }
+    return backwardsVec;
+}
+
+bool findElementInVector(const vector<string>& v, const string& element)
+{
+    for (auto it = v.begin(); it != v.end(); it++) // Iterate through a vector of elements
+    {
+        if (*it == element)
+        {
+            return true; // Element is found
+        }
+    }
+    return false; // Element not found
+}
+
+/****************************
+ * MAIN
+ ****************************/
+int main()
+{
+
+
+    return 0;
+}
