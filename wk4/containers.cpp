@@ -46,8 +46,8 @@ list<string> arrayToListBackwards(string a[], int num)
 {
     // Initialize
     list<string> backwardsList;
-    int index = num;
-    for(index; index < 0; index--)
+
+    for(int index = num - 1; index >= 0; index--)
     {
         backwardsList.push_back(a[index]);
     }
