@@ -1,16 +1,18 @@
-/*************************************************************
+﻿/*************************************************************
  * 1. Name:
- *      -your name-
+ *      Jarom Anderson & Steven Sellers
  * 2. Assignment Name:
  *      Practice 04: Angle Class
  * 3. Assignment Description:
  *      A class to represent an angle
  * 4. What was the hardest part? Be as specific as possible.
- *      -a paragraph or two about how the assignment went for you-
+ *      Understanding what is going on. We did it right, but it took a while
+*       of walking through the code to get an inkling of what is going on.
  * 5. How long did it take for you to complete the assignment?
- *      -total time in hours: reading the assignment, submitting, etc.
+ *      1 hour
  **************************************************************/
 
+#pragma once
 
 #define TWO_PI 6.28318530718
 
@@ -21,83 +23,115 @@ using namespace std;
 
 class TestAngle;
 
- /************************************
-  * ANGLE
-  ************************************/
+/************************************
+ * ANGLE
+ ************************************/
 class Angle
 {
-   friend TestAngle;
-
-public:
-   // Default constructor
-   Angle() : radians(0.0) {}
-   Angle(const Angle & rhs) : radians(rhs.radians) {}
-   Angle(double degrees) : radians(0.0)
-   {
-      setDegrees(degrees);
-   }
-
-   // Getters
-   double getDegrees() const
-   {
-      return convertToDegrees(radians);
-   }
-   double getRadians() const
-   {
-      return radians;
-   }
-
-   // Setters
-   void setDegrees(double degrees)
-   {
-      radians = normalize(convertToRadians(degrees));
-   }
-   void setRadians(double radians)
-   {
-      this->radians = normalize(radians);
-   }
-
-   // Display
-   void display(ostream & out) const
-   {
-      out.precision(1);
-      out.setf(ios::fixed | ios::showpoint);
-      out << getDegrees() << "degrees";
-   }
+	friend TestAngle;
 
 private:
-   // Convert functions
-   double convertToDegrees(double radians) const
-   {
-      return normalize(radians) / TWO_PI * 360.0;
-   }
-   double convertToRadians(double degrees) const
-   {
-      return normalize(degrees / 360.0 * TWO_PI);
-   }
 
-   // Normalize
-   double normalize(double radians) const
-   {
-      if (radians >= TWO_PI)
-      {
-         double multiples = floor(radians / TWO_PI);
-         assert(radians - TWO_PI * multiples >= 0.0);
-         assert(radians - TWO_PI * multiples <= TWO_PI);
-         return radians - (TWO_PI * multiples);
-      }
-      else if (radians < 0.0)
-      {
-         double multiples = ceil(-radians / TWO_PI);
-         assert(TWO_PI * multiples + radians >= 0.0);
-         assert(TWO_PI * multiples + radians <= TWO_PI);
-         return TWO_PI * multiples + radians;
-      }
+	// Attributes
+	double radians;
 
-      assert(0.0 <= radians && radians <= TWO_PI);
-      return radians;
-   }
+	//Implement Private Methods:
+	// normalize(): Takes a radian as a parameter and reduce it to between 0
+	// and 2π. For example, 3π will become π, 362° will become 2°, -5° will
+	// become 355°, and -7π will become π.
+	double normalize(double angle) const
+	{
 
-   double radians;
+		// For anything greater than 2π
+		while (angle > TWO_PI)
+		{
+			angle -= TWO_PI;
+		}
+
+		// For anything less than 0.
+		while (angle < 0)
+		{
+			angle += TWO_PI;
+		}
+
+		return angle;
+	}
+
+	// convertToDegrees(): Takes a radians as a parameter and returns degrees.
+	// Does not utilize the class's attribute. Note that the results must be
+	// normalized.
+	double convertToDegrees(double angle) const
+	{
+		return normalize(angle) / TWO_PI * 360;
+	}
+
+	// convertToRadians(): Takes a degrees as a parameter and returns radians.
+	// Does not utilize the class's attribute. Note that the results must be
+	// normalized. 
+	double convertToRadians(double degrees) const
+	{
+		double angle = degrees * (TWO_PI / 360); // convert to radians
+		angle = normalize(angle);
+		return angle;
+	}
+
+	// Implement Public Methods:
+public:
+    // Default Constructor
+	Angle()
+	{
+		radians = 0.0;
+	}
+
+	// Non-Default Constructor (input: degrees)
+	Angle(double degrees)
+	{
+		radians = convertToRadians(degrees);
+	}
+	// Copy Constructor
+	Angle(const Angle &other)
+	{
+		radians = other.radians;
+	}
+
+	double getDegrees() const // Takes no parameters and return the angle in degrees. 
+	{
+		return convertToDegrees(radians);
+	}
+
+	double getRadians() const // Takes no parameters and return the angle in radians. 
+	{
+		return radians; // Angle is already in radians
+	}
+
+	// Takes a degrees as a parameter and updates the attribute
+	// with the passed parameter. If the parameter is above 360 or below zero,
+	// then it will "unwrap" so the radians is between 0 and 2π.
+	void setDegrees(double degrees)
+	{
+		this->radians = convertToRadians(degrees);
+	}
+
+	// Takes a radian as a parameter and updates the attribute
+	// with the passed parameter. If the parameter is above 2π or below zero,
+	// then it will "unwrap." 
+	void setRadians(double angle)
+	{
+		this->radians = normalize(angle);
+	}
+
+	// Takes a ostream & out as a parameter display the value, in
+	// degrees, to 1 decimal place of accuracy. This out parameter can be
+	// treated exactly the same as cout. You can use it with a.display(cout)
+	// if a is the name of your object.
+	void display(ostream& out) const
+	{
+		out.setf(ios::fixed);     // "fixed" means don't use scientific notation
+		out.setf(ios::showpoint); // "showpoint" means always show the decimal point
+		out.precision(1);         // Set the precision to 1 decimal place of accuracy.
+
+		out << convertToDegrees(radians) << "degrees";
+	}
 };
+
 
