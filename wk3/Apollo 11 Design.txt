@@ -26,22 +26,22 @@ Class Frame:
 
 Class LM:                       |  Class HUD:        |  Class Star:       |  Class Ground:
 --------------------------------|--------------------|--------------------|--------------------
-    Point (position 'x,y')      |  Fuel (lbs)        |  Phase (uInt)      |
-    Angle (in radians)          |  Altitude (meters) |  Point (position)  |
-    Velocity (x,y) + total      |  Speed (m/s)       |                    |
+    Point (position 'x,y')      |  fuel (lbs)        |  phase (uInt)      |
+    Angle (in radians)          |  altitude (meters) |  Point (position)  |
+    Velocity (x,y) + total      |  speed (m/s)       |                    |
     Acceleration (x,y) + total  |                    |                    |
     Mass (in kg)                |                    |                    |
     Thrust                      |                    |                    |
     Fuel                        |                    |                    |
+    Gravity                     |                    |                    |
 --------------------------------+--------------------+--------------------+-------------------------+
 Class Point:                    |  Class Angle:      | Class Velocity:    | Class Acceleration:     |
 --------------------------------+--------------------+--------------------+-------------------------+
                                 |   radians          | Xvelocity          | Xacceleration
                                 |                    | Yvelocity          | Yacceleration
 -----------------------------------------------------------------------------------------------------
-Class Thrust:                   |  Class Fuel        |
+Class Force:                    |  Class Fuel:       |
 --------------------------------+--------------------+
-    Force (Newtons)             |
-    Xacceleration               |
-    Yacceleration               |
---------------------------------+
+    Force (Newtons)             |  Quantity (lbs)    |	
+    Acceleration (x,y)          |                    |
+--------------------------------+--------------------+
