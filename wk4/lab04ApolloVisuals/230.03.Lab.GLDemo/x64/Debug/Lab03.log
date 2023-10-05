@@ -1,0 +1,11 @@
+﻿  glDemo.cpp
+  ground.cpp
+  point.cpp
+  uiDraw.cpp
+  uiInteract.cpp
+C:\Users\jarbe\Documents\cse230\CSE230W02\wk4\lab04ApolloVisuals\230.03.Lab.GLDemo\uiInteract.cpp(279,68): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\jarbe\Documents\cse230\CSE230W02\wk4\lab04ApolloVisuals\230.03.Lab.GLDemo\uiInteract.cpp(279,43): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\jarbe\Documents\cse230\CSE230W02\wk4\lab04ApolloVisuals\230.03.Lab.GLDemo\uiInteract.cpp(291,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\jarbe\Documents\cse230\CSE230W02\wk4\lab04ApolloVisuals\230.03.Lab.GLDemo\uiInteract.cpp(291,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  Lab03.vcxproj -> C:\Users\jarbe\Documents\cse230\CSE230W02\wk4\lab04ApolloVisuals\230.03.Lab.GLDemo\x64\Debug\Lab03.exe
