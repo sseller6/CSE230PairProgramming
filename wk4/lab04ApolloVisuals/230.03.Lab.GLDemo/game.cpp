@@ -1,10 +1,10 @@
 /***********************************************************************
  * Source File:
- *    Point : The representation of a position on the screen
+ *    Game: The state of the game
  * Author:
- *    Br. Helfrich
+ *    Jarom Anderson & Steven Sellers
  * Summary:
- *    Everything we need to know about a location on the screen.
+ *    Contains the game state
  ************************************************************************/
 
 #include "game.h"
@@ -13,23 +13,40 @@
  * GAME : CONSTRUCTOR
  * Initialize the point to the passed position
  *****************************************/
-Game::Game(double ptUpperRight)
-    lander(ptUpperRight.getX() / 2.0, ptUpperRight.getY() / 2.0),    // Set lander position
-    sky(ptUpperRight.getX(), ptUpperRigth.getY()),       // generate sky
-    ground(),      // generate ground
+Game::Game(Point ptUpperRight, Game* pGame, Interface* pUI) :
+    lander(ptUpperRight),    // Set lander position
+    sky(ptUpperRight),       // generate sky
+    ground(ptUpperRight),    // generate ground
 {}
 
-string input(string ui);// I'm not sure about this. I put string to catch your attention.
-
-
+/*****************************************
+* RESET
+*****************************************/
 void reset()
 {
+    // Stub for reset
 }
 
+/*****************************************
+* GAMEPLAY
+*****************************************/
 void gamePlay(double thrust)
 {
+    // Stub for Play
 }
 
+/*****************************************
+* DISPLAY
+*****************************************/
 void display(double thrust)
 {
+    // Stub for display
+}
+
+/*****************************************
+* INPUT
+*****************************************/
+bool Game::input(Interface* pUI)
+{
+    return false;
 }

@@ -12,8 +12,6 @@
 #include <math.h>    // for math
 #include <iostream>  // for cout
 
-using namespace std;
-
 class Acceleration
 
 {

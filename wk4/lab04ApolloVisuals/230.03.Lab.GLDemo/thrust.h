@@ -4,7 +4,7 @@
  * Author:
  *    Jarom Anderson & Steven Sellers
  * Summary:
- *    Indicates rotation and direction
+ *    Object that indicates rotation and direction of the LM.
  ************************************************************************/
 
 #pragma once
@@ -20,12 +20,12 @@ class Thrust
 {
 public:
     Thrust();
-    void rotation();
+    void rotate();
     void mainEngineThrust();
-    bool isMain();
+    bool isMain();                // is the main engine on
     bool isClock();
-    bool isCounter;
-    void set(UI);
+    bool isCounter();
+    void set(UI);                 // UI is undefined. Uh oh.
 private:
     bool mainEngine;
     bool clockwise;

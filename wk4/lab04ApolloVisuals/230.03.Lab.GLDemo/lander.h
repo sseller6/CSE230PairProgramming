@@ -9,8 +9,13 @@
 
 #pragma once
 
-#include "point.h"   // for Point
-#include "uiDraw.h"  // for ogstream
+#include "angle.h"    // for Angle
+#include "point.h"    // for Point
+#include "thrust.h"   // for thrust
+#include "velocity.h" // for Velocity
+#include "uiDraw.h"   // for ogstream
+#include "status.h"   // for status
+#include <ogstream>
 
 /************************
  * LANDER
@@ -18,23 +23,21 @@
  * *********************/
 class Lander
 {
-public: 
-	Lander(ptUpperRight);
+public:
+	Lander(Point ptUpperRight);
 	void reset();
-	bool isDead();
-	bool isLanded();
-	bool isFlying();
-	Point getPosition;
+
+	Point getPosition();
 	int getFuel() const;
-	void draw(thrust, gout) const;
-	void input(thrust);
+	void draw(Thrust thrust, gout) const;
+	void input(Thrust thrust);
 	void coast();
 	void land();
 	void crash();
 private:
-	Status status;
+	Status Status(); // Gotta figure this out later.
 	Point pt;
 	Velocity v;
 	Angle angle;
 	double fuel;
-}
+};

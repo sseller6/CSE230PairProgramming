@@ -9,13 +9,14 @@
 
 #pragma once
 
-#include <math.h>    // for math
-#include <iostream>  // for cout
-#include "lander.h"  // for lander
-#include "point.h"   // for point
-#include "ground.h"  // for ground
-#include "star.h"    // for star
-#include "sky.h"     // for sky
+#include <math.h>       // for math
+#include <iostream>     // for cout
+#include "lander.h"     // for lander
+#include "point.h"      // for point
+#include "ground.h"     // for ground
+#include "star.h"       // for star
+#include "sky.h"        // for sky
+#include "uiInteract.h" // For gettng input
 
 using namespace std;
 
@@ -24,15 +25,14 @@ class Game
 {
     // Methods
 public:
-    Game(double ptUpperRight);
+    Game(Point ptUpperRight, Game* pGame, Interface* pUI);
     void reset();
-    string input(string ui);// I'm not sure about this. I put string to catch your attention.
+    bool input(Interface* pUI);
     void gamePlay(double thrust);
     void display(double thrust);
 private:
     // Attributes
     Lander lander;
-    Point ptUpperRight;
     Ground ground;
     Star stars;
     Sky sky; // We added this. It is not in Bro. Helfrich's original design.

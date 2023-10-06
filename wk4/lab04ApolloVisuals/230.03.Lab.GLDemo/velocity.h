@@ -1,13 +1,15 @@
-/************************************************
-VELOCITY
-************************************************/
-
+/***********************************************************************
+ * Source File:
+ *     Velocity :
+ * Author:
+ *    Jarom Anderson & Steven Sellers
+ * Summary:
+ *    Object of the physics for the velocity of the lunar module.
+ ************************************************************************/
 #pragma once
 
 #include <math.h>    // for math
 #include <iostream>  // for cout
-
-using namespace std;
 
 class Velocity
 
