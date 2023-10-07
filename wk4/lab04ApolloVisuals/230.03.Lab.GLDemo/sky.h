@@ -12,6 +12,8 @@
 #include "star.h"    // for stars
 #include "uiDraw.h"  // for ogstream
 
+using namespace std;
+
  /***********************************************************
   * SKY
   * The Sky class
@@ -19,8 +21,8 @@
 class Sky
 {
 public:
-	Sky();
-	void draw();
+	Sky(const Point& ptUpperRight);
+	void draw(ogstream &gout);
 	void reset();
 private:
 	Star stars[50];

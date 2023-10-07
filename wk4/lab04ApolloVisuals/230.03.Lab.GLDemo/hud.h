@@ -21,6 +21,7 @@ private:
 
 public:
 	// Methods
-	void updateHUD();
+	HUD();
+	void updateHUD(const Lander &lander);
 
 };

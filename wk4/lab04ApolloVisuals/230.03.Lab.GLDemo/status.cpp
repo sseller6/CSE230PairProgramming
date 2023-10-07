@@ -40,7 +40,5 @@ bool Status :: isCoasting()
 
 int Status::checkStatus() const
 {
-	switch (status)
-		case 0 // isDead
 	return 0;
 }

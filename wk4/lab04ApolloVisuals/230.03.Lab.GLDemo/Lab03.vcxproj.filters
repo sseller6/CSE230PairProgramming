@@ -42,9 +42,6 @@
     <ClCompile Include="star.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="thrust.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="velocity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,13 +51,13 @@
     <ClCompile Include="status.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="demo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hud.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="angle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="force.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,7 +89,7 @@
     <ClInclude Include="star.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="thrust.h">
+    <ClInclude Include="force.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="velocity.h">

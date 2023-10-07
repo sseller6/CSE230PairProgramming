@@ -35,4 +35,4 @@ public:
 	int checkStatus() const;
 
 
-}
+};

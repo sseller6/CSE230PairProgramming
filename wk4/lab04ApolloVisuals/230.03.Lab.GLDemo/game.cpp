@@ -36,7 +36,7 @@ void Game::updateGame(const Interface* pUI)
     // Move Lunar Module
     lander.move(pUI, time);
     // Update HUD
-    hud.updateHUD();
+    hud.updateHUD(lander);
     // Check for collisions with the LM
     bool collision = checkCollision();
     
@@ -54,14 +54,14 @@ bool Game::checkCollision()
         return false; // Lander hasn't hit ground
 }
 
-void Game::display(ogstream& gout)
+void Game::display(ogstream& gout, const Interface* pUI)
 {
     // Draw Sky
     sky.draw(gout);
     // Draw Ground
     ground.draw(gout);
     // Draw lander
-    lander.draw(gout);
+    lander.draw(gout, pUI);
 }
 
 

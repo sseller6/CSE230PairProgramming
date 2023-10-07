@@ -31,7 +31,7 @@ void callBack(const Interface* pUI, void* p)
     pGame->updateGame(pUI);
 
     // Draw Window
-    pGame->display(gout);
+    pGame->display(gout, pUI);
 }
 
 /*********************************

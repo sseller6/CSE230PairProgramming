@@ -8,6 +8,8 @@
  ************************************************************************/
 #pragma once
 
+#include <cmath> // for sqrt()
+
  class Velocity
 {
 	// Methods
@@ -16,10 +18,11 @@ public:
 	Velocity(double dx, double dy);
 	double getDX() const;
 	double getDY() const;
-	double getVelocity() const;
+	double getVelocity();
 	void setDX(double dx);
 	void setDY(double dy);
 	void add(double accel, double time);
+	double computeTotal();
 private:
     // Attributes
 	double dx;

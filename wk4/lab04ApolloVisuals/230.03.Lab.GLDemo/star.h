@@ -23,12 +23,12 @@ class Star
     // Methods
 public:
     Star();
-    void reset(double width, double height);
-    string draw(string gout); // I'm really not sure what types to put here, so I put string to grab atteniton.
+    void setPosition(double x, double y);
+    void setPhase(unsigned char number);
+    Point getPositon();
+    int getPhase();
 private:
     // Attributes
-    Point pt;
-
-
-    // This is gonna take a bit of refactoring.
+    Point position;
+    unsigned char phase;
 };

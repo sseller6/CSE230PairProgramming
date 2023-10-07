@@ -9,9 +9,6 @@
 
 #pragma once
 
-#include <math.h>    // for math
-#include <iostream>  // for cout
-
 class Acceleration
 
 {

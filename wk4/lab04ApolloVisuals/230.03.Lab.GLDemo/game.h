@@ -25,7 +25,7 @@ public:
     void reset();
     void updateGame(const Interface* pUI);
     bool checkCollision();
-    void display(ogstream &gout);
+    void display(ogstream &gout, const Interface* pUI);
 private:
     // Attributes
     HUD hud;

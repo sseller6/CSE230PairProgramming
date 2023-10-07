@@ -20,10 +20,12 @@ class Angle
 {
 
 public:
+	Angle();
+	Angle(double aRadians);
     // Methods
 	double getDegrees();
 	double getRadians() const;
-	double addRadians(double radians);
+	void addRadians(double radians);
 	void setDegrees(double degrees);
 	void setRadians(double angle);
 	void display(ostream& out);

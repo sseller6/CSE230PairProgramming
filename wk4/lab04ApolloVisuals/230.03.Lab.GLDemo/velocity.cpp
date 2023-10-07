@@ -10,7 +10,7 @@
 #include "velocity.h"
 
 // Default Constructor
-Velocity :: Velocity()
+Velocity :: Velocity() : dx(0.0), dy (0.0)
 {
 }
 
@@ -18,22 +18,27 @@ Velocity :: Velocity()
 
 Velocity :: Velocity(double dx, double dy)
 {
+	this->dx = dx;
+	this->dy = dy;
 }
 
 // Get DX
 double Velocity :: getDX() const
 {
+	return dx;
 }
 
 // Get DY
 double Velocity :: getDY() const
 {
+	return dy;
 }
 
-// Get Speed
-double Velocity :: getSpeed() const
+double Velocity::getVelocity()
 {
+	return computeTotal();
 }
+
 
 // Set DX
 void Velocity :: setDX(double dx)
@@ -48,5 +53,11 @@ void Velocity :: setDY(double dy)
 // Add
 void Velocity :: add(double accel, double time)
 {
+}
+
+// Calculates total velocity
+double Velocity::computeTotal()
+{
+	return sqrt((dx * dx) + (dy * dy));
 }
 

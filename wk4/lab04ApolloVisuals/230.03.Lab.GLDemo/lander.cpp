@@ -13,7 +13,10 @@
 Lander::Lander(Point ptUpperRight) 
     // By default, set the lander at the center of the screen
 	: position(ptUpperRight.getX() / 2.0, ptUpperRight.getY() / 2.0),
-      fuel(1000)
+      fuel(1000),
+      status(false),
+      angle(0),
+      velocity(0, 0)
 {}
 
 // Resets the lander attributes to original values
@@ -27,7 +30,17 @@ Point Lander::getPosition() const
 	return this->position;
 }
 
-int Lander::getFuel() const
+Angle Lander::getAngle() const
+{
+    return angle;
+}
+
+Velocity Lander::getSpeed() const
+{
+    return velocity;
+}
+
+double Lander::getFuel() const
 {
 	return this->fuel;
 }

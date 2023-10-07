@@ -1,15 +1,16 @@
 #include "hud.h"
 
 // Default constructor
-HUD::HUD()
+HUD::HUD() : fuel(0), altitude(0), speed(0), angle(0)
 {
 
 }
 
-void HUD::updateHUD()
+void HUD::updateHUD(const Lander &lander)
 {
-    this->altitude = lander.position.getY();
-    this->angle = lander.angle.getDegrees();
-    this->fuel = lander.getfuel();
-    this->speed = lander.v.getVelocity();
+
+    this->altitude = lander.getPosition().getY();
+    this->angle = lander.getAngle().getDegrees();
+    this->fuel = lander.getFuel();
+    this->speed = lander.getSpeed().getVelocity();
 }

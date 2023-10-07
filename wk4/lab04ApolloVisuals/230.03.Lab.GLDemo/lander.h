@@ -11,7 +11,7 @@
 
 #include "angle.h"    // for Angle
 #include "point.h"    // for Point
-#include "thrust.h"   // for thrust
+#include "force.h"   // for thrust
 #include "velocity.h" // for Velocity
 #include "uiInteract.h" // for controls
 #include "uiDraw.h"   // for ogstream
@@ -26,7 +26,9 @@ public:
 	void reset();
 
 	Point getPosition() const;
-	int getFuel() const;
+	Angle getAngle() const;
+	Velocity getSpeed() const;
+	double getFuel() const;
 	void useFuel(double ammount);
 	bool getStatus() const;
 	void setStatus(bool status);
@@ -41,4 +43,5 @@ private:
 	Velocity velocity;
 	Angle angle;
 	double fuel;
+	Force thrust;
 };
