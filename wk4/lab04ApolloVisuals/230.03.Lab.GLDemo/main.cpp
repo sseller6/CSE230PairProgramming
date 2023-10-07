@@ -1,3 +1,20 @@
+/*************************************************************
+ * 1. Name:
+ *      Jarom Anderson & Steven Sellers
+ * 2. Assignment Name:
+ *      Lab 04: Apollo 11 Visuals
+ * 3. Assignment Description:
+ *      Simulate the Apollo 11 landing
+ * 4. What was the hardest part? Be as specific as possible.
+ *      Fixing syntax errors. We had a couple if statements without brackets
+ *      that were just running and making us think the controls weren't working.
+ *      When we got the HUD working, we noticed we were running out of fuel
+ *      almost immediately. So we went to that area in the code and found the
+ *      syntax errors.
+ * 5. How long did it take for you to complete the assignment?
+ *      9 hours
+ *****************************************************************/
+
 /**********************************************************************
  * Main
  * Opens an OpenGL window, draws to the window, and takes user input
