@@ -20,7 +20,7 @@ public:
 	Velocity(double dx, double dy);
 	double getDX() const;
 	double getDY() const;
-	double getSpeed() const;
+	double getVelocity() const;
 	void setDX(double dx);
 	void setDY(double dy);
 	void add(double accel, double time);

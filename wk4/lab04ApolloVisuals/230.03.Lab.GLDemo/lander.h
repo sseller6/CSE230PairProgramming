@@ -13,9 +13,10 @@
 #include "point.h"    // for Point
 #include "thrust.h"   // for thrust
 #include "velocity.h" // for Velocity
+#include "uiInteract.h" // for controls
 #include "uiDraw.h"   // for ogstream
 #include "status.h"   // for status
-#include <ogstream>
+
 
 /************************
  * LANDER
@@ -27,17 +28,19 @@ public:
 	Lander(Point ptUpperRight);
 	void reset();
 
-	Point getPosition();
+	Point getPosition() const;
 	int getFuel() const;
-	void draw(Thrust thrust, gout) const;
-	void input(Thrust thrust);
+	bool getStatus() const;
+	void setStatus(bool status);
+	void draw(Thrust &thrust, ogstream &gout) const;
+	void move(const Interface* pUI);
 	void coast();
 	void land();
 	void crash();
 private:
-	Status Status(); // Gotta figure this out later.
-	Point pt;
-	Velocity v;
+	bool status; // 1 for thruster engaged 0 for thruster disengaged
+	Point position;
+	Velocity velocity;
 	Angle angle;
 	double fuel;
 };

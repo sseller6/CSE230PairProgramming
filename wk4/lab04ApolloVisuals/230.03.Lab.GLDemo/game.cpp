@@ -13,10 +13,11 @@
  * GAME : CONSTRUCTOR
  * Initialize the point to the passed position
  *****************************************/
-Game::Game(Point ptUpperRight, Game* pGame, Interface* pUI) :
-    lander(ptUpperRight),    // Set lander position
+Game::Game(Point ptUpperRight) :
     sky(ptUpperRight),       // generate sky
     ground(ptUpperRight),    // generate ground
+    lander(ptUpperRight),    // Set lander position
+    time(0.1)                // set time interval to 0.1 seconds
 {}
 
 /*****************************************
@@ -24,15 +25,31 @@ Game::Game(Point ptUpperRight, Game* pGame, Interface* pUI) :
 *****************************************/
 void reset()
 {
-    // Stub for reset
+    lander.reset();
+    sky.reset();
+    ground.reset()
 }
 
 /*****************************************
-* GAMEPLAY
+* UPDATE GAME
 *****************************************/
-void gamePlay(double thrust)
+void updateGame(const Interface* pUI)
+{    
+    // Move Lunar Module
+    lander.move();
+    // Update HUD
+    hud.updateHUD();
+    // Check for collisions with the LM
+    bool collision = checkCollision(pUI);
+}
+
+/****************************************
+* CHECK COLLISOIN
+*****************************************/
+bool checkCollision() 
 {
-    // Stub for Play
+    // Check the status of the LM
+
 }
 
 /*****************************************
@@ -46,7 +63,7 @@ void display(double thrust)
 /*****************************************
 * INPUT
 *****************************************/
-bool Game::input(Interface* pUI)
+bool Game::input(const Interface* pUI)
 {
     return false;
 }

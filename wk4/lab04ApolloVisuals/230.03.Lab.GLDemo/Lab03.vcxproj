@@ -20,8 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="acceleration.cpp" />
+    <ClCompile Include="demo.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ground.cpp" />
+    <ClCompile Include="hud.cpp" />
     <ClCompile Include="lander.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="point.cpp" />
@@ -38,6 +40,7 @@
     <ClInclude Include="angle.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="ground.h" />
+    <ClInclude Include="hud.h" />
     <ClInclude Include="lander.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="sky.h" />

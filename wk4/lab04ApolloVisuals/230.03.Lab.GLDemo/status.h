@@ -19,16 +19,20 @@
 
 class Status
 {
+private:
+	// Attributes
+	int status;
+
+	// Methods
 public:
 	Status();
 	bool isDead();
 	bool isLanded();
 	bool isFlying();
 	bool isCoasting();
-	void setStatus() const;
-	int getStatus();
+	void setStatus(int status);
+	int getStatus() const;
+	int checkStatus() const;
 
-private:
-	int status;
 
-};
+}

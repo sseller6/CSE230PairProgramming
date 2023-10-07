@@ -9,8 +9,7 @@
 
 #pragma once
 
-#include <math.h>       // for math
-#include <iostream>     // for cout
+#include "hud.h"        // for Heads Up Display
 #include "lander.h"     // for lander
 #include "point.h"      // for point
 #include "ground.h"     // for ground
@@ -25,15 +24,16 @@ class Game
 {
     // Methods
 public:
-    Game(Point ptUpperRight, Game* pGame, Interface* pUI);
+    Game(Point ptUpperRight);
     void reset();
-    bool input(Interface* pUI);
-    void gamePlay(double thrust);
-    void display(double thrust);
+    void updateGame(const Interface* pUI);
+    bool checkCollision();
+    void display();
 private:
     // Attributes
+    HUD hud;
     Lander lander;
     Ground ground;
-    Star stars;
     Sky sky; // We added this. It is not in Bro. Helfrich's original design.
+    double time; // time interval in seconds
 };

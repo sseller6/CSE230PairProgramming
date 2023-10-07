@@ -1,40 +1,16 @@
 /**********************************************************************
- * GL Demo
- * Just a simple program to demonstrate how to create an Open GL window,
- * draw something on the window, and accept simple user input
+ * Main
+ * Opens an OpenGL window, draws to the window, and takes user input
  **********************************************************************/
 
+#include "game.h"
 #include "point.h"
 #include "uiInteract.h"
 #include "uiDraw.h"
 #include "ground.h"
+#include "lander.h"
 using namespace std;
 
-/*************************************************************************
- * Demo
- * Test structure to capture the LM that will move around the screen
- *************************************************************************/
-class Demo
-{
-public:
-    Demo(const Point& ptUpperRight) :
-        angle(0.0),
-        ptStar(ptUpperRight.getX() - 20.0, ptUpperRight.getY() - 20.0),
-        ptLM(ptUpperRight.getX() / 2.0, ptUpperRight.getY() / 2.0),
-        ground(ptUpperRight)
-    {
-
-        phase = random(0, 255);
-    }
-
-    // this is just for test purposes.  Don't make member variables public!
-    Point ptLM;           // location of the LM on the screen
-    Point ptUpperRight;   // size of the screen
-    double angle;         // angle the LM is pointing
-    unsigned char phase;  // phase of the star's blinking
-    Ground ground;
-    Point ptStar;
-};
 
 /*************************************
  * All the interesting work happens here, when
@@ -49,32 +25,20 @@ void callBack(const Interface* pUI, void* p)
 
     // the first step is to cast the void pointer into a game object. This
     // is the first step of every single callback function in OpenGL. 
-    Demo* pDemo = (Demo*)p;
+    Game* pGame = (Game*)p;
 
+    // Handle User Input
+    
     // move the ship around
-    if (pUI->isRight())
-        pDemo->angle -= 0.1;
-    if (pUI->isLeft())
-        pDemo->angle += 0.1;
-    if (pUI->isUp())
-        pDemo->ptLM.addY(-1.0);
-    if (pUI->isDown())
-        pDemo->ptLM.addY(1.0);
+    lander.move(pUI);
 
-    // draw the ground
-    pDemo->ground.draw(gout);
+    // Call Update
 
-    // draw the lander and its flames
-    gout.drawLander(pDemo->ptLM /*position*/, pDemo->angle /*angle*/);
-    gout.drawLanderFlames(pDemo->ptLM, pDemo->angle, /*angle*/
-        pUI->isDown(), pUI->isLeft(), pUI->isRight());
+    // Draw Window
 
-    // put some text on the screen
-    gout.setPosition(Point(30.0, 30.0));
-    gout << "Demo (" << (int)pDemo->ptLM.getX() << ", " << (int)pDemo->ptLM.getY() << ")" << "\n";
-
-    // draw our little star
-    gout.drawStar(pDemo->ptStar, pDemo->phase++);
+    pGame->input(pUI);
+    pGame->gamePlay();
+    pGame->display();
 }
 
 /*********************************
@@ -96,14 +60,14 @@ int main(int argc, char** argv)
     // Initialize OpenGL
     Point ptUpperRight(400.0, 400.0);
     Interface ui(0, NULL,
-        "Open GL Demo",
+        "Lander Simulator",
         ptUpperRight);
 
     // Initialize the game class
-    Demo demo(ptUpperRight);
+    Game game(ptUpperRight);
 
     // set everything into action
-    ui.run(callBack, &demo);
+    ui.run(callBack, &game);
 
     return 0;
 }
