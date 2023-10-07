@@ -9,6 +9,7 @@ HUD::HUD() : fuel(0), altitude(0), speed(0), angle(0)
 // Non Default Constructor
 HUD::HUD(const Point& ptUpperRight) : fuel(0), altitude(0), speed(0), angle(0)
 {
+    // Attribute
     position.setX(20);
     position.setY((int) ptUpperRight.getY() - 20);
 }

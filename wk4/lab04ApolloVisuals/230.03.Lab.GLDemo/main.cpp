@@ -38,10 +38,11 @@ using namespace std;
  **************************************/
 void callBack(const Interface* pUI, void* p)
 {
+    // Initialize graphics out.
     ogstream gout;
 
     // the first step is to cast the void pointer into a game object. This
-    // is the first step of every single callback function in OpenGL. 
+    // is the first step of every single callback function in OpenGL.   
     Game* pGame = (Game*)p;
 
     // Call Update
