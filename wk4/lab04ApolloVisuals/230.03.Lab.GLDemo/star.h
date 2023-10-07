@@ -12,6 +12,8 @@
 #include <math.h>    // for math
 #include <iostream>  // for cout
 #include "point.h"   // for point
+#include "uiDraw.h"  // for draw
+
 
 using namespace std;
 

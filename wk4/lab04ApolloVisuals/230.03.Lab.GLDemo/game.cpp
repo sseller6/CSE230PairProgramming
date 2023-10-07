@@ -23,47 +23,45 @@ Game::Game(Point ptUpperRight) :
 /*****************************************
 * RESET
 *****************************************/
-void reset()
+void Game::reset()
 {
     lander.reset();
     sky.reset();
-    ground.reset()
+    ground.reset();
 }
 
-/*****************************************
-* UPDATE GAME
-*****************************************/
-void updateGame(const Interface* pUI)
-{    
+// Update Game State
+void Game::updateGame(const Interface* pUI)
+{
     // Move Lunar Module
-    lander.move();
+    lander.move(pUI, time);
     // Update HUD
     hud.updateHUD();
     // Check for collisions with the LM
-    bool collision = checkCollision(pUI);
+    bool collision = checkCollision();
+    
+    // TODO:
+    // Implement end of game at collision
 }
 
-/****************************************
-* CHECK COLLISOIN
-*****************************************/
-bool checkCollision() 
+bool Game::checkCollision()
 {
-    // Check the status of the LM
-
+    // Check to see if lander has hit the ground
+    if (ground.hitGround(lander.getPosition(), 20))
+    {
+        return true; // Lander hit the ground
+    }
+        return false; // Lander hasn't hit ground
 }
 
-/*****************************************
-* DISPLAY
-*****************************************/
-void display(double thrust)
+void Game::display(ogstream& gout)
 {
-    // Stub for display
+    // Draw Sky
+    sky.draw(gout);
+    // Draw Ground
+    ground.draw(gout);
+    // Draw lander
+    lander.draw(gout);
 }
 
-/*****************************************
-* INPUT
-*****************************************/
-bool Game::input(const Interface* pUI)
-{
-    return false;
-}
+

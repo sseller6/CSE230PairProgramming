@@ -8,11 +8,7 @@
  ************************************************************************/
 #pragma once
 
-#include <math.h>    // for math
-#include <iostream>  // for cout
-
-class Velocity
-
+ class Velocity
 {
 	// Methods
 public:

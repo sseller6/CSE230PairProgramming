@@ -18,10 +18,7 @@
 #include "status.h"   // for status
 
 
-/************************
- * LANDER
- * The lander class
- * *********************/
+// The lander class
 class Lander
 {
 public:
@@ -30,10 +27,11 @@ public:
 
 	Point getPosition() const;
 	int getFuel() const;
+	void useFuel(double ammount);
 	bool getStatus() const;
 	void setStatus(bool status);
-	void draw(Thrust &thrust, ogstream &gout) const;
-	void move(const Interface* pUI);
+	void draw(ogstream &gout, const Interface* pUI) const;
+	void move(const Interface* pUI, double time);
 	void coast();
 	void land();
 	void crash();

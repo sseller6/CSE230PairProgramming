@@ -9,10 +9,14 @@
 
 #include "sky.h"
 
+#include <cstdlib>
+
 // Default Constructor
 
 Sky :: Sky()
 {
+    int rand();
+    //
 }
 
 // Draw the sky

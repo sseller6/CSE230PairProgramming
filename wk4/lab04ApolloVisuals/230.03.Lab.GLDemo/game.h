@@ -11,13 +11,10 @@
 
 #include "hud.h"        // for Heads Up Display
 #include "lander.h"     // for lander
-#include "point.h"      // for point
 #include "ground.h"     // for ground
-#include "star.h"       // for star
 #include "sky.h"        // for sky
 #include "uiInteract.h" // For gettng input
 
-using namespace std;
 
 class Game
 
@@ -28,12 +25,12 @@ public:
     void reset();
     void updateGame(const Interface* pUI);
     bool checkCollision();
-    void display();
+    void display(ogstream &gout);
 private:
     // Attributes
     HUD hud;
     Lander lander;
     Ground ground;
-    Sky sky; // We added this. It is not in Bro. Helfrich's original design.
+    Sky sky; 
     double time; // time interval in seconds
 };

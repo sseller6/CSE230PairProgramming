@@ -21,6 +21,7 @@ class Sky
 public:
 	Sky();
 	void draw();
+	void reset();
 private:
 	Star stars[50];
 

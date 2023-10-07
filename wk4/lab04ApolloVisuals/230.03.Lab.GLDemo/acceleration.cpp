@@ -11,6 +11,7 @@
 
 // Default Constructor
 Acceleration::Acceleration()
+	: ddx(0.0), ddy(0.0)
 {
 }
 

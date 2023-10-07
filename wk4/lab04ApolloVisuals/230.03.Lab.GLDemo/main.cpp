@@ -27,18 +27,11 @@ void callBack(const Interface* pUI, void* p)
     // is the first step of every single callback function in OpenGL. 
     Game* pGame = (Game*)p;
 
-    // Handle User Input
-    
-    // move the ship around
-    lander.move(pUI);
-
     // Call Update
+    pGame->updateGame(pUI);
 
     // Draw Window
-
-    pGame->input(pUI);
-    pGame->gamePlay();
-    pGame->display();
+    pGame->display(gout);
 }
 
 /*********************************

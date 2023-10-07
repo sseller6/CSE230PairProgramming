@@ -28,6 +28,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="sky.cpp" />
+    <ClCompile Include="angle.cpp" />
     <ClCompile Include="star.cpp" />
     <ClCompile Include="status.cpp" />
     <ClCompile Include="thrust.cpp" />
