@@ -17,6 +17,7 @@ Game::Game(Point ptUpperRight) :
     sky(ptUpperRight),       // generate sky
     ground(ptUpperRight),    // generate ground
     lander(ptUpperRight),    // Set lander position
+    hud(ptUpperRight),       // Set HUD position
     time(0.1)                // set time interval to 0.1 seconds
 {}
 
@@ -62,6 +63,8 @@ void Game::display(ogstream& gout, const Interface* pUI)
     ground.draw(gout);
     // Draw lander
     lander.draw(gout, pUI);
+    // Draw HUD
+    hud.draw(gout, lander);
 }
 
 

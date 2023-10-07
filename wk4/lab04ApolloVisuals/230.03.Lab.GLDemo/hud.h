@@ -14,6 +14,7 @@ class HUD
 {
 private:
 	// Attributes
+	Point position;
 	double fuel;
 	double altitude;
 	double speed;
@@ -22,6 +23,8 @@ private:
 public:
 	// Methods
 	HUD();
+	HUD(const Point& ptUpperRight);
 	void updateHUD(const Lander &lander);
+	void draw(ogstream& gout, const Lander& lander);
 
 };
