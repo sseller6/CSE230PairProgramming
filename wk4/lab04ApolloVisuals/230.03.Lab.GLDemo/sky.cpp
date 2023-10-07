@@ -16,15 +16,15 @@
 Sky :: Sky(const Point& ptUpperRight)
 {
     // Give every star a random position and 
-    for (Star star : stars)
+    for (int index = 0; index <= 49; index++)
     { 
         int x = random(0, int(ptUpperRight.getX() - 20));
         int y = random(0, int(ptUpperRight.getY() - 20));
         // Set random position
-        star.setPosition(x, y);
+        stars[index].setPosition(x, y);
 
         // Set random phase
-        star.setPhase(random(0, 255));
+        stars[index].setPhase(random(0, 255));
     }
 }
 
@@ -32,9 +32,9 @@ Sky :: Sky(const Point& ptUpperRight)
 
 void Sky :: draw(ogstream & gout)
 {
-    for (Star star : stars)
+    for (int index = 0; index <= 49; index++)
     {
-        gout.drawStar(star.getPositon(), star.getPhase());
+        gout.drawStar(stars[index].getPositon(), stars[index].getPhase());
     }
 }
 

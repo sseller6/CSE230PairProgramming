@@ -13,7 +13,7 @@
 Lander::Lander(Point ptUpperRight) 
     // By default, set the lander at the center of the screen
 	: position(ptUpperRight.getX() / 2.0, ptUpperRight.getY() / 2.0),
-      fuel(1000),
+      fuel(5000),
       status(false),
       angle(0),
       velocity(0, 0)
@@ -83,21 +83,31 @@ void Lander::move(const Interface* pUI, double time)
     if (getFuel() > 0) // Has enough fuel to change angle
     {
         if (pUI->isRight())
+        {
             angle.addRadians(0.1);
+            position.addX(1.0); // Temporary movement
             useFuel(0.1);
+        }
         if (pUI->isLeft())
+        {
             angle.addRadians(-0.1);
+            position.addX(-1.0); // Temporary movement
             useFuel(0.1);
+        }
         
         // Has enough fuel to engage main engine
         if (getFuel() > 10)
         {
             if (pUI->isUp())
+            {
                 position.addY(-1.0);
                 useFuel(10);
+            }
             if (pUI->isDown())
+            {
                 position.addY(1.0);
                 useFuel(10);
+            }
         }
     }
 
