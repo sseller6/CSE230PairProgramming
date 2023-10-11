@@ -9,13 +9,17 @@
 
 #include "acceleration.h"
 
-// Default Constructor
+/*************************************************************************
+* Default Constructor
+*************************************************************************/
 Acceleration::Acceleration()
 	: ddx(0.0), ddy(0.0)
 {
 }
 
-// Non default Constructor
+/*************************************************************************
+* Non-Default Constructor
+*************************************************************************/
 Acceleration::Acceleration(double ddx, double ddy)
 {
 }
