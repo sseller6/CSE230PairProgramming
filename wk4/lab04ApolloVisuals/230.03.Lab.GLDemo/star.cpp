@@ -35,5 +35,11 @@ int Star::getPhase()
 	return phase;
 }
 
+// Changes phase value by 1
+void Star::incrementPhase()
+{
+	phase++;
+}
+
 
 

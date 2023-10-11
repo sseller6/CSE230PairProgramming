@@ -30,15 +30,16 @@ public:
 	Velocity getSpeed() const;
 	double getFuel() const;
 	void useFuel(double ammount);
-	bool getStatus() const;
-	void setStatus(bool status);
+	int getStatus() const;
+	void setStatus(int status);
 	void draw(ogstream &gout, const Interface* pUI) const;
 	void move(const Interface* pUI, double time);
 	void coast();
+	void fly();
 	void land();
 	void crash();
 private:
-	bool status; // 1 for thruster engaged 0 for thruster disengaged
+	int status; // 0 for coast, 1 for land, 2 for crash
 	Point position;
 	Velocity velocity;
 	Angle angle;

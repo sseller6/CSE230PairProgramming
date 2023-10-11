@@ -24,20 +24,32 @@ Acceleration::Acceleration(double ddx, double ddy)
 {
 }
 
+/*************************************************************************
+* Get the change in the x component of acceleration.
+*************************************************************************/
 double Acceleration::getDDX() const
 {
 	return 0.0;
 }
 
+/*************************************************************************
+* Get the change in the y component of acceleration.
+*************************************************************************/
 double Acceleration::getDDY() const
 {
 	return 0.0;
 }
 
+/*************************************************************************
+* Set the change in the x component of acceleration.
+*************************************************************************/
 void Acceleration::setDDX(double ddx)
 {
 }
 
+/*************************************************************************
+* Set the change in the y component of acceleration.
+*************************************************************************/
 void Acceleration::setDDY(double ddy)
 {
 }

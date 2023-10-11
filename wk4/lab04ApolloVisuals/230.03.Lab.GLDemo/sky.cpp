@@ -34,6 +34,9 @@ void Sky :: draw(ogstream & gout)
 {
     for (int index = 0; index <= 49; index++)
     {
+        stars[index].incrementPhase();
+
+        // Send star data to gstream
         gout.drawStar(stars[index].getPositon(), stars[index].getPhase());
     }
 }

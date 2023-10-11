@@ -51,15 +51,17 @@ void Lander::useFuel(double ammount)
     this->fuel -= ammount;
 }
 
-bool Lander::getStatus() const
+int Lander::getStatus() const
 {
 	return this->status;
 }
 
 // Sets the lander's status
-// 0 for engine disengaged
-// 1 for engine engaged
-void Lander::setStatus(bool status)
+// 0 for coast
+// 1 for flying
+// 2 land
+// 3 for crash
+void Lander::setStatus(int status)
 {
 	this->status = status;
 }
@@ -98,16 +100,7 @@ void Lander::move(const Interface* pUI, double time)
         // Has enough fuel to engage main engine
         if (getFuel() > 10)
         {
-            if (pUI->isUp())
-            {
-                position.addY(-1.0);
-                useFuel(10);
-            }
-            if (pUI->isDown())
-            {
-                position.addY(1.0);
-                useFuel(10);
-            }
+            (pUI->isDown()) ? fly() : coast(); // if down is pressed, engage thruster (fly). Otherwise just coast
         }
     }
 
@@ -119,6 +112,12 @@ void Lander::move(const Interface* pUI, double time)
 
 void Lander::coast()
 {
+}
+
+void Lander::fly()
+{
+    position.addY(1.0);
+    useFuel(10);
 }
 
 void Lander::land()

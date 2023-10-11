@@ -27,6 +27,7 @@ public:
     void setPhase(unsigned char number);
     Point getPositon();
     int getPhase();
+    void incrementPhase();
 private:
     // Attributes
     Point position;
