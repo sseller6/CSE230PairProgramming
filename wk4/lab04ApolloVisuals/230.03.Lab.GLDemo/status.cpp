@@ -1,43 +1,62 @@
-/***********************************************************************
- * Header File:
+/******************************************************************
+ * Source File:
  *    Status : Contains the status of the LM.
  * Author:
  *    Jarom Anderson & Steven Sellers
  * Summary:
  *    Implementation of Status which contains the state of the LM.
- ************************************************************************/
+ *****************************************************************/
 
 #include "status.h"
 
-// Defualt Constructor
+/******************************************************************
+ * STATUS : CONSTRUCTOR
+ * Default constructor.
+ *****************************************************************/
 Status :: Status()
 {
 }
 
-// Is the status of the LM dead.
+/******************************************************************
+ * IS DEAD
+ * Returns if the status of the LM is dead.
+ *****************************************************************/
+// 
 bool Status :: isDead()
 {
-	return false;
+	return true;
 }
 
-// Is the status of the LM landed.
+/******************************************************************
+ * IS LANDED
+ * Returns if the status of the LM is landed.
+ *****************************************************************/
 bool Status :: isLanded()
 {
-	return false;
+	return true;
 }
-
+/******************************************************************
+ * IS FLYING
+ * Returns if the status of the LM is flying.
+ *****************************************************************/
 // Is the status of the LM flying.
 bool Status :: isFlying()
 {
-	return false;
+	return true;
 }
 
-// Is the status of the LM coasting.
+/******************************************************************
+ * IS COASTING
+ * Returns if the status of the LM is coasting.
+ *****************************************************************/
 bool Status :: isCoasting()
 {
-	return false;
+	return true;
 }
-
+/******************************************************************
+ * CHECK STATUS
+ * Returns the status of the lander.
+ *****************************************************************/
 int Status::checkStatus() const
 {
 	return 0;

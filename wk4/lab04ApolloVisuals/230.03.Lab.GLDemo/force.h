@@ -1,6 +1,6 @@
 /***********************************************************************
  * Header File:
- *     Thrust : Indicates rotation and moving up
+ *     Force : Indicates rotation and moving up
  * Author:
  *    Jarom Anderson & Steven Sellers
  * Summary:
@@ -20,9 +20,10 @@ class Force
 {
 public:
     Force();
+    Force(double newtons);
     int getForce();
     void setForce();
  
 private:
-    int force;
+    double force;
 };

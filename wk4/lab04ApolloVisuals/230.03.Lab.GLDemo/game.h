@@ -23,7 +23,8 @@ class Game
 public:
     Game(Point ptUpperRight);
     void reset();
-    void updateGame(const Interface* pUI);
+    void getInput(const Interface* pUI);
+    void updateGame();
     bool checkCollision();
     void display(ogstream &gout, const Interface* pUI);
 private:

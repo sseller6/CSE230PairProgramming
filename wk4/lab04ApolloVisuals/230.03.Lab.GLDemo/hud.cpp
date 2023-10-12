@@ -1,19 +1,38 @@
+/******************************************************************
+* Source File:
+*     HUD : Heads Up Display
+* Author:
+*    Jarom Anderson & Steven Sellers
+* Summary:
+*     Implementation of a heads up display 
+*     to display important info to the player.
+******************************************************************/
+
 #include "hud.h"
 
-// Default constructor
+/******************************************************************
+ * HUD : CONSTRUCTOR
+ * Default constructor
+ *****************************************************************/
 HUD::HUD() : fuel(0), altitude(0), speed(0), angle(0)
 {
 
 }
 
-// Non Default Constructor
+/******************************************************************
+ * HUD : CONSTRUCTOR
+ * Non Default Constructor
+ *****************************************************************/
 HUD::HUD(const Point& ptUpperRight) : fuel(0), altitude(0), speed(0), angle(0)
 {
     // Attribute
     position.setX(20);
     position.setY((int) ptUpperRight.getY() - 20);
 }
-
+/******************************************************************
+ * UPDATE HUD
+ * Takes information form lander to update HUD.
+ *****************************************************************/
 void HUD::updateHUD(const Lander &lander)
 {
 
@@ -23,6 +42,10 @@ void HUD::updateHUD(const Lander &lander)
     this->speed = lander.getSpeed().getVelocity();
 }
 
+/******************************************************************
+ * DRAW 
+ * Draws the information to the top left of the screen. 
+ *****************************************************************/
 void HUD::draw(ogstream& gout, const Lander& lander)
 {
     // put some text on the screen

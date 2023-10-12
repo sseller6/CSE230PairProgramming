@@ -17,27 +17,26 @@
 using namespace std;
 
 /*************************************************************************
+ * NORMALIZE 
  * Takes a radian as a parameter and reduce it to between 0 and 2π.
  ************************************************************************/
 double Angle::normalize(double angle)
 {
-
 	// For anything greater than 2π
 	while (angle > TWO_PI)
 	{
 		angle -= TWO_PI;
 	}
-
 		// For anything less than 0.
 	while (angle < 0)
 	{
 		angle += TWO_PI;
 	}
-
 	return angle;
 }
 
 /*************************************************************************
+ * CONVERT TO DEGREES
  * Takes a radians as a parameter and returns degrees.
  ************************************************************************/
 double Angle::convertToDegrees(double angle)
@@ -48,6 +47,7 @@ double Angle::convertToDegrees(double angle)
 }
 
 /*************************************************************************
+ * CONVERT TO RADIANS
  * Takes a degrees as a parameter and returns radians.
  ************************************************************************/
 double Angle::convertToRadians(double degrees)
@@ -59,20 +59,22 @@ double Angle::convertToRadians(double degrees)
 
 
 /*************************************************************************
-* Default Constructor
-*************************************************************************/
+ * 
+ * Default Constructor
+ ************************************************************************/
 Angle::Angle() : radians(0)
 {}
 
 /*************************************************************************
-* Non-Default Constructor
-*************************************************************************/
+ * Non-Default Constructor
+ ************************************************************************/
 Angle::Angle(double aRadians) : radians(aRadians)
 {}
 
 /*************************************************************************
-* Takes no parameters and return the angle in degrees.
-*************************************************************************/
+ * GET DEGREES
+ * Takes no parameters and return the angle in degrees.
+ ************************************************************************/
 double Angle::getDegrees() 
 {
     double degrees = convertToDegrees(radians);
@@ -80,46 +82,53 @@ double Angle::getDegrees()
 }
 
 /*************************************************************************
-* Takes no parameters and return the angle in radians.
-*************************************************************************/
+ * GET RADIANS
+ * Takes no parameters and return the angle in radians.
+ ************************************************************************/
 double Angle::getRadians() const
 {
 	return radians; // Angle is already in radians
 }
 
 /*************************************************************************
-* Adds radians to the angle of the LM.
-*************************************************************************/
+ * ADD RADIANS
+ * Adds radians to the angle of the LM.
+ ************************************************************************/
 void Angle::addRadians(double radians)
 {
 	this->radians += radians;
 }
 
 /*************************************************************************
-* Takes a degrees as a parameter and updates the attribute
-* with the passed parameter. If the parameter is above 360 or below zero,
-* then it will "unwrap" so the radians is between 0 and 2π.
-*************************************************************************/
+ * SET DEGREES
+ * Takes a degrees as a parameter and updates the attribute
+ * with the passed parameter. If the parameter is above 360 or below zero,
+ * then it will "unwrap" so the radians is between 0 and 2π.
+ ************************************************************************/
 void Angle::setDegrees(double degrees)
 {
 	radians = convertToRadians(degrees);
 }
 
 /*************************************************************************
-* Takes a radian as a parameter and updates the attribute
-* with the passed parameter. If the parameter is above 2π or below zero,
-* then it will "unwrap." 
-*************************************************************************/
+ * SET RADIANS
+ * Takes a radian as a parameter and updates the attribute
+ * with the passed parameter. If the parameter is above 2π or below zero,
+ * then it will "unwrap." 
+ ************************************************************************/
 
 void Angle::setRadians(double angle)
 {
 	radians = normalize(angle);
 }
 
-	// Takes a ostream & out as a parameter display the value, in
-	// degrees, to 1 decimal place of accuracy. This out parameter can be
-	// treated exactly the same as cout. You can use it with a.display(cout)
-	// if a is the name of your object.
+/*************************************************************************
+ * DISPLAY 
+ * Takes a ostream & out as a parameter display the value, in
+ * degrees, to 1 decimal place of accuracy. This out parameter can be
+ * treated exactly the same as cout.
+ ************************************************************************/
+
 void Angle::display(ostream& out)
 {
     out.setf(ios::fixed);     // "fixed" means don't use scientific notation

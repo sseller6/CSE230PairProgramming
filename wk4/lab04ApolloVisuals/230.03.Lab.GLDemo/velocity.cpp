@@ -1,4 +1,4 @@
-/***********************************************************************
+/*************************************************************************
  * Source File:
  *     Velocity :
  * Author:
@@ -9,53 +9,80 @@
 
 #include "velocity.h"
 
-// Default Constructor
+/*************************************************************************
+ * velocity : CONSTRUCTOR
+ * Default constructor.
+ ************************************************************************/
 Velocity :: Velocity() : dx(0.0), dy (0.0)
 {
 }
 
-// Non-default Constructor
-
+/*************************************************************************
+ * VELOCITY : CONSTRUCTOR
+ * Non-default Constructor
+ ************************************************************************/
 Velocity :: Velocity(double dx, double dy)
 {
 	this->dx = dx;
 	this->dy = dy;
 }
 
-// Get DX
+/*************************************************************************
+ * GET DX
+ * Get the change in velocity for the x component.
+ ************************************************************************/
 double Velocity :: getDX() const
 {
 	return dx;
 }
 
-// Get DY
+/*************************************************************************
+ * GET DY
+ * Get the change in velocity for the y component.
+ ************************************************************************/
 double Velocity :: getDY() const
 {
 	return dy;
 }
 
+/*************************************************************************
+ * GET VELOCITY
+ * Get the current velocity.
+ ************************************************************************/
 double Velocity::getVelocity()
 {
 	return computeTotal();
 }
 
 
-// Set DX
+/*************************************************************************
+ * SET DX
+ * Set the change in velocity for the x component.
+ ************************************************************************/
 void Velocity :: setDX(double dx)
 {
 }
 
-// Set DY
+/*************************************************************************
+ * SET DY
+ * Set the change in velocity for the y component.
+ ************************************************************************/
 void Velocity :: setDY(double dy)
 {
 }
 
-// Add
+/*************************************************************************
+ * ADD
+ * Add velocity.
+ ************************************************************************/
 void Velocity :: add(double accel, double time)
 {
 }
 
-// Calculates total velocity
+/*************************************************************************
+ * COMPUTE TOTAL
+ * Compute the total velocity.
+ ************************************************************************/
 double Velocity::computeTotal()
 {
 	return sqrt((dx * dx) + (dy * dy));

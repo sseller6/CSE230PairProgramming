@@ -10,7 +10,7 @@
 #include "acceleration.h"
 
 /*************************************************************************
-* Default Constructor
+* Default Acceleration Constructor
 *************************************************************************/
 Acceleration::Acceleration()
 	: ddx(0.0), ddy(0.0)
@@ -25,6 +25,7 @@ Acceleration::Acceleration(double ddx, double ddy)
 }
 
 /*************************************************************************
+* GET DDX
 * Get the change in the x component of acceleration.
 *************************************************************************/
 double Acceleration::getDDX() const
@@ -33,6 +34,7 @@ double Acceleration::getDDX() const
 }
 
 /*************************************************************************
+* GET DDY
 * Get the change in the y component of acceleration.
 *************************************************************************/
 double Acceleration::getDDY() const
@@ -41,6 +43,7 @@ double Acceleration::getDDY() const
 }
 
 /*************************************************************************
+* SET DDX
 * Set the change in the x component of acceleration.
 *************************************************************************/
 void Acceleration::setDDX(double ddx)
@@ -48,8 +51,9 @@ void Acceleration::setDDX(double ddx)
 }
 
 /*************************************************************************
-* Set the change in the y component of acceleration.
-*************************************************************************/
+ * SET DDY
+ * Set the change in the y component of acceleration.
+ ************************************************************************/
 void Acceleration::setDDY(double ddy)
 {
 }
