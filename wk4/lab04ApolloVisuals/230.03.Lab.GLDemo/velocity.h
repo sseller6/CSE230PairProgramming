@@ -21,7 +21,8 @@ public:
 	double getVelocity();
 	void setDX(double dx);
 	void setDY(double dy);
-	void add(double accel, double time);
+	void addX(double accel, double time);
+	void addY(double accel, double time);
 	double computeTotal();
 private:
     // Attributes

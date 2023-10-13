@@ -23,9 +23,10 @@ class Game
 public:
     Game(Point ptUpperRight);
     void reset();
+    void run(const Interface* pUI);
+    void win();
+    void lose();
     void getInput(const Interface* pUI);
-    void updateGame();
-    bool checkCollision();
     void display(ogstream &gout, const Interface* pUI);
 private:
     // Attributes

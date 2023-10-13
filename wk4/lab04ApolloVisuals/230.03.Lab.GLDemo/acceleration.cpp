@@ -22,6 +22,8 @@ Acceleration::Acceleration()
 *************************************************************************/
 Acceleration::Acceleration(double ddx, double ddy)
 {
+	setDDX(ddx);
+	setDDY(ddy);
 }
 
 /*************************************************************************
@@ -30,7 +32,7 @@ Acceleration::Acceleration(double ddx, double ddy)
 *************************************************************************/
 double Acceleration::getDDX() const
 {
-	return 0.0;
+	return ddx;
 }
 
 /*************************************************************************
@@ -39,7 +41,7 @@ double Acceleration::getDDX() const
 *************************************************************************/
 double Acceleration::getDDY() const
 {
-	return 0.0;
+	return ddy;
 }
 
 /*************************************************************************
@@ -48,6 +50,7 @@ double Acceleration::getDDY() const
 *************************************************************************/
 void Acceleration::setDDX(double ddx)
 {
+	this->ddx = ddx;
 }
 
 /*************************************************************************
@@ -56,4 +59,5 @@ void Acceleration::setDDX(double ddx)
  ************************************************************************/
 void Acceleration::setDDY(double ddy)
 {
+	this->ddy = ddy;
 }

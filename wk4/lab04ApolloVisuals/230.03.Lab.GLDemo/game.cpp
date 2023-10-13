@@ -45,81 +45,96 @@ void Game::getInput(const Interface* pUI)
 	{
 		if (pUI->isRight())
 		{
-            lander.rotateLeft(0.1);
+			lander.rotateLeft(0.1);
 		}
 		if (pUI->isLeft())
 		{
-            lander.rotateRight();
-
-			angle.addRadians(-0.1);
-			position.addX(-1.0); // Temporary movement
-			useFuel(0.1);
-		}
-
-		// Has enough fuel to engage main engine
-		if (getFuel() > 10)
-		{
-			(pUI->isDown()) ? lander.setStatus(1) : lander.setStatus(0); // If down is pressed, 
-                                               // then engage thruster (fly).
-                                               // Otherwise, just coast.
+			lander.rotateRight(0.1);
 		}
 	}
-}
-
-/******************************************************************
-* UPDATE GAME
-* Update Game State.
-******************************************************************/
-void Game::updateGame()
-{
-    // 1 - Check Collisions. (This is basically checking if continue)
-	// Check for collisions with the LM
-	// bool collision = checkCollision();
-
-	// 2 - Get input
-	//     * change  angle()
-	//     * engage thrust()
-	//     * set    status()
-	// 
-
-
-	// 4 - Then move lander according to status.
-	switch (lander.getStatus())
+	// Has enough fuel to engage main engine
+	if (lander.getFuel() >= 10)
 	{
-	case 1: // Crash
-		lander.crash();
-		break;
-	case 2: // Landed
-		lander.land();
-		break;
-	case 3: // Fly
-		lander.fly();
-		break;
-	default: // Coasting
-		lander.coast();
-		break;
+		//(pUI->isDown()) ? lander.fly() : lander.coast(); // If down is pressed, 
+											   // then engage thruster (fly).
+											   // Otherwise, just coast.
+		if (pUI->isDown())
+		{
+			lander.setIsFlying(true);
+		}
+		else
+		{
+			lander.setIsFlying(false);
+		}
+	}
+	else
+	{
+		lander.setIsFlying(false);
 	}
 
-    // 5 - Update HUD
-    hud.updateHUD(lander);
-
-    
-    // TODO:
-    // Implement end of game at collision
 }
 
 /******************************************************************
-* CHECK COLLISION
-* Check to see if lander has hit the ground.
+* RUN
+* Runs one round of the simulator
 ******************************************************************/
-bool Game::checkCollision()
-{
-    if (ground.hitGround(lander.getPosition(), 20))
-    {
-        return true; // Lander hit the ground
-    }
-        return false; // Lander hasn't hit ground
+void Game::run(const Interface* pUI)
+{   // Check collisoin
+	if (ground.hitGround(lander.getPosition(), lander.getWidth()) == false)
+	{
+        // Get input
+		getInput(pUI);
+		// Move lander
+		lander.move();
+	}
+	
+
+	// Check to see if lander is on the pad
+	else if (ground.onPlatform(lander.getPosition(), lander.getWidth()) == true)
+	{
+		// Make sure they didn't land too fast (< -4.0 m/s)
+		if (lander.getSpeed().getVelocity() < -4.0)
+		{
+			lose();
+		}
+		else
+		{
+			win();
+		}
+	}
+	else
+	{
+		lose();
+	}
+
+	// Update HUD
+	hud.updateHUD(lander);
 }
+
+/******************************************************************
+* WIN
+* 
+******************************************************************/
+void Game::win()
+{
+	// Stop lander
+	// lander.stop();
+	// Set winning message
+	hud.setMessage("The Eagle has landed!");
+}
+
+/******************************************************************
+* LOSE
+*
+******************************************************************/
+void Game::lose()
+{
+	// Stop lander
+	// lander.stop();
+	// Set winning message
+	hud.setMessage("Houston, we have a problem!");
+}
+
 /******************************************************************
 * DISPLAY
 * Draw the sky, ground, lander, and HUD.

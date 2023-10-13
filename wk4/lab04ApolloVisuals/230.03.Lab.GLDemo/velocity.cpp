@@ -72,11 +72,21 @@ void Velocity :: setDY(double dy)
 }
 
 /*************************************************************************
- * ADD
- * Add velocity.
+ * ADD X
+ * Add velocity to the X component.
  ************************************************************************/
-void Velocity :: add(double accel, double time)
+void Velocity :: addX(double accel, double time)
 {
+	dx += accel * time;
+}
+
+/*************************************************************************
+ * ADD Y
+ * Add velocity to the Y component.
+ ************************************************************************/
+void Velocity::addY(double accel, double time)
+{
+	dy += accel * time;
 }
 
 /*************************************************************************
@@ -85,6 +95,11 @@ void Velocity :: add(double accel, double time)
  ************************************************************************/
 double Velocity::computeTotal()
 {
+	// Check if velocity is negative
+	if (dy < 0)
+	{
+		return -sqrt((dx * dx) + (dy * dy));
+	}
 	return sqrt((dx * dx) + (dy * dy));
 }
 

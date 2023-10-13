@@ -16,8 +16,10 @@ class Acceleration
 public:
 	Acceleration();
 	Acceleration(double ddx, double ddy);
+	// Getters
 	double getDDX() const;
 	double getDDY() const;
+	// Setters
 	void setDDX(double ddx);
 	void setDDY(double ddy);
 private:

@@ -48,9 +48,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="status.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hud.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,9 +90,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="velocity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="status.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="angle.h">

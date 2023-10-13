@@ -19,11 +19,14 @@ private:
 	double altitude;
 	double speed;
 	double angle;
+	string message;
 
 public:
 	// Methods
 	HUD();
 	HUD(const Point& ptUpperRight);
+	string getMessage() const;
+	void setMessage(string text);
 	void updateHUD(const Lander &lander);
 	void draw(ogstream& gout, const Lander& lander);
 

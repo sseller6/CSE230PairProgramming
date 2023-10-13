@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include "acceleration.h" // For acceleration
 #include "point.h"   // for Point
 
 
@@ -23,6 +24,7 @@ public:
     Force(double newtons);
     int getForce();
     void setForce();
+    
  
 private:
     double force;

@@ -15,12 +15,16 @@
   *****************************************************************/
 Lander::Lander(Point ptUpperRight) 
     // By default, set the lander at the center of the screen
-	: position(ptUpperRight.getX() / 2.0, ptUpperRight.getY() / 2.0),
+	: position(ptUpperRight.getX() / 2.0, ptUpperRight.getY()),
+      width(1),
       fuel(5000),
-      status(false),
+      isFlying(false),
       angle(0),
       velocity(0, 0),
-      thrust(45000.00)
+      thrust(45000.00),
+      gravity(-1.625),
+      mass(15103.00),
+      time(0.1) // HARD CODED VALUE
 {}
 
 /******************************************************************
@@ -41,6 +45,15 @@ Point Lander::getPosition() const
 }
 
 /******************************************************************
+ * GET WIDTH
+ * Returns the lander's width.
+ *****************************************************************/
+int Lander::getWidth() const
+{
+    return this->width;
+}
+
+/******************************************************************
  * GET ANGLE
  * Returns the current angle of the lander.
  *****************************************************************/
@@ -55,6 +68,7 @@ Angle Lander::getAngle() const
  *****************************************************************/
 Velocity Lander::getSpeed() const
 {
+    
     return velocity;
 }
 
@@ -68,6 +82,15 @@ double Lander::getFuel() const
 }
 
 /******************************************************************
+ * setIsFlying
+ * Sets isFlying to true
+ *****************************************************************/
+void Lander::setIsFlying(bool value) 
+{
+    isFlying = value;
+}
+
+/******************************************************************
  * USE FUEL
  * Subtracts ammount of fuel spent.
  *****************************************************************/
@@ -75,27 +98,7 @@ void Lander::useFuel(double ammount)
 {
     this->fuel -= ammount;
 }
-/******************************************************************
- * GET STATUS
- * Subtracts ammount of fuel spent.
- *****************************************************************/
-int Lander::getStatus() const
-{
-	return this->status;
-}
 
-/******************************************************************
- * SET STATUS
- * Sets the lander's status
- * 0 for coast
- * 1 for flying
- * 2 land
- * 3 for crash
- *****************************************************************/
-void Lander::setStatus(int status)
-{
-	this->status = status;
-}
 /******************************************************************
  * DRAW
  * Draws the lander on the screen.
@@ -105,8 +108,12 @@ void Lander::draw(ogstream &gout, const Interface* pUI) const
     double LMangle = angle.getRadians();
     // Taken from demo draw LM
     gout.drawLander(position, LMangle);
-    gout.drawLanderFlames(position, LMangle, /*angle*/
-        pUI->isDown(), pUI->isLeft(), pUI->isRight());
+    // Current implementation only draws flames when thruster engaged
+    if (isFlying == true)
+    {
+        gout.drawLanderFlames(position, LMangle, /*angle*/
+            pUI->isDown(), pUI->isLeft(), pUI->isRight());
+    }
 }
 
 /******************************************************************
@@ -115,7 +122,31 @@ void Lander::draw(ogstream &gout, const Interface* pUI) const
  *****************************************************************/
 void Lander::move()
 {
-    
+    if (isFlying == true)
+    {
+        useFuel(10);
+        // Caclculate total acceleration includeing thrust
+        double accelerationThrust = thrust.getForce() / mass;
+        acceleration.setDDX(computeHorizontalComponent(accelerationThrust));
+        acceleration.setDDY(computeVerticalComponent(accelerationThrust) + gravity);
+
+    }
+    else
+    {
+        // Caclulate total acceleration without thrust
+        acceleration.setDDX(0.00);
+        acceleration.setDDY(gravity);
+    }
+
+   // Calculate change in velocity
+    velocity.addX(acceleration.getDDX(), time);
+    velocity.addY(acceleration.getDDY(), time);
+
+   // Calculate new position
+    position.setX(computeNewPosition(position.getX(), velocity.getDX(),
+        acceleration.getDDX(), time));
+    position.setY(computeNewPosition(position.getY(), velocity.getDY(),
+        acceleration.getDDY(), time));
 }
 
 /******************************************************************
@@ -138,42 +169,39 @@ void Lander::rotateRight(double radians)
 	useFuel(0.1);
 }
 
-/******************************************************************
- * COAST
- * The lander is 
- *****************************************************************/
-void Lander::coast()
+void Lander::stop()
 {
-    
+    // Stub Method may be irrelevant
 }
 
-void Lander::fly()
+/***********************************************
+ * COMPUTE VERTICAL COMPONENT
+ * Find the vertical component of a velocity or acceleration.
+ * The equation is:
+ *     cos(angle) = y / total
+ ***********************************************/
+double Lander::computeVerticalComponent(double total)
 {
-    // Caclculate change in acceleration due to thrust
-
-    // Caclulate total acceleration
-
-    // Calculate change in velocity
-
-    // Calculate new position
-    useFuel(10);
-    position.setX(computeNewPosition(position.getX(), velocity.getDX(),
-                                     acceleration.getDDX(), game.getTime()));
-    position.setY(computeNewPosition(position.getY(), velocity.getDY(),
-                                     acceleration.getDDY(), game.getTime()));
+    // Find vertical component of a velocity or accelration.
+    double y;
+    y = cos(angle.getRadians()) * total;
+    return y;
 }
 
-void Lander::land()
+/***********************************************
+ * COMPUTE HORIZONTAL COMPONENT
+ * Find the horizontal component of a velocity or acceleration.
+ * The equation is:
+ *     sin(angle) = x / total
+ ***********************************************/
+double Lander::computeHorizontalComponent(double total)
 {
-    // Stub
+    double x;
+    x = sin(angle.getRadians()) * total;
+    return x;
 }
 
-void Lander::crash()
-{
-    // Stub
-}
-
-double computeNewPosition(double position0, double v, double a, double t)
+double Lander::computeNewPosition(double position0, double v, double a, double t)
 {
 	double position1 = position0 + v * t + (a * (t * t) / 2);
 	return position1;
