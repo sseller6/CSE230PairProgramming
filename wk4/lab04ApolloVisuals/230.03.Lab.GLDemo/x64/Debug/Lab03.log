@@ -1,2 +1,7 @@
-﻿  velocity.cpp
+﻿  game.cpp
+  hud.cpp
+  lander.cpp
+C:\Users\jarbe\Documents\cse230\CSE230W02\wk4\lab04ApolloVisuals\230.03.Lab.GLDemo\lander.cpp(53,16): warning C4244: 'return': conversion from 'const double' to 'int', possible loss of data
+  main.cpp
+  Generating Code...
   Lab03.vcxproj -> C:\Users\jarbe\Documents\cse230\CSE230W02\wk4\lab04ApolloVisuals\230.03.Lab.GLDemo\x64\Debug\Lab03.exe

@@ -197,7 +197,7 @@ double Lander::computeVerticalComponent(double total)
 double Lander::computeHorizontalComponent(double total)
 {
     double x;
-    x = sin(angle.getRadians()) * total;
+    x = -sin(angle.getRadians()) * total;
     return x;
 }
 
