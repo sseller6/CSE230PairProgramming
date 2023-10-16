@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="acceleration.cpp" />
-    <ClCompile Include="force.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ground.cpp" />
     <ClCompile Include="hud.cpp" />
@@ -44,7 +43,6 @@
     <ClInclude Include="point.h" />
     <ClInclude Include="sky.h" />
     <ClInclude Include="star.h" />
-    <ClInclude Include="force.h" />
     <ClInclude Include="uiDraw.h" />
     <ClInclude Include="uiInteract.h" />
     <ClInclude Include="velocity.h" />

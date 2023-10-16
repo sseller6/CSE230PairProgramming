@@ -12,7 +12,6 @@
 #include "angle.h"         // for Angle
 #include "acceleration.h"  // for acceleration
 #include "point.h"         // for Point
-#include "force.h"         // for thrust
 #include "velocity.h"      // for Velocity
 #include "uiInteract.h"    // for controls
 #include "uiDraw.h"        // for ogstream
@@ -46,7 +45,7 @@ private:
 	Acceleration acceleration;
 	Angle angle;
 	double fuel;
-	Force thrust;
+	double thrust;
 	double gravity;
 	double width;
 	double mass;

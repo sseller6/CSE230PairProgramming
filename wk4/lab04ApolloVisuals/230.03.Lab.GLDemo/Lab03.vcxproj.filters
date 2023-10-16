@@ -54,9 +54,6 @@
     <ClCompile Include="angle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="force.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ground.h">
@@ -84,9 +81,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="star.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="force.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="velocity.h">

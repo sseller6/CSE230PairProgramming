@@ -126,7 +126,7 @@ void Lander::move()
     {
         useFuel(10);
         // Caclculate total acceleration includeing thrust
-        double accelerationThrust = thrust.getForce() / mass;
+        double accelerationThrust = thrust / mass;
         acceleration.setDDX(computeHorizontalComponent(accelerationThrust));
         acceleration.setDDY(computeVerticalComponent(accelerationThrust) + gravity);
 
