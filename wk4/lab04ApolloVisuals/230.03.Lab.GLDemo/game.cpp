@@ -17,8 +17,7 @@ Game::Game(Point ptUpperRight) :
     sky(ptUpperRight),       // generate sky
     ground(ptUpperRight),    // generate ground
     lander(ptUpperRight),    // Set lander position
-    hud(ptUpperRight),       // Set HUD position
-    time(0.1)                // set time interval to 0.1 seconds
+    hud(ptUpperRight)       // Set HUD position
 {}
 
 /******************************************************************

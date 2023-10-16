@@ -34,5 +34,4 @@ private:
     Lander lander;
     Ground ground;
     Sky sky; 
-    double time; // time interval in seconds
 };
