@@ -17,7 +17,7 @@ Lander::Lander(Point ptUpperRight)
     // By default, set the lander at the center of the screen
 	: position(ptUpperRight.getX() / 2.0, ptUpperRight.getY()),
       width(1),
-      fuel(5000),
+      fuel(50000),
       isFlying(false),
       angle(0),
       velocity(0, 0),
