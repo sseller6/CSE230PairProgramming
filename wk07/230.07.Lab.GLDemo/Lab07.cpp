@@ -48,10 +48,10 @@ public:
    }
 
    Ground ground;                 // the ground
-   Position  projectilePath[20];  // path of the projectile
-   Position  ptHowitzer;          // location of the howitzer
+   Position  projectilePath[20];  // path of the projectile                // Class?
+   Position  ptHowitzer;          // location of the howitzer              // Class?
    Position  ptUpperRight;        // size of the screen
-   double angle;                  // angle of the howitzer 
+   double angle;                  // angle of the howitzer                 // Part of howizer class
    double time;                   // amount of time since the last firing
 };
 
