@@ -13,6 +13,7 @@
 class Projectile
 {
 private:
+    bool hitGround;             // Has the projectile hit the ground.
     double mass;                // In kg
     double surfaceArea;         // in meters
     Position position;          // Position x and y coordinates.
@@ -28,15 +29,17 @@ public:
     Projectile();
     Projectile(double aRadians, double initialVelocity, double objectMass, double objectDiameter);
     // Methods
+    void display();
     void move(double timeInterval);
     double computeNewX(double timeInterval);
     double computeNewY(double timeInterval);
     double computeSurfaceArea(double diameter);
-    double getDistance();
-    double getAltitude();
+    bool checkCollision();
 
     // Getters
     double getMass();
+    double getDistance();
+    double getAltitude();
 
     // Setters
     void setMass(double mass);
