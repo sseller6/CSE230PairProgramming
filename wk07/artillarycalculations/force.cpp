@@ -172,12 +172,11 @@ double Gravity::getAcceleration(double altitude)
 
     int index = 0;
     // Iterate through list. i 0 = index 0. Compare value to altitude. If the value of index is greater than altitude, stop and set index to i-1.
-    // Then set 
-    for (double value : altitudes)
+    for (int i = 0; i < 14; i++)
     {
-        if (value < altitude)
+        if (altitudes[i] < altitude)
         {
-            index = value
+            index = i - 1;
         }
     }
 
