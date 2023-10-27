@@ -24,12 +24,42 @@
     <ClCompile Include="angle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="velocity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="acceleration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="force.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xyComponents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="angle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="velocity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="acceleration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="position.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="force.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xyComponents.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

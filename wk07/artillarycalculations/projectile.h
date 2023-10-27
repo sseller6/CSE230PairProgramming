@@ -1,49 +1,44 @@
 #pragma once
 
+#include "acceleration.h"
 #include "angle.h"
+#include "force.h"
+#include "position.h"
+#include "velocity.h"
+#include "xyComponents.h"
+
+#include <numbers>
+
 
 class Projectile
 {
 private:
-    double x;         // X coordinate.
-    double y;         // Y coordinate.
-    Angle  angle;     // In radians
-    double velocityX; // Velocity of X coordinate
-    double velocityY; // Velocity of Y coordinate
-    double accX;      // Acceleration of X coordinate
-    double accY;      // Aceleration of Y coordinate
-    double mass;      // In kg
+    double mass;                // In kg
+    double surfaceArea;         // in meters
+    Position position;          // Position x and y coordinates.
+    Angle  angle;               // In radians
+    Velocity velocity;          // The velocity of the object
+    Acceleration acceleration;  // The total acceleration of the object.
+    Force netForce;             // Total forces acting on the object
+    Gravity gravity;            // Gravity force in Newtons
+    DragForce drag;             // Drag force in Newtons
 
 public:
     // Constructors
     Projectile();
-    Projectile(double aRadians, double initialVelocity, double objectMass);
+    Projectile(double aRadians, double initialVelocity, double objectMass, double objectDiameter);
     // Methods
     void move(double timeInterval);
     double computeNewX(double timeInterval);
     double computeNewY(double timeInterval);
+    double computeSurfaceArea(double diameter);
+    double getDistance();
+    double getAltitude();
 
     // Getters
-    double getX();
-    double getY();
-    double getVelocityX();
-    double getVelocityY();
-    double getAccX();
-    double getAccY();
     double getMass();
 
     // Setters
-    void setX(double x);
-    void setY(double y);
-    void setVelocityX(double velocity);
-    void setVelocityY(double velocity);
-    void setAccX(double AccX);
-    void setAccY(double AccY);
     void setMass(double mass);
-
-    // FUNCITION FROM LUNAR MODULE
-    double computeVerticalComponent(double total);
-    double computeHorizontalComponent(double total);
-    double computeTotalComponent(double x, double y);
 };
 

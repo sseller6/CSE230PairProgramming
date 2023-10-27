@@ -1,74 +1,28 @@
 #include "projectile.h"
 
-#include <cmath>
-
+#include <numbers>
 
 /*****************************************************************
 * Constructors
 *****************************************************************/
-Projectile::Projectile(double aDegrees, double initialVelocity, double objectMass)
-    : 
-    x(0),
-    y(0),
-    accX(0),
-    accY(0),
-    mass(objectMass)
+Projectile::Projectile(double aDegrees, double initialVelocity,
+                       double objectMass, double objectDiameter)
+    : mass(objectMass) 
 {
+    // Initial Angle
     angle.setDegrees(aDegrees);
-    velocityX = computeHorizontalComponent(initialVelocity);
-    cout << velocityX << endl;
-    velocityY = computeVerticalComponent(initialVelocity);
-    cout << velocityY << endl;
+
+    // Set initial velocity
+    velocity.setDX(computeHorizontalComponent(angle.getRadians(), initialVelocity));
+    cout << "Initial X Velocity: " << velocity.getDX() << endl;
+
+    velocity.setDY(computeVerticalComponent(angle.getRadians(), initialVelocity));
+    cout << "Initial Y Velocity: " << velocity.getDY() << endl;
+
+    // Set surface area
+    surfaceArea = computeSurfaceArea(objectDiameter);
 }
 
-
-/*****************************************************************
-* PROJECTILE GETX
-*****************************************************************/
-double Projectile::getX()
-{
-    return x;
-}
-
-/*****************************************************************
-* PROJECTILE GETY
-*****************************************************************/
-double Projectile::getY()
-{
-    return y;
-}
-
-/*****************************************************************
-* PROJECTILE GET VELOCITYX
-*****************************************************************/
-double Projectile::getVelocityX()
-{
-    return velocityX;
-}
-
-/*****************************************************************
-* PROJECTILE GET VELOCITYY
-*****************************************************************/
-double Projectile::getVelocityY()
-{
-    return velocityY;
-}
-
-/*****************************************************************
-* PROJECTILE GET ACCX
-*****************************************************************/
-double Projectile::getAccX()
-{
-    return accX;
-}
-
-/*****************************************************************
-* PROJECTILE GET ACCY
-*****************************************************************/
-double Projectile::getAccY()
-{
-    return accY;
-}
 
 /*****************************************************************
 * PROJECTILE GET MASS
@@ -76,54 +30,6 @@ double Projectile::getAccY()
 double Projectile::getMass()
 {
     return mass;
-}
-
-/*****************************************************************
-* PROJECTILE SET VELOCITY X
-*****************************************************************/
-void Projectile::setVelocityX(double velocity)
-{
-    velocityX = velocity;
-}
-
-/*****************************************************************
-* PROJECTILE SET VELOCITY Y
-*****************************************************************/
-void Projectile::setVelocityY(double velocity)
-{
-    velocityY = velocity;
-}
-
-/*****************************************************************
-* PROJECTILE SET X
-*****************************************************************/
-void Projectile::setX(double x)
-{
-    x = x;
-}
-
-/*****************************************************************
-* PROJECTILE SET Y
-*****************************************************************/
-void Projectile::setY(double y)
-{
-    y = y;
-}
-
-/*****************************************************************
-* PROJECTILE SET ACCX
-*****************************************************************/
-void Projectile::setAccX(double AccX)
-{
-    AccX = AccX;
-}
-
-/*****************************************************************
-* PROJECTILE SET ACCY
-*****************************************************************/
-void Projectile::setAccY(double AccY)
-{
-    AccY = AccY;
 }
 
 /*****************************************************************
@@ -140,26 +46,27 @@ void Projectile::setMass(double mass)
 *****************************************************************/
 void Projectile::move(double timeInterval)
 {
-    // Compute change in X
-    double newX = computeNewX(timeInterval);
-    cout << "Move - newX: " << newX << endl;
-
-    // Compute change in Y
-    double newY = computeNewY(timeInterval);
-    cout << "Move - newY: " << newY << endl;
-
-    // Set new x and y
-    x = newX;
-    y = newY;
+    // COMPUTE FORCES
+    gravity.updateForce(mass, position.getMetersY());
+    drag.updateForce(surfaceArea, velocity);
+    // SUM THE FORCES
+    netForce.setForceX(drag.getForceX()); // Gravity has no x component
+    netForce.setForceY(drag.getForceY() + gravity.getForceY());
+    // CHANGE IN ACCELERATION
+    acceleration.updateAcceleration(netForce, mass);
+    // CHANGE IN VELOCITY
+    velocity.updateVelocity(acceleration, timeInterval);
+    // CHANGE IN POSITION
+    position.setMeters(computeNewX(timeInterval), computeNewY(timeInterval));
 }
+
 /*****************************************************************
 * PROJECTILE COMPUTE NEW X
 * Calculates the new x value based on physics.
 *****************************************************************/
 double Projectile::computeNewX(double timeInterval)
 {
-    double newPosition = x + velocityX * timeInterval + (accX * (timeInterval * timeInterval) / 2);
-    return newPosition;
+    return position.getMetersX() + velocity.getDX() * timeInterval + (acceleration.getDDX() * (timeInterval * timeInterval) / 2);
 }
 /*****************************************************************
 * PROJECTILE COMPUTE NEW Y
@@ -167,86 +74,23 @@ double Projectile::computeNewX(double timeInterval)
 *****************************************************************/
 double Projectile::computeNewY(double timeInterval)
 {
-    double newPosition = y + velocityY * timeInterval + (accY * (timeInterval * timeInterval) / 2);
-    return newPosition;
+    return position.getMetersY() + velocity.getDY() * timeInterval + (acceleration.getDDY() * (timeInterval * timeInterval) / 2);
 }
 
-//////////////////////////// FUNCTIONS FROM LUNAR MODULE STUFF ////////////////////////////
-
-
-/***********************************************
- * COMPUTE VERTICAL COMPONENT
- * Find the vertical component of a velocity or acceleration.
- * The equation is:
- *     cos(a) = y / total
- * This can be expressed graphically:
- *      x
- *    +-----
- *    |   /
- *  y |  / total
- *    |a/
- *    |/
- * INPUT
- *     a : angle, in radians
- *     total : total velocity or acceleration
- * OUTPUT
- *     y : the vertical component of the total
- ***********************************************/
-double Projectile::computeVerticalComponent(double total)
+double Projectile::computeSurfaceArea(double diameter)
 {
-    // Find vertical component of a velocity or accelration.
-    double y;
-    y = cos(angle.getRadians()) * total;
-    return y;
+    double radius = diameter / 2;
+    return numbers::pi * (radius * radius);
 }
 
-/***********************************************
- * COMPUTE HORIZONTAL COMPONENT
- * Find the horizontal component of a velocity or acceleration.
- * The equation is:
- *     sin(a) = x / total
- * This can be expressed graphically:
- *      x
- *    +-----
- *    |   /
- *  y |  / total
- *    |a/
- *    |/
- * INPUT
- *     aRadians : angle, in radians
- *     total : total velocity or acceleration
- * OUTPUT
- *     x : the vertical component of the total
- ***********************************************/
-double Projectile::computeHorizontalComponent(double total)
+// Get distance from origin
+double Projectile::getDistance()
 {
-    double x;
-    x = sin(angle.getRadians()) * total;
-    return x;
+    return position.getMetersX();
 }
 
-/************************************************
- * COMPUTE TOTAL COMPONENT
- * Given the horizontal and vertical components of
- * something (velocity or acceleration), determine
- * the total component. To do this, use the Pythagorean Theorem:
- *    x^2 + y^2 = t^2
- * where:
- *      x
- *    +-----
- *    |   /
- *  y |  / total
- *    | /
- *    |/
- * INPUT
- *    x : horizontal component
- *    y : vertical component
- * OUTPUT
- *    total : total component
- ***********************************************/
-double Projectile::computeTotalComponent(double x, double y)
+double Projectile::getAltitude()
 {
-    double total;
-    total = sqrt((x * x) + (y * y));
-    return total;
+    return position.getMetersY();
 }
+

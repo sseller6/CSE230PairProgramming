@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,13 +129,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="acceleration.cpp" />
     <ClCompile Include="angle.cpp" />
     <ClCompile Include="artillarycalculations.cpp" />
+    <ClCompile Include="force.cpp" />
+    <ClCompile Include="position.cpp" />
     <ClCompile Include="projectile.cpp" />
+    <ClCompile Include="velocity.cpp" />
+    <ClCompile Include="xyComponents.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="acceleration.h" />
     <ClInclude Include="angle.h" />
+    <ClInclude Include="force.h" />
+    <ClInclude Include="position.h" />
     <ClInclude Include="projectile.h" />
+    <ClInclude Include="velocity.h" />
+    <ClInclude Include="xyComponents.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
