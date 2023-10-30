@@ -1,5 +1,13 @@
-#include "projectile.h"
+/***************************************************************************
+ * Source File:
+ *     Projectile
+ * Author:
+ *    Jarom Anderson & Steven Sellers
+ * Summary:
+ *    Implementation of the physics for the projectile of the M777 Howitzer.
+ **************************************************************************/
 
+#include "projectile.h"
 #include <numbers>
 
 /*****************************************************************

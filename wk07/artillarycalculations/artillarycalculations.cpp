@@ -1,9 +1,16 @@
+/***********************************************************************
+ * Source File:
+ *     Artillary Calculations
+ * Author:
+ *    Jarom Anderson & Steven Sellers
+ * Summary:
+ *    This file serves as the main file for the program.
+ ************************************************************************/
+
 #include <iostream>
 #include "projectile.h"
 
-
 using namespace std;
-
 
 // Initial variables
 double PI = 3.141592653589793;      // Yumm
@@ -39,10 +46,6 @@ double TIME_INTERVAL = 0.1;         // Time in seconds
 
 // drag force 
 // double dragForce = (dragCoefficient / 2) * airDensity* (mach * mach) * area;
-
-
-
-
 
 int main()
 {

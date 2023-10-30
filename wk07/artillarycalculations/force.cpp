@@ -1,11 +1,20 @@
-﻿#include "force.h"
+﻿/***********************************************************************
+ * Source File:
+ *     Force
+ * Author:
+ *    Jarom Anderson & Steven Sellers
+ * Summary:
+ *    Implementation of the physics for the force of the M777 Howitzer.
+ ************************************************************************/
+
+#include "force.h"
 #include "acceleration.h"
 #include "velocity.h"
 #include <unordered_map>
 using namespace std;
 
 /*****************************************************************
-* Default Constructor
+* FORCE : Default Constructor
 *****************************************************************/
 Force::Force()
 {
@@ -14,7 +23,7 @@ Force::Force()
 }
 
 /*****************************************************************
-* Non Default Constructor
+* FORCE : Non Default Constructor
 *****************************************************************/
 Force::Force(double aRadians, double force)
 {
@@ -22,7 +31,7 @@ Force::Force(double aRadians, double force)
 }
 
 /*****************************************************************
-* FORCE COMPUTE FORCE
+* FORCE : COMPUTE FORCE
 * Basic compute force method.
 *****************************************************************/
 double Force::computeForce(double mass, double acceleration)
@@ -31,7 +40,7 @@ double Force::computeForce(double mass, double acceleration)
 }
 
 /*****************************************************************
-* FORCE UPDATE FORCE
+* FORCE : UPDATE FORCE
 * Basic update force method.
 *****************************************************************/
 void Force::updateForce(double mass, Acceleration &acceleration)
@@ -43,7 +52,7 @@ void Force::updateForce(double mass, Acceleration &acceleration)
 }
 
 /*****************************************************************
-* FORCE GET FORCE X
+* FORCE : GET FORCE X
 * Get the force of the X value.
 *****************************************************************/
 double Force::getForceX()
@@ -52,7 +61,7 @@ double Force::getForceX()
 }
 
 /*****************************************************************
-* FORCE GET FORCE Y
+* FORCE : GET FORCE Y
 * Get the force of the Y value.
 *****************************************************************/
 double Force::getForceY()
@@ -61,7 +70,7 @@ double Force::getForceY()
 }
 
 /*****************************************************************
-* FORCE GET FORCE 
+* FORCE : GET FORCE 
 * Get the force.
 *****************************************************************/
 double Force::getForce()
@@ -70,7 +79,7 @@ double Force::getForce()
 }
 
 /*****************************************************************
-* FORCE SET FORCE X
+* FORCE : SET FORCE X
 * Set the force of X.
 *****************************************************************/
 void Force::setForceX(double value)
@@ -78,75 +87,103 @@ void Force::setForceX(double value)
     forceX = value;
 }
 /*****************************************************************
-* FORCE SET FORCE Y
+* FORCE : SET FORCE Y
 * Set the force of Y.
 *****************************************************************/
 void Force::setForceY(double value)
 {
     forceY = value;
 }
-
+/*****************************************************************
+* FORCE : SET FORCE 
+* Set the force of Y.
+*****************************************************************/
 void Force::setForce(double aRadians, double totalForce)
 {
     forceX = computeHorizontalComponent(aRadians, totalForce);
     forceY = computeVerticalComponent(aRadians, totalForce);
 }
 
-
-// Drag Force Constructor
-
+/*****************************************************************
+* Drag Force Constructor
+*****************************************************************/
 DragForce::DragForce()
     :dragCoefficient(0.30), // Defined constants
      mediumDensity(0.60)
 {
 }
 
-// Non Default Constructor
+/*****************************************************************
+* Drag Force Non Default Constructor
+*****************************************************************/
 DragForce::DragForce(double dragCoefficient, double mediumDensity)
 {
     this->dragCoefficient = dragCoefficient;
     this->mediumDensity = mediumDensity;
 }
 
-// Override function for computing drag force
-// Formula: d = ( c * ρ * v^2 * a) / 2
-// Where d = DragForce
-//       c = dragCoeficient
-//       p = meduimDensity
-//       v = velocity
-//       a = surfaceArea
+/*****************************************************************
+* DRAG FORCE : COMPUTE FORCE
+* Override function for computing drag force
+* Formula: d = ( c * ρ * v^2 * a) / 2
+* Where d = DragForce
+*       c = dragCoeficient
+*       p = meduimDensity
+*       v = velocity
+*       a = surfaceArea
+*****************************************************************/
 double DragForce::computeForce(double surfaceArea, double velocity)
 {
    return (dragCoefficient * mediumDensity * (velocity * velocity) * surfaceArea) / 2;
 }
 
-// Overrride function for updating drag force
+/*****************************************************************
+* DRAG FORCE : UPDATE FORCE
+* Not to be confused with FORCE: UPDATE FORCE.
+* Overrride function for updating drag force
+*****************************************************************/
 void DragForce::updateForce(double surfaceArea, Velocity &velocity)
 {
     setForceX(computeForce(surfaceArea, velocity.getDX()));
     setForceY(computeForce(surfaceArea, velocity.getDY()));
 }
 
-// Default Constructor
+/*****************************************************************
+* GRAVITY : Default Constructor
+*****************************************************************/
 Gravity::Gravity()
     : acceleration(0.0)
 {}
 
-// Non Default Constructor
+/*****************************************************************
+* GRAVITY : Non Default Constructor
+*****************************************************************/
 Gravity::Gravity(double accelerationGravity)
     : acceleration(accelerationGravity)
 {}
 
+/*****************************************************************
+* GRAVITY : COMPUTE FORCE
+* Basic compute force method.
+*****************************************************************/
 double Gravity::computeForce(double mass, double altitude)
 {
     return mass * getAcceleration(altitude);
 }
 
+/*****************************************************************
+* GRAVITY : UPDATE FORCE
+* Updates the force of gravity.
+*****************************************************************/
 void Gravity::updateForce(double mass, double altitude)
 {
     setForceY(computeForce(mass, altitude));
 }
 
+/*****************************************************************
+* GRAVITY : GET ACCELERATION
+* Returns the new acceleration of gravity.
+*****************************************************************/
 double Gravity::getAcceleration(double altitude)
 {
     // Linear Interpolation Table

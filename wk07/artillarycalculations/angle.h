@@ -1,11 +1,11 @@
-﻿/***********************************************************************
+﻿/****************************************************************************
  * Header File:
  *     Angle : Represents the angle that the lunar module is pointing.
  * Author:
  *    Jarom Anderson & Steven Sellers
  * Summary:
- *    Object contianing information of where the lunar module is pointing.
- ************************************************************************/
+ *    Object contianing information of where the M777 Howitzer is pointing.
+ ***************************************************************************/
 
 #pragma once
 
@@ -25,10 +25,10 @@ public:
     // Methods
 	double getDegrees();
 	double getRadians() const;
-	void addRadians(double radians);
-	void setDegrees(double degrees);
-	void setRadians(double angle);
-	void display(ostream& out);
+	void   addRadians(double radians);
+	void   setDegrees(double degrees);
+	void   setRadians(double angle);
+	void   display(ostream& out);
 
 private:
     // Attributes

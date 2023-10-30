@@ -1,11 +1,23 @@
-#pragma once
+/***********************************************************************
+ * Header File:
+ *     Force
+ * Author:
+ *    Jarom Anderson & Steven Sellers
+ * Summary:
+ *    Object containing the physics for the force of the M777 Howitzer.
+ ************************************************************************/
 
+#pragma once
 #include "xyComponents.h"
 
 // Forward declarations
 class Acceleration;
 class Velocity;
 
+
+/************************************
+ * FORCE class
+ ************************************/
 class Force
 {
 private:
@@ -29,6 +41,9 @@ public:
 	void setForce(double aRadians, double totalForce);
 };
 
+/************************************
+ * GRAVITY class
+ ************************************/
 class Gravity : public Force
 {
 private:
@@ -41,6 +56,9 @@ public:
 	double getAcceleration(double altitude);
 };
 
+/************************************
+ * DRAGFORCE class
+ ************************************/
 class DragForce : public Force
 {
 private:

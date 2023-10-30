@@ -1,12 +1,11 @@
-﻿/*************************************************************************
+﻿/****************************************************************************
  * Source File:
  *     Angle : Represents the angle that the lunar module is pointing.
  * Author:
  *    Jarom Anderson & Steven Sellers
  * Summary:
- *    Implementation of a container that has information 
- *    of where the lunar module is pointing.
- ************************************************************************/
+ *    Implementation of where the M777 Howitzer is pointing.
+ ***************************************************************************/
 
 #define TWO_PI 6.28318530718
 
@@ -56,7 +55,6 @@ double Angle::convertToRadians(double degrees)
 	angle = normalize(angle);
 	return angle;
 }
-
 
 /*************************************************************************
  * 

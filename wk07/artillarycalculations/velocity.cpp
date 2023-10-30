@@ -1,10 +1,10 @@
-/*************************************************************************
+/***********************************************************************
  * Source File:
  *     Velocity :
  * Author:
  *    Jarom Anderson & Steven Sellers
  * Summary:
- *    Implementation of the physics for acceleration of the lunar module.
+ *    Implementation of the physics for the velocity of the M777 Howitzer.
  ************************************************************************/
 
 #include "velocity.h"
@@ -114,7 +114,10 @@ double Velocity::computeVelocity(double velocity, double acceleration, double ti
 	return newV;
 }
 
-// Updates both Velocity Components
+/*************************************************************************
+ * UPDATE VELOCITY 
+ * Update the x and y component of velocity.
+ ************************************************************************/
 void Velocity::updateVelocity(Acceleration &acceleration, double timeInterval)
 {
 	// Update X

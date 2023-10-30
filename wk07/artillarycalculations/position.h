@@ -8,9 +8,7 @@
  *    or the location on the field.
  ************************************************************************/
 
-
 #pragma once
-
 #include <iostream> 
 #include <cmath>
 

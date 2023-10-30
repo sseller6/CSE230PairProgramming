@@ -1,6 +1,14 @@
+/************************************************************************************
+ * Source File:
+ *     xyComponents
+ * Author:
+ *    Jarom Anderson & Steven Sellers
+ * Summary:
+ *    Implementation of the object containing information for computing xy components.
+ ***********************************************************************************/
+
 #include "xyComponents.h"
 #include <cmath>
-
 
 /***********************************************
  * COMPUTE HORIZONTAL COMPONENT
