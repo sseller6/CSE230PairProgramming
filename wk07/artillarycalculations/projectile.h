@@ -37,7 +37,8 @@ private:
 public:
     // Constructors
     Projectile();
-    Projectile(double aRadians, double initialVelocity, double objectMass, double objectDiameter);
+    Projectile(double aRadians, double initialVelocity, double objectMass,
+               double objectDiameter);
     // Methods
     void   display();
     void   move(double timeInterval);

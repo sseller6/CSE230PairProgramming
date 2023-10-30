@@ -67,5 +67,7 @@ public:
 	DragForce();
 	DragForce(double dragCoefficient, double mediumDensity);
 	double computeForce(double surfaceArea, double velocity);
-	void   updateForce(double surfaceArea, Velocity &velocity);
+	void   updateForce(double surfaceArea, Velocity &velocity, double altitude);
+	double computeDragCoefficient(Velocity &velocity);
+	double computeMediumDensity(double altitude);
 };
