@@ -81,8 +81,8 @@ void Projectile::move(double timeInterval)
     gravity.updateForce(mass, position.getMetersY());
     drag.updateForce(surfaceArea, velocity);
     // SUM THE FORCES
-    netForce.setForceX(-drag.getForceX()); // Gravity has no x component
-    netForce.setForceY(-drag.getForceY() + gravity.getForceY());
+    netForce.setForceX(drag.getForceX()); // Gravity has no x component
+    netForce.setForceY(drag.getForceY() + gravity.getForceY());
     // CHANGE IN ACCELERATION
     acceleration.updateAcceleration(netForce, mass);
     // CHANGE IN VELOCITY

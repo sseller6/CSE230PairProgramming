@@ -11,6 +11,7 @@
 #include "acceleration.h"
 #include "velocity.h"
 #include <unordered_map>
+#include <iostream>
 using namespace std;
 
 /*****************************************************************
@@ -134,7 +135,7 @@ DragForce::DragForce(double dragCoefficient, double mediumDensity)
 *****************************************************************/
 double DragForce::computeForce(double surfaceArea, double velocity)
 {
-   return (dragCoefficient * mediumDensity * (velocity * velocity) * surfaceArea) / 2;
+   return -(dragCoefficient * mediumDensity * (velocity * velocity) * surfaceArea) / 2;
 }
 
 /*****************************************************************
@@ -188,49 +189,65 @@ double Gravity::getAcceleration(double altitude)
 {
     // Linear Interpolation Table
     double altitudes[] = {0000, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 15000, 20000, 25000};
-    double accelerations[] = {9.087, 9.804, 9.801, 9.797, 9.794, 9.791, 9.788, 9.785, 9.782, 9.779, 9.776, 9.761, 9.745, 9.730};
+    double accelerations[] = {-9.807, -9.804, -9.801, -9.797, -9.794, -9.791, -9.788, -9.785, -9.782, -9.779, -9.776, -9.761, -9.745, -9.730};
     unordered_map<double, double> altitudeAcceleration =
     {
-        {0000, 9.087},
-        {1000, 9.804},
-        {2000, 9.801},
-        {3000, 9.797},
-        {4000, 9.794},
-        {5000, 9.791},
-        {6000, 9.788},
-        {7000, 9.785},
-        {8000, 9.782},
-        {9000, 9.779},
-        {10000, 9.776},
-        {15000, 9.761},
-        {20000, 9.745},
-        {25000, 9.730},
+        {0000, -9.807},
+        {1000, -9.804},
+        {2000, -9.801},
+        {3000, -9.797},
+        {4000, -9.794},
+        {5000, -9.791},
+        {6000, -9.788},
+        {7000, -9.785},
+        {8000, -9.782},
+        {9000, -9.779},
+        {10000, -9.776},
+        {15000, -9.761},
+        {20000, -9.745},
+        {25000, -9.730},
     };
 
-    int index = 0;
-    // Iterate through list. i 0 = index 0. Compare value to altitude. If the value of index is greater than altitude, stop and set index to i-1.
-    for (int i = 0; i < 14; i++)
+    bool altitudeFound = false;
+    int index = -1;
+    while (!altitudeFound)
     {
-        if (altitudes[i] < altitude)
+		// Increment index.
+		index++;
+
+		// Base Case: Altitude already in table.
+		if (altitudes[index] == altitude)
+			return accelerations[index];
+
+        // Keep searching until altitude is found.
+        else if (altitudes[index] < altitude && altitude < altitudes[index + 1])
         {
-            index = i - 1;
+            altitudeFound = true;
+        }
+        
+        // If altitude isn't on table, print error and use default 9.087 m/s.
+         else if (index >= 13)
+        {
+            cout << "ERROR: Altittude Not Found in table default value used" << endl;
+            return 9.08;
         }
     }
 
+
     // Initialize linear interpolation variables
-    double d = altitude;  //Altitude
-    double r;  //Solve for R (just initialize)
-    double d0 = altitudes[index]; //Key1 iterate thorugh keys 
-    double r0 = accelerations[index]; //Value1
-    double d1 = altitudes[index + 1]; //Key2
+    double d = altitude;                  //Altitude
+    double r;                             //Solve for R (just initialize)
+    double d0 = altitudes[index];         //Key1 iterate thorugh keys 
+    double r0 = accelerations[index];     //Value1
+    double d1 = altitudes[index + 1];     //Key2
     double r1 = accelerations[index + 1]; //Value2
 
 
     
     // Steven's attempt at coding the equation
-    r = (((r1 - r0) * (d * d0)) / (d1 - d0)) + r0;
+    r = (((r1 - r0) * (d - d0)) / (d1 - d0)) + r0;
 
 
     
-    return -9.8;
+    return r;
 }

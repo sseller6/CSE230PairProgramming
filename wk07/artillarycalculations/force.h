@@ -14,7 +14,6 @@
 class Acceleration;
 class Velocity;
 
-
 /************************************
  * FORCE class
  ************************************/
