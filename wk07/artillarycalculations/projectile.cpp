@@ -29,6 +29,9 @@ Projectile::Projectile(double aDegrees, double initialVelocity,
 
     // Set surface area
     surfaceArea = computeSurfaceArea(objectDiameter);
+
+    // Set drag coefficitnt
+    
 }
 
 
@@ -79,14 +82,14 @@ void Projectile::move(double timeInterval)
 {
     // COMPUTE FORCES
     gravity.updateForce(mass, position.getMetersY());
-    drag.updateForce(surfaceArea, velocity);
+    drag.updateForce(surfaceArea, velocity, getAltitude());
     // SUM THE FORCES
     netForce.setForceX(drag.getForceX()); // Gravity has no x component
     netForce.setForceY(drag.getForceY() + gravity.getForceY());
     // CHANGE IN ACCELERATION
     acceleration.updateAcceleration(netForce, mass);
     // CHANGE IN VELOCITY
-    velocity.updateVelocity(acceleration, timeInterval);
+    velocity.updateVelocity(acceleration, timeInterval, getAltitude());
     // CHANGE IN POSITION
     position.setMeters(computeNewX(timeInterval), computeNewY(timeInterval));
 }

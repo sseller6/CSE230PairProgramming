@@ -32,18 +32,23 @@ public:
 	void   addX(double accel, double time);
 	void   addY(double accel, double time);
 	double computeVelocity(double velocity, double acceleration, double timeInterval);
-	void   updateVelocity(Acceleration &acceleration, double timeInterval);
+	void   updateVelocity(Acceleration &acceleration, double timeInterval, double altitude);
+	double computeMach(double altitude);
 	// Getters
 	double getDX() const;
 	double getDY() const;
 	double getVelocity();
+	double getMach() const;
 	// Setters
 	void   setDX(double dx);
 	void   setDY(double dy);
+	void   setMach(double mach);
 
 
 private:
     // Attributes
 	double dx;
 	double dy;
+	// Mach = Total Velocity relative to the speed of sound
+	double mach;
 };

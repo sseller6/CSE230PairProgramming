@@ -13,14 +13,13 @@
 using namespace std;
 
 // Initial variables
-double PI = 3.141592653589793;      // Yumm
-double dragCoefficient;             // Create maps of datatables for linear interpolation
-double airDensity;                  // See above
-double INITIAL_VELOCITY = 827.0;    // Velocity when fired
-double MASS = 46.7;                 // Mass of bullet in kg
-double ACCELERATION_GRAVITY = -9.8; // meters/second^2
-double DIAMETER = 0.15489;          // in meters
-double TIME_INTERVAL = 0.1;         // Time in seconds
+#define PI 3.141592653589793         // Yumm
+#define INITIAL_VELOCITY 827.0       // Velocity when fired
+#define MASS 46.7                    // Mass of bullet in kg
+#define ACCELERATION_GRAVITY -9.8    // meters/second^2
+#define DIAMETER 0.15489             // in meters
+#define TIME_INTERVAL 0.01           // Time in seconds
+#define ANGLE 75.00                  // Angle in degrees
 
 // Position
 // double x0 = 0.00;
@@ -50,27 +49,21 @@ double TIME_INTERVAL = 0.1;         // Time in seconds
 int main()
 {
     // Create a projectile
-    Projectile bullet(75.00, INITIAL_VELOCITY, MASS, DIAMETER);
+    Projectile bullet(ANGLE, INITIAL_VELOCITY, MASS, DIAMETER);
 
-
-    int i = 1; // Initialize loop time tracker.
-    // Move the projectile 20 for 20 seconds
+    int i = 0; // Initialize loop time tracker.
     while (bullet.checkCollision() == false)
     {
-        
+        i++; // Track how many times loop is run (this is our time in seconds
+        // Move the bullet        
         bullet.move(TIME_INTERVAL);
-        
-        // Display Distance & Altitutde
-        cout << "Round: " << i << "." << endl;
-        bullet.display();
-        cout << endl;
 
-        i++; // Track how many times loop is run
     }
-
+    // bullet.display();
     // Display Distance & Altitutde
-    cout << "Distance: " << bullet.getDistance() << "\n";
-    cout << "Altitude: " << bullet.getAltitude() << "\n";
+    cout << "Distance: "  << bullet.getDistance()  << " meters"  << endl;
+    cout << "Altitude: "  << bullet.getAltitude()  << " meters"  << endl;
+    cout << "Hang Time: " << i / 100               << " seconds" << endl;
 
 
 }
