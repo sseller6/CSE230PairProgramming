@@ -155,6 +155,13 @@ double Velocity::computeMach(double altitude)
 		// Increment index.
 		index++;
 
+		// value lower than table
+		if (altitude < altitudes[0])
+		{
+			// Use minimum value
+			return speeds[0];
+		}
+
 		// Base Case: Altitude already in table.
 		if (altitudes[index] == altitude)
 		{
@@ -167,11 +174,10 @@ double Velocity::computeMach(double altitude)
 			altitudeFound = true;
 		}
 
-		// If altitude isn't on table, print error and use default 9.087 m/s.
+		// If altitude is larger than the table.
 		else if (index >= 15)
 		{
-			cout << "ERROR: Altittude Not Found in table default value used" << endl;
-			return totalVelocity / 340;
+			return totalVelocity / speeds[14];
 		}
 	}
 
@@ -189,7 +195,5 @@ double Velocity::computeMach(double altitude)
 	// Steven's attempt at coding the equation
 	r = (((r1 - r0) * (d - d0)) / (d1 - d0)) + r0;
 
-
-
-	return totalVelocity/r;
+	return totalVelocity / r;
 }

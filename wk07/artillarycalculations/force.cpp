@@ -160,7 +160,7 @@ double DragForce::computeDragCoefficient(Velocity& velocity)
 
     // Linear Interpolation Table
     double machs[] = { 0.300, 0.500, 0.700, 0.890, 0.920, 0.960, 0.980, 1.000, 1.020, 1.060, 1.240, 1.530, 1.990, 2.870, 2.890, 5.000 };
-    double coefficients[] = { 0.1629, 0.1659, 0.2031, 0.2597, 0.3010, 0.3287, 0.4002, 0.4258, 0.4335, 0.4483, 0.4064, 0.3663, 0.2897, 0.2306, 0.2656 };
+    double coefficients[] = { 0.1629, 0.1659, 0.2031, 0.2597, 0.3010, 0.3287, 0.4002, 0.4258, 0.4335, 0.4483, 0.4064, 0.3663, 0.2897, 0.2297, 0.2306, 0.2656 };
     
     bool machFound = false;
     int index = -1;
@@ -169,8 +169,15 @@ double DragForce::computeDragCoefficient(Velocity& velocity)
         // Increment index.
         index++;
 
-        // Base Case: Altitude already in table.
-        if (machs[index] == mach)
+        // value lower than table
+        if (mach < machs[0])
+        {
+            // Use minimum value
+            return coefficients[0];
+        }
+        
+        // Altitude already in table.
+        else if (machs[index] == mach)
             return coefficients[index];
 
         // Keep searching until altitude is found.
@@ -179,11 +186,10 @@ double DragForce::computeDragCoefficient(Velocity& velocity)
             machFound = true;
         }
 
-        // If altitude isn't on table, print error and use default 9.087 m/s.
+        // If value larger than the table, use maximum.
         else if (index >= 15)
         {
-            cout << "ERROR: Mach Not Found in table default value used" << endl;
-            return 0.3;
+            return coefficients[15];
         }
     }
 
@@ -220,6 +226,13 @@ double DragForce::computeMediumDensity(double altitude)
         // Increment index.
         index++;
 
+        // value lower than table
+        if (altitude < altitudes[0])
+        {
+            // Use minimum value
+            return densities[0];
+        }
+
         // Base Case: Altitude already in table.
         if (altitudes[index] == altitude)
             return densities[index];
@@ -230,11 +243,10 @@ double DragForce::computeMediumDensity(double altitude)
             altitudeFound = true;
         }
 
-        // If altitude isn't on table, print error and use default 9.087 m/s.
+        // If value larger than the table, use maximum.
         else if (index >= 19)
         {
-            cout << "ERROR: Altittude Not Found in table default value used" << endl;
-            return 0.6;
+            return densities[19];
         }
     }
 
@@ -304,6 +316,13 @@ double Gravity::getAcceleration(double altitude)
 		// Increment index.
 		index++;
 
+        // value lower than table
+        if (altitude < altitudes[0])
+        {
+            // Use minimum value
+            return accelerations[0];
+        }
+
 		// Base Case: Altitude already in table.
 		if (altitudes[index] == altitude)
 			return accelerations[index];
@@ -314,11 +333,10 @@ double Gravity::getAcceleration(double altitude)
             altitudeFound = true;
         }
         
-        // If altitude isn't on table, print error and use default 9.087 m/s.
-         else if (index >= 13)
+        // If value larger than the table, use maximum.
+        else if (index >= 13)
         {
-            cout << "ERROR: Altittude Not Found in table default value used" << endl;
-            return 9.08;
+            return accelerations[13];
         }
     }
 
@@ -335,8 +353,5 @@ double Gravity::getAcceleration(double altitude)
     
     // Steven's attempt at coding the equation
     r = (((r1 - r0) * (d - d0)) / (d1 - d0)) + r0;
-
-
-    
     return r;
 }

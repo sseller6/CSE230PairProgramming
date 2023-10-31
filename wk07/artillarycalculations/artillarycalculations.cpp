@@ -50,26 +50,20 @@ int main()
 {
     // Create a projectile
     Projectile bullet(ANGLE, INITIAL_VELOCITY, MASS, DIAMETER);
-    bullet.display();
 
-    int i = 1; // Initialize loop time tracker.
-    // Move the projectile 20 for 20 seconds
+    int i = 0; // Initialize loop time tracker.
     while (bullet.checkCollision() == false)
     {
-        
+        i++; // Track how many times loop is run (this is our time in seconds
+        // Move the bullet        
         bullet.move(TIME_INTERVAL);
-        
-        // Display Distance & Altitutde
-        cout << "Round: " << i << "." << endl;
-        //bullet.display();
-        cout << endl;
 
-        i++; // Track how many times loop is run
     }
-    bullet.display();
+    // bullet.display();
     // Display Distance & Altitutde
-    cout << "Distance: " << bullet.getDistance() << "\n";
-    cout << "Altitude: " << bullet.getAltitude() << "\n";
+    cout << "Distance: "  << bullet.getDistance()  << " meters"  << endl;
+    cout << "Altitude: "  << bullet.getAltitude()  << " meters"  << endl;
+    cout << "Hang Time: " << i / 100               << " seconds" << endl;
 
 
 }
