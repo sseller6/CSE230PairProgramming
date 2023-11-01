@@ -40,7 +40,7 @@
  inline double* allocateArrayDouble(int size)
  {
 	 // If the size is zero or negative, it will return nullptr. 
-	 if (size < 0)
+	 if (size <= 0)
 	 {
 		 return nullptr;
 	 }
@@ -62,7 +62,7 @@
  * by-reference. 
  * This function has a void return value.
  ***********************************************************************/
- inline void deleteOneFloat(float *p)
+ inline void deleteOneFloat(float* &p)
  {
 	 // If the pointer is not null, delete the pointer & set to null.
 	 if (p != nullptr)
@@ -76,11 +76,11 @@
  * DELETE ARRAY of DOUBLEs
  * This function will work much like deleteOneFloat().
  ***********************************************************************/
- inline void deleteArrayDouble(float *p)
+ inline void deleteArrayDouble(double* &p)
  {
 	 if (p != nullptr)
 	 {
-		 delete p;
+		 delete[] p;
 		 p = nullptr;
 	 }
  }
