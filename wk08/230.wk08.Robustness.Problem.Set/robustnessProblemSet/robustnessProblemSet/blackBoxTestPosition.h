@@ -172,7 +172,7 @@ private:
     {
         Position piece;
         piece.set(5, 10000);
-        if (piece.getRow() != 8)
+        if (piece.getColumn() != 8)
         {
             failedMethods.push_back("testExtremeUpperCol");
         }
