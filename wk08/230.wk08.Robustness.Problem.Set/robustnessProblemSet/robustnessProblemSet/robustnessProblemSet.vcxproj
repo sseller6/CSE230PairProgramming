@@ -127,7 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="robustnessProblemSet.cpp" />
+    <ClCompile Include="blackBoxTestPosition.cpp" />
+    <ClCompile Include="position.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="blackBoxTestPosition.h" />
+    <ClInclude Include="position.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
