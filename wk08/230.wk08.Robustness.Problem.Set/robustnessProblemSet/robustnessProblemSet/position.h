@@ -14,6 +14,6 @@ public:
     int getColumn();
     void set(int row, int column);
     void display();
-
+    friend class WhiteBoxTestPosition;
 };
 
