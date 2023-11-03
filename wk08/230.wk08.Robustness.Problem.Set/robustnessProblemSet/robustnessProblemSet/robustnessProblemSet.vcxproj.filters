@@ -32,5 +32,8 @@
     <ClInclude Include="blackBoxTestPosition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="whiteBoxTestPosition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
