@@ -13,15 +13,15 @@ public:
 	void run()
 	{
 
-		// countArray
+		// projectile.fire()
 		reset();
 
-		report("countArray()");
+		report("projectileFire()");
 
-		// countPointer
+		// projectile.advance()
 		reset();
 
-		report("countPointer()");
+		report("projectileAdvance()");
 
 	}
 private:
