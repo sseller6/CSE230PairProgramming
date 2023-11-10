@@ -3,6 +3,8 @@
  *      TEST HOWITZER
  * Description:
  *      Unit tests for the Howitzer class.
+ * Author:
+ *      Jarom Anderson & Steven Sellers.
  **************************************************************/
 
 #pragma once
