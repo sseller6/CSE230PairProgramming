@@ -7,10 +7,13 @@
 using namespace std;
 
 // Forward declaration for projectile unit tests
-class TestProjecitile;
+class TestProjectile;
 
 class Projectile
 {
+    // Unit Test Access
+    friend TestProjectile;
+
 public:
     
 
@@ -18,7 +21,8 @@ public:
              Projectile();
              Projectile(double mass, double radius);
     void     reset();
-    void     fire();
+    void     fire(Position position, double time,
+                  double angle, double velocity);
     void     advance(double time);
     void     draw();
     bool     flying();
@@ -35,8 +39,6 @@ public:
     void     setMass();
     void     setRadius();
 
-    // Unit Test Access
-    friend TestProjectile;
 
 private:
 

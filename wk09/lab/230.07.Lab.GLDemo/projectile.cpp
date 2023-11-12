@@ -1,10 +1,16 @@
 #include "projectile.h"
 
 Projectile::Projectile()
+	: mass(0.00),
+	  radius(0.00),
+      flightPath()
 {
 }
 
 Projectile::Projectile(double mass, double radius)
+	: mass(mass),
+	  radius(radius),
+	  flightPath()
 {
 }
 
@@ -13,8 +19,9 @@ void Projectile::reset()
 {
 }
 
-//
-void Projectile::fire()
+// Used for initial variables for pvt
+void Projectile::fire(Position position, double time,
+	                  double angle, double velocity)
 {
 }
 

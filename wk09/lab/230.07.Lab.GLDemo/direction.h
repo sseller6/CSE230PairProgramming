@@ -11,9 +11,15 @@ public:
     // unit test access
     friend TestDirection;
 
-    // Methods
+    // Default Constructor
     Direction();
+
+    // Non-default Constructor
+    Direction(double radians);
+
+    // Methods
     void assign(Direction rhs);
+    double convertDegreesToRadians(double d);
 
     // Reverse
     void reverse();

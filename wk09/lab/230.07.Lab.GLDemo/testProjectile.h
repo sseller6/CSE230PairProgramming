@@ -13,8 +13,6 @@
 #include "unitTest.h"
 #include <cassert>
 
-
-
 /****************************
 * TEST PROJECTILE
 *****************************/
@@ -55,7 +53,7 @@ private:
 	{
 		// Setup
 		Projectile projectile;
-		// Exersize
+		// Exercise
 		projectile.reset();
 		// Verify
 		assert(projectile.mass == 0.00);
@@ -69,7 +67,7 @@ private:
 	{
 		// Setup
 		Projectile projectile(5.00, 3.00);
-		// Exersize
+		// Exercise
 		projectile.reset();
 		// Verify
 		assert(projectile.mass == 5.00);
@@ -86,7 +84,7 @@ private:
 		// Setup
 		Projectile projectile;
 		projectile.mass = 7.00;
-		// Exersize
+		// Exercise
 		projectile.reset();
 		// Verify
 		assert(projectile.mass == 0.00);
@@ -101,7 +99,7 @@ private:
 		// Setup
 		Projectile projectile;
 		projectile.radius = 5.00;
-		// Exersize
+		// Exercise
 		projectile.reset();
 		// Verify
 		assert(projectile.mass == 0.00);
@@ -114,6 +112,7 @@ private:
 	/****************************
 	* TEST FIRE
 	*****************************/
+
 
 
 	/****************************
