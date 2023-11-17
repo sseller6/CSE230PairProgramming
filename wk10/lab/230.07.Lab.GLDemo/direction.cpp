@@ -1,4 +1,7 @@
-#include "direction.h"
+﻿#include "direction.h"
+#include <math.h>            // for normalize()
+
+#define TWO_PI 6.28318530718 // for normlaize()
 
 // Constructors
 
@@ -142,5 +145,24 @@ double convertDegreesToRadians(double d)
     double pi = 3.14159265359;
     double r;
     r = (d / 360) * (2 * pi);
+	r = normalize(r);
     return r;
+}
+
+double normalize(double angle)
+{
+
+	// For anything greater than 2π
+	while (angle > TWO_PI)
+	{
+		angle -= TWO_PI;
+	}
+
+	// For anything less than 0.
+	while (angle < 0)
+	{
+		angle += TWO_PI;
+	}
+
+	return angle;
 }
