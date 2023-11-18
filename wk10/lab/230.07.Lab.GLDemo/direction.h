@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// forward declaration for the Ground unit tests
+// forward declaration for the Direction unit tests
 class TestDirection;
 
 class Direction
@@ -23,11 +23,9 @@ public:
 
     // Reverse
     void reverse();
-
     // Setters
     void setRadians(double rhs);
     void setDegrees(double rhs);
-    void setDxDy(double dx, double dy);
     void setDown();
     void setUp();
     void setRight();
@@ -36,11 +34,9 @@ public:
     // Getters
     double getRadians();
     double getDegrees();
-    double getDx();
-    double getDy();
-
 
 private:
     // Attributes
     double radians;
+    double degrees;
 };

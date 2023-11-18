@@ -28,7 +28,7 @@ Direction::Direction(double radians)
  ***************************************/
 void Direction::assign(Direction rhs)
 {
-
+	// I can't remember why, but we decided to not implement this for now.
 }
 
 /***************************************
@@ -36,7 +36,15 @@ void Direction::assign(Direction rhs)
  ***************************************/
 void Direction::reverse()
 {
+	// Set radians to the opposite side of where it's pointing.
+	radians += 3.14;
+	// Then normalize it.
+	radians = normalize(radians);
 
+	// For example. If radians is already 3.14, then it's techincally
+	// pointing to 180 degrees. Line 40 would add 3.14 radians or 180 degrees
+	// in order to reverse the direction.
+	// Then line 42 normalizes the radians.
 }
 
 // Setters
@@ -54,15 +62,7 @@ void Direction::setRadians(double rhs)
  ***************************************/
 void Direction::setDegrees(double rhs)
 {
-
-}
-
-/***************************************
- * SET DXDY
- ***************************************/
-void Direction::setDxDy(double dx, double dy)
-{
-
+	degrees = rhs;
 }
 
 /***************************************
@@ -70,7 +70,7 @@ void Direction::setDxDy(double dx, double dy)
  ***************************************/
 void Direction::setDown()
 {
-
+	radians = 3.14;
 }
 
 /***************************************
@@ -78,7 +78,7 @@ void Direction::setDown()
  ***************************************/
 void Direction::setUp()
 {
-
+	radians = 0.00;
 }
 
 /***************************************
@@ -86,7 +86,7 @@ void Direction::setUp()
  ***************************************/
 void Direction::setRight()
 {
-
+	radians = 1.5708;
 }
 
 /***************************************
@@ -94,7 +94,7 @@ void Direction::setRight()
  ***************************************/
 void Direction::setLeft()
 {
-
+	radians = 4.71239;
 }
 
 // Getters
@@ -104,7 +104,7 @@ void Direction::setLeft()
  ***************************************/
 double Direction::getRadians()
 {
-    return 0.00;
+	return radians;
 }
 
 /***************************************
@@ -112,23 +112,7 @@ double Direction::getRadians()
  ***************************************/
 double Direction::getDegrees()
 {
-    return 0.00;
-}
-
-/***************************************
- * GET DX
- ***************************************/
-double Direction::getDx()
-{
-    return 0.00;
-}
-
-/***************************************
- * GET DY
- ***************************************/
-double Direction::getDy()
-{
-    return 0.00;
+	return degrees;
 }
 
 /*************************************************
@@ -151,7 +135,6 @@ double convertDegreesToRadians(double d)
 
 double normalize(double angle)
 {
-
 	// For anything greater than 2π
 	while (angle > TWO_PI)
 	{
