@@ -1,4 +1,0 @@
-C:\Users\jarbe\Documents\cse230\CSE230W02\wk2Computation\x64\Debug\wk2Computation.exe
-C:\programming_projects\cse_230\w02LM\CSE230W02\wk2Computation\x64\Debug\wk2Computation.exe
-C:\Users\jarbe\Documents\cse230\CSE230W02\wk2ComputationLabTwo\x64\Debug\apollo11Physics.exe
-C:\Users\jarbe\Documents\cse230\CSE230W02\wk2\wk2ComputationLabTwo\x64\Debug\apollo11Physics.exe

@@ -1,2 +1,0 @@
-C:\ProgrammingProjects\publicRepositories\CSE230PairProgramming\wk4\x64\Debug\230.04.Practice.exe
-C:\Users\jarbe\Documents\cse230\CSE230W02\wk4\x64\Debug\230.04.Practice.exe
