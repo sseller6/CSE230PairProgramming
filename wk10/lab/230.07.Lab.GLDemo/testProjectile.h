@@ -22,104 +22,70 @@ class TestProjectile : public UnitTest
 public:
 	void run()
 	{
+		reset();
+		test_default_constructor();
+		report("projectileDefaultConstructor()");
+
 		// projectile.reset()
 		reset();
-		test_reset_Default();
-		test_reset_nonDefault();
-		test_reset_alteredMass();
-		test_reset_alteredRadius();
+		test_reset_empty();
+		test_reset_full();
 		report("projectileReset()");
 
 		// projectile.fire()
 		reset();
-
+		test_fire_right();
+		test_fire_left();
+		test_fire_up();
 		report("projectileFire()");
 
 		// projectile.advance()
 		reset();
-
+        advance_nothing();
+		advance_fall();
+		advance_up();
+		advance_diagonal();
 		report("projectileAdvance()");
 
 	}
 private:
 
-	/****************************
-	* TEST RESET
-	* Make sure reset method sets attributes
-	* to their default values.
-	*****************************/
-	// Test default constructor - Black Box
-	void test_reset_Default()
+	double metersFromPixels = -1.0;
+
+	bool closeEnough(double value, double test, double tolerance) const
+	{
+		double difference = value - test;
+		return (difference >= -tolerance) && (difference <= tolerance);
+	}
+
+	void test_defaultConstructor()
 	{
 		// Setup
-		Projectile projectile;
+
 		// Exercise
-		projectile.reset();
+		Projectile p;
 		// Verify
-		assert(projectile.mass == 0.00);
-		assert(projectile.radius == 0.00);
-		assert(projectile.flightPath.empty());
+		assert(p.mass == 46.7);
+	    assert(p.radius == 0.077545);
+		assert(p.flightPath.empty() == true);
 		// Teardown
 	}
 
-	// Test non-default constructor - Black Box
-	void test_reset_nonDefault()
+    // Test Reset
+	void test_reset_empty()
 	{
 		// Setup
-		Projectile projectile(5.00, 3.00);
+        
 		// Exercise
-		projectile.reset();
+
 		// Verify
-		assert(projectile.mass == 5.00);
-		assert(projectile.radius == 3.00);
-		assert(projectile.flightPath.empty());
-		// Teardown
-	}
-	
-	// Test altered states - White Box
-	
-	// Change mass
-	void test_reset_alteredMass()
-	{
-		// Setup
-		Projectile projectile;
-		projectile.mass = 7.00;
-		// Exercise
-		projectile.reset();
-		// Verify
-		assert(projectile.mass == 0.00);
-		assert(projectile.radius == 0.00);
-		assert(projectile.flightPath.empty());
+
 		// Teardown
 	}
 
-	// Test altered Radius
-	void test_reset_alteredRadius()
-	{
-		// Setup
-		Projectile projectile;
-		projectile.radius = 5.00;
-		// Exercise
-		projectile.reset();
-		// Verify
-		assert(projectile.mass == 0.00);
-		assert(projectile.radius == 0.00);
-		assert(projectile.flightPath.empty());
-		// Teardown
-	}
+	void test_reset_full();
+	// Test Fire
 
-
-	/****************************
-	* TEST FIRE
-	*****************************/
-
-
-
-	/****************************
-	* TEST ADVANCE
-	*****************************/
-
-		
-
+	// Test advance
 
 };

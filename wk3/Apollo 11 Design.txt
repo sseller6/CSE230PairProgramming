@@ -1,0 +1,47 @@
+Apollo 11 Design:
+
+Predefined Classes:
+----------------------
+Point - A position of the screen
+Interface - Set up openGL and Get input
+ogstream - send output
+Demo - Contains the state of the simulator
+Ground - The ground
+
+
+Needed Classes:
+-----------------------
+Object - class containing basic data of a moving object (Inherited by other classes)
+Angle - 
+Thrust -
+
+
+Class Frame:
+---------------------
+    LM (Lunar Module)
+    HUD (Heads up display)
+    ptUpperRight (size of the screen)
+    Star (contains point and phase)
+    Ground (contains ground generation and Platform)
+
+Class LM:                       |  Class HUD:        |  Class Star:       |  Class Ground:
+--------------------------------|--------------------|--------------------|--------------------
+    Point (position 'x,y')      |  fuel (lbs)        |  phase (uInt)      |
+    Angle (in radians)          |  altitude (meters) |  Point (position)  |
+    Velocity (x,y) + total      |  speed (m/s)       |                    |
+    Acceleration (x,y) + total  |                    |                    |
+    Mass (in kg)                |                    |                    |
+    Thrust                      |                    |                    |
+    Fuel                        |                    |                    |
+    Gravity                     |                    |                    |
+--------------------------------+--------------------+--------------------+-------------------------+
+Class Point:                    |  Class Angle:      | Class Velocity:    | Class Acceleration:     |
+--------------------------------+--------------------+--------------------+-------------------------+
+                                |   radians          | Xvelocity          | Xacceleration
+                                |                    | Yvelocity          | Yacceleration
+-----------------------------------------------------------------------------------------------------
+Class Force:                    |  Class Fuel:       |
+--------------------------------+--------------------+
+    Force (Newtons)             |  Quantity (lbs)    |	
+    Acceleration (x,y)          |                    |
+--------------------------------+--------------------+

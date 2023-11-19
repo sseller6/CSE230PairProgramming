@@ -20,44 +20,34 @@ public:
     // Sets a position given a clumn and a row (ex: "a1" = position 0)
     void setPosition(const char * coordinate) 
     {
-        int pos1   = (int)coordinate[0];
-        int pos2   = (int)coordinate[1];
+        int pos1   = tolower((int)coordinate[0]);
+        int pos2   = tolower((int)coordinate[1]);
+
+        // Make sure both columns are valid
+
         int column = -1;
         int row    = -1;
 
         // find position of the letter
 
-        // (col, row) lowercase (valid)
-        if (97 <= pos1 && pos1 <= 104)
+        // (col, row) 
+        if (isValidColumn(pos1) && isValidRow(pos2))
         {
             column = pos1 - 97;
             row    = pos2 - 49;
         }
-        // (row, col) lowercase
-        else if (97 <= pos2 && pos2 <= 104)
+        // (row, col) 
+        else if (isValidRow(pos1) && isValidColumn(pos2))
         {
-            row    = pos2 - 49;
-            column = pos1 - 97;
-        }
-        // (col, row) uppercase
-        else if (65 <= pos1 && pos1 <= 72)
-        {   
-            column = pos1 - 65;
-            row    = pos2 - 49;
-        }
-
-        // (row, col) uppercase
-        else if (65 <= pos1 && pos1 <= 72)
-        {
-            row    = pos2 - 49;
-            column = pos1 - 65;
+            column = pos2 - 97;
+            row    = pos1 - 49;
         }
         else
         {
-            cout << "Error: Invalid String";
-            position = -1; // Invalid position
+            position = -1;
             return;
         }
+        
 
         // set position
         position = (row * 8) + column;
@@ -65,6 +55,23 @@ public:
     };
 
 private:
+    // Validate Input
+    bool isValidColumn(int column) 
+    {
+        // Valid range
+        if (97 <= column && column <= 104)
+            return true;
+        else
+            return false;
+    }
+    bool isValidRow(int row) 
+    {
+        // Valid range
+        if (49 <= row && row <= 56)
+            return true;
+        else
+            return false;
+    }
     // Attributes
     int position;
 };
@@ -74,13 +81,27 @@ class TestChessPiece
 public:
     void run() 
     {
-        test_setPosition_a1();
-        test_setPosition_c1();
+        test_setPosition_a1(); // Valid On board
+        test_setPosition_c1(); // Valid on board
         test_setPosition_i1(); // Column out of bounds
         test_setPosition_a9(); // Row out of bounds
-        test_setPosition_A1();
-        test_setPosition_C1();
-        test_setPosition_1a();
+        test_setPosition_A1(); // Uppercase Column
+        test_setPosition_C1(); // Uppercase Column
+        test_setPosition_1a(); // Reverse Order
+
+        test_isValidRow_17(); // Way below bounds
+        test_isValidRow_48(); // Just below
+        test_isValidRow_49(); // Lower Valid
+        test_isValidRow_56(); // Upper Valid
+        test_isValidRow_57(); // Just Above
+        test_isValidRow_63(); // Way Above
+
+        test_isValidColumn_63(); // Way Below
+        test_isValidColumn_96(); // Just below
+        test_isValidColumn_97(); // Lower Valid
+        test_isValidColumn_104(); // Upper Valid
+        test_isValidColumn_105(); // Just Above
+        test_isValidColumn_127(); // Way Above
     };
     
 private:
@@ -165,6 +186,138 @@ private:
         // verify
         assert(piece.position == 0);
         // teardown
+    }
+
+    void test_isValidRow_17()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidRow(17);
+        // Verify
+        assert(result == false);
+        //teardown
+    }
+
+    void test_isValidRow_48()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidRow(48);
+        // Verify
+        assert(result == false);
+        //teardown
+    }
+
+    void test_isValidRow_49()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidRow(49);
+        // Verify
+        assert(result == true);
+        //teardown
+    }
+
+    void test_isValidRow_56()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidRow(56);
+        // Verify
+        assert(result == true);
+        //teardown
+    }
+
+    void test_isValidRow_57()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidRow(57);
+        // Verify
+        assert(result == false);
+        //teardown
+    }
+
+    void test_isValidRow_63()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidRow(63);
+        // Verify
+        assert(result == false);
+        //teardown
+    }
+
+    void test_isValidColumn_63()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidColumn(63);
+        // Verify
+        assert(result == false);
+        //teardown
+    }
+
+    void test_isValidColumn_96()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidColumn(96);
+        // Verify
+        assert(result == false);
+        //teardown
+    }
+
+    void test_isValidColumn_97()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidColumn(97);
+        // Verify
+        assert(result == true);
+        //teardown
+    }
+
+    void test_isValidColumn_104()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidColumn(104);
+        // Verify
+        assert(result == true);
+        //teardown
+    }
+
+    void test_isValidColumn_105()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidColumn(105);
+        // Verify
+        assert(result == false);
+        //teardown
+    }
+
+    void test_isValidColumn_127()
+    {
+        // Setup
+        ChessPiece piece;
+        // Exercise
+        bool result = piece.isValidColumn(127);
+        // Verify
+        assert(result == false);
+        //teardown
     }
 };
 

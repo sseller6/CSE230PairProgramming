@@ -1,0 +1,8 @@
+1. Add Inertia
+2. Add acceleration due to gravity
+3. Loop until hits ground (track time in 0.1 sec intervals)
+4. Implement the linear interpolation table for gravity
+5. Implement Drag (opposite to direction of projectile)
+6.  Implement the air density linear interpolation function.
+7.  Implement the drag coefficient linear interpolation function
+8. Fix ground impact

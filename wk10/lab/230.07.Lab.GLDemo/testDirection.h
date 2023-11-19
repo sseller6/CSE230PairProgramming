@@ -1,4 +1,4 @@
-/*************************************************************
+﻿/*************************************************************
  * Module
  *      TEST DIRECTION
  * Description:
@@ -11,7 +11,9 @@
 
 #include "direction.h"
 #include "unitTest.h"
+#include <iostream>
 #include <cassert>
+
 
  /************************************
   * TEST DIRECTION
@@ -21,6 +23,11 @@ class TestDirection : public UnitTest
 public:
 	void run()
 	{
+		/***************************************
+		* Brother Helfrich's code to add.
+		****************************************/
+		test_defaultConstructor();
+
 		// direction.convertDegreesToRadians()
 		reset();
 		test_convertDegreesToRadians_from_0();
@@ -41,6 +48,11 @@ public:
 		reset();
 		test_setDegrees_correct();
 		report("directionSetDegrees()");
+
+		// direction.setDxDy()
+		reset();
+		test_setDxDy_correct();
+		report("directionSetDxDy()");
 
 		// direction.setDown()
         reset();
@@ -78,14 +90,40 @@ public:
 		reset();
 		test_getDegrees_correct();
 		report("directionGetDegrees()");
+
+		// direction.getDx()
+		reset();
+		test_getDx_correct();
+		report("getDx()");
+
+		// direction.getDy()
+		reset();
+		test_getDy_correct();
+		report("getDy()");
 	}
 
 private:
 	/***************************************
-	 * ASSIGN
-	 ***************************************/
-	 // The structure chart didn't show anything about the assign() method.
-	 // and the UML class diagram for Direction confused us about assign().
+	* Brother Helfrich's code to add.
+	* The code added between lines 112 and
+	* 126 were added, because 
+	* testDirection.h needed them.
+	****************************************/
+	bool closeEnough(double value, double test, double tolerance) const
+	{
+		double difference = value - test;
+		return (difference >= -tolerance) && (difference <= tolerance);
+	}
+
+	void test_defaultConstructor() const
+	{
+		// setup
+		// exercise
+		Direction d;
+		// verify
+		assert(d.radians == 0.00);
+		// teardown
+	}
 
 	/***************************************
 	 * CONVERT DEGREES TO RADIANS
@@ -156,7 +194,24 @@ private:
 	}
 
 	/***************************************
-	 * SET DOWN --------------- FINISHED
+	 * SET DX DY
+	 ***************************************/
+	void test_setDxDy_correct()
+	{
+		// Setup
+		Direction direction;
+		// Exercise
+		direction.setDxDy(50, 100);
+		double dxResult = direction.getDx();
+		double dyResult = direction.getDy();
+		// Verify
+		assert(dxResult == 50);
+		assert(dyResult == 100);
+		// Teardown
+	}
+
+	/***************************************
+	 * SET DOWN
 	 ***************************************/
 	void test_setDown_correct()
 	{
@@ -169,7 +224,7 @@ private:
 		// Teardown
 	}
 	/***************************************
-	 * SET UP
+	 * SET UP ----------------- FINISHED
 	 ***************************************/
 	void test_setUp_correct()
 	{
@@ -182,7 +237,7 @@ private:
 		// Teardown
 	}
 	/***************************************
-     * SET RIGHT
+     * SET RIGHT--------------- FINISHED
      ***************************************/
 	void test_setRight_correct()
 	{
@@ -191,11 +246,11 @@ private:
 		// Exercise
 		direction.setRight();
 		// Verify
-		assert(direction.radians == 1.57); // 1.57 = pointing to the right.
+		assert(closeEnough(direction.radians, 1.5708, 0.001)); // 1.57 = pointing to the right.
 		// Teardown
 	}
 	/***************************************
-	 * SET LEFT
+	 * SET LEFT --------------- FINISHED
 	 ***************************************/
 	void test_setLeft_correct()
 	{
@@ -204,11 +259,11 @@ private:
 		// Exercise
 		direction.setLeft();
 		// Verify
-		assert(direction.radians == 4.71); // 4.71 = pointing to the left.
+		assert(direction.radians == 4.71239); // 4.71 = pointing to the left.
 		// Teardown
 	}
 	/***************************************
-	 * REVERSE
+	 * REVERSE ---------------- FINISHED
 	 ***************************************/
 	void test_reverse_from_0_degrees()
 	{
@@ -220,7 +275,7 @@ private:
 		// Exercise
 		direction.reverse();
 		// Verify
-		assert(direction.radians == 3.14);
+		assert(closeEnough(direction.radians, 3.14159, 0.001));
 		// Teardown
 	}
 
@@ -234,7 +289,7 @@ private:
 		// Exercise
 		direction.reverse();
 		// Verify
-		assert(direction.radians == 4.71);
+		assert(closeEnough(direction.radians, 4.71239, 0.001));
 		// Teardown
 	}
 
@@ -248,7 +303,7 @@ private:
 		// Exercise
 		direction.reverse();
 		// Verify
-		assert(direction.radians == 6.26);
+		assert(closeEnough(direction.radians, 6.26573, 0.001));
 		// Teardown
 	}
     /***************************************
@@ -262,7 +317,7 @@ private:
 		// Exercise
 		double result = direction.getRadians();
 		// Verify
-		assert(result == 1.57);
+		assert(closeEnough(result, 1.5708, 0.001));
 	}
 	/***************************************
 	 * GET DEGREES
@@ -277,5 +332,32 @@ private:
 		// Verify
 		assert(result == 90.0);
 	}
-
+	/***************************************
+	 * GET DX
+	 ***************************************/
+	void test_getDx_correct()
+	{
+		// Setup
+		Direction direction;
+		direction.setDxDy(50, 100);
+		// Exercise
+		double result = direction.getDx();
+		// Verify
+		assert(result == 50);
+		// Teardown
+	}
+	/***************************************
+	 * GET DY
+	 ***************************************/
+	void test_getDy_correct()
+	{
+		// Setup
+		Direction direction;
+		direction.setDxDy(50, 100);
+		// Exercise
+		double result = direction.getDy();
+		// Verify
+		assert(result == 100);
+		// Teardown
+	}
 };
