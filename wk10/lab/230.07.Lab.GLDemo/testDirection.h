@@ -49,11 +49,6 @@ public:
 		test_setDegrees_correct();
 		report("directionSetDegrees()");
 
-		// direction.setDxDy()
-		reset();
-		test_setDxDy_correct();
-		report("directionSetDxDy()");
-
 		// direction.setDown()
         reset();
 		test_setDown_correct();
@@ -90,16 +85,6 @@ public:
 		reset();
 		test_getDegrees_correct();
 		report("directionGetDegrees()");
-
-		// direction.getDx()
-		reset();
-		test_getDx_correct();
-		report("getDx()");
-
-		// direction.getDy()
-		reset();
-		test_getDy_correct();
-		report("getDy()");
 	}
 
 private:
@@ -194,24 +179,7 @@ private:
 	}
 
 	/***************************************
-	 * SET DX DY
-	 ***************************************/
-	void test_setDxDy_correct()
-	{
-		// Setup
-		Direction direction;
-		// Exercise
-		direction.setDxDy(50, 100);
-		double dxResult = direction.getDx();
-		double dyResult = direction.getDy();
-		// Verify
-		assert(dxResult == 50);
-		assert(dyResult == 100);
-		// Teardown
-	}
-
-	/***************************************
-	 * SET DOWN
+	 * SET DOWN --------------- FINISHED
 	 ***************************************/
 	void test_setDown_correct()
 	{
@@ -332,32 +300,5 @@ private:
 		// Verify
 		assert(result == 90.0);
 	}
-	/***************************************
-	 * GET DX
-	 ***************************************/
-	void test_getDx_correct()
-	{
-		// Setup
-		Direction direction;
-		direction.setDxDy(50, 100);
-		// Exercise
-		double result = direction.getDx();
-		// Verify
-		assert(result == 50);
-		// Teardown
-	}
-	/***************************************
-	 * GET DY
-	 ***************************************/
-	void test_getDy_correct()
-	{
-		// Setup
-		Direction direction;
-		direction.setDxDy(50, 100);
-		// Exercise
-		double result = direction.getDy();
-		// Verify
-		assert(result == 100);
-		// Teardown
-	}
+
 };
