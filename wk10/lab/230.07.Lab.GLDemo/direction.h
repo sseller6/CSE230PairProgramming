@@ -4,12 +4,13 @@ using namespace std;
 
 // forward declaration for the Direction unit tests
 class TestDirection;
+class TestProjectile;
 
 class Direction
 {
-public:
-    // unit test access
     friend TestDirection;
+    friend TestProjectile;
+public:
 
     // Default Constructor
     Direction();

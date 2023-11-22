@@ -44,9 +44,9 @@ private:
 
     // Struct to hold position, velocity, time in flght path array
     struct PositionVelocityTime {
-        Position position;
-        Velocity velocity;
-        double   time;
+        Position pt;
+        Velocity v;
+        double   t;
     };
 
     // Attrubutes

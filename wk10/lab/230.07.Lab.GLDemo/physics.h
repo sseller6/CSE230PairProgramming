@@ -6,6 +6,8 @@
 
 inline double computeMach(double speed, double speedOfSound)
 {
+	if (speedOfSound == 0.0)
+		return 0.0;
 	// mach = speed / speed of sound
 	return speed / speedOfSound;
 }

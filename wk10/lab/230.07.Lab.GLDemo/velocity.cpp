@@ -18,6 +18,22 @@ double Velocity::getDy()
 }
 
 /***************************************
+* SET DX
+****************************************/
+void Velocity::setDX(double dx)
+{
+    this->dx = dx;
+}
+
+/***************************************
+* SET DY
+****************************************/
+void Velocity::setDY(double dy)
+{
+    this->dy = dy;
+}
+
+/***************************************
  * SET DXDY
  ***************************************/
 void Velocity::setDxDy(double dx, double dy)

@@ -38,6 +38,27 @@ private:
         return (difference >= -tolerance) && (difference <= tolerance);
     }
 
+    void test_computeMach()
+    {
+        assert(0.0 == computeMach(0.0, 0.0));
+        assert(0.0 == computeMach(1.0, 0.0));
+
+        assert(0.0 == computeMach(0.0, 0.1));
+        
+        // Way below
+        assert(closeEnough(0.0294, computeMach(10, 340), 0.001));
+        // Just below
+        assert(closeEnough(0.5882, computeMach(200, 340), 0.0001));
+        // Right on
+        assert(1.0 == computeMach(340, 340));
+        // Just above
+        assert(closeEnough(1.0147, computeMach(345, 340), 0.0001));
+        // Way above
+        assert(closeEnough(2.0, computeMach(680, 340), 0.1));
+        // Different speed of sound
+        assert(closeEnough(1.0, computeMach(295, 295), 0.1));
+    }
+
     void test_areaFromRadius() const
     {
         assert(0.00 == areaFromRadius(0.0));
@@ -129,30 +150,34 @@ private:
     // Drag from Mach
     void test_dragFromMach() const
     {
-        assert(0.0 == machFromSpeed(000.0, 0.0));
-        assert(1.0 == machFromSpeed(340.0, 0.0));
-
-        assert(closeEnough(1.00, machFromSpeed(326.0, 3500.0), 0.001));
-        assert(closeEnough(0.50, machFromSpeed(163.0, 3500.0), 0.001));
-
-        assert(closeEnough(2.00, machFromSpeed(295.0, 21657.0), 0.001));
+        // Below the table
+        assert(0.1629 == dragFromMach(0.0));
+        // Bottom of the table
+        assert(0.1629 == dragFromMach(0.3));
+        // Middle of the table
+        assert(0.4258 == dragFromMach(1.0));
+        // With interpolation
+        assert(closeEnough(0.4157, dragFromMach(1.200), 0.0001));
+        // Top of the table
+        assert(0.2656 == dragFromMach(5.0));
+        // Above the table
+        assert(0.2656 == dragFromMach(7.2));
     }
 
     // Speed of Sound from Altitude
     void test_speedOfSoundFromAltitude() const
     {
-    	assert(0.0 == speedFromAltitude(0.0));
-    
-    	// Mach 
-    	assert(closeEnough(0.4258, dragFromSpeed(326.0, 3500.0), 0.0001));
-    
-    	// Mach 0.5
-    	assert(closeEnough(0.1659, dragFromSpeed(163.0, 3500.0), 0.0001));
-    
-    	// Mach 0.2
-    	assert(closeEnough(0.1086, dragFromSpeed(59.0, 21657.0), 0.0001));
-    
-    	// Mach 0.32
-    	assert(closeEnough(0.1632, dragFromSpeed(96.0, 27500.0), 0.0001));
+        // Below the table
+        assert(340 == speedOfSoundFromAltitude(-10));
+        // Bottom of the table
+    	assert(340 == speedOfSoundFromAltitude(0));
+    	// On the table
+    	assert(320 == speedOfSoundFromAltitude(5000));
+    	// Interpolation
+    	assert(closeEnough(314, speedOfSoundFromAltitude(6500), 0.1));
+    	// Top of the table
+    	assert(324 == speedOfSoundFromAltitude(40000));
+    	// Above the table
+    	assert(324 == speedOfSoundFromAltitude(50000));
     }
 };

@@ -185,7 +185,7 @@ private:
 	}
 
 	// Test advance
-	test_advance_nothing()
+	void test_advance_nothing()
 	{
 		// Setup
 		setupStandardFixture();
@@ -200,7 +200,7 @@ private:
 		teardownStandardFixture();
 	}
 
-	test_advance_fall()
+	void test_advance_fall()
 	{
 		// Setup
 		setupStandardFixture();
@@ -227,7 +227,7 @@ private:
 		teardownStandardFixture();
 	}
 
-	test_advance_up()
+	void test_advance_up()
 	{
 		// Setup
 		setupStandardFixture();
@@ -254,7 +254,7 @@ private:
 		teardownStandardFixture();
 	}
 
-	test_advance_diagonal()
+	void test_advance_diagonal()
 	{
 		// Setup
 		setupStandardFixture();
