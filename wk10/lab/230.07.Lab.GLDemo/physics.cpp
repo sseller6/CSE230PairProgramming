@@ -62,7 +62,7 @@ double gravityFromAltitude(double altitude)
 
 // TODO: Add the rest of the mappings
 
-double desnityFromAltitude(double altitude)
+double densityFromAltitude(double altitude)
 {
 	const Mapping densityMapping[] =
 	{ // altidtude     density

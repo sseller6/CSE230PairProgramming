@@ -19,15 +19,16 @@ class TestPhysics
 public:
     void run()
     {
+        test_computeMach();
         test_areaFromRadius();
         test_forceFromDrag();
         test_accelerationFromForce();
         test_velocityFromAcceleration();
         test_linearInterpolation();
-        test_gravityFromAltitiude();
+        test_gravityFromAltitude();
         test_densityFromAltitude();
-        test_machFromSpeed();
-        test_dragFromSpeed();
+        test_dragFromMach();
+        test_speedOfSoundFromAltitude();
     }
 
 private:
@@ -84,7 +85,7 @@ private:
     }
 
     // Linear Interpolation
-    void test_linear_interpolation() const
+    void test_linearInterpolation() const
     {
         assert(0.0 == linearInterpolation(0.0, 0.0, 0.0, 0.0, 0.0));
         assert(0.0 == linearInterpolation({ 0.0, 0.0 }, { 0.0, 0.0 }, 0.0));
@@ -116,19 +117,33 @@ private:
     }
 
     // Density from altittude
-    void test_densityFromAltitude()
+    void test_densityFromAltitude() const
     {
         assert(1.2250000 == densityFromAltitude(0.0));
-        
-        assert()
+
+        assert(closeEnough(1.0600, densityFromAltitude(1500.0), 0.01));
+        assert(closeEnough(0.8111, densityFromAltitude(4100.0), 0.001));
+        assert(closeEnough(0.0000185, densityFromAltitude(80000.0), 0.0000001));
     }
 
-    // Drag From Speed
-    void test_dragFromSpeed() const
+    // Drag from Mach
+    void test_dragFromMach() const
     {
-    	assert(0.0 == dragFromSpeed(0.0, 0.0));
+        assert(0.0 == machFromSpeed(000.0, 0.0));
+        assert(1.0 == machFromSpeed(340.0, 0.0));
+
+        assert(closeEnough(1.00, machFromSpeed(326.0, 3500.0), 0.001));
+        assert(closeEnough(0.50, machFromSpeed(163.0, 3500.0), 0.001));
+
+        assert(closeEnough(2.00, machFromSpeed(295.0, 21657.0), 0.001));
+    }
+
+    // Speed of Sound from Altitude
+    void test_speedOfSoundFromAltitude() const
+    {
+    	assert(0.0 == speedFromAltitude(0.0));
     
-    	// Mach 1.0
+    	// Mach 
     	assert(closeEnough(0.4258, dragFromSpeed(326.0, 3500.0), 0.0001));
     
     	// Mach 0.5
