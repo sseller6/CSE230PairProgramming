@@ -151,7 +151,7 @@ public:
 		out.setf(ios::showpoint); // "showpoint" means always show the decimal point
 		out.precision(1);         // Set the precision to 1 decimal place of accuracy.
 
-		out << convertToDegrees(radians) << "degrees";
+		out << convertToDegrees(radians);
 	}
 
 	/********************************
@@ -164,7 +164,16 @@ public:
 		return *this;
 	}
 
-	
+	/********************************
+    * NEGATIVE OPERATOR
+	* Negates the value of the angle
+	********************************/
+	Angle& operator-()
+	{
+		Angle negated;
+		negated.radians = normalize(radians - PI);
+		return negated;
+	}
 
 	/********************************
      * INCREMENT OPERATOR
@@ -173,14 +182,13 @@ public:
 	// Prefix increment ++x
 	Angle & operator++()
 	{
-		radians += 1.0;
+		radians = normalize(radians += ONE_DEGREE);
 		return *this;
 	}
-	// Postfix increment x++
 	Angle operator++(int postfix)
 	{
 		Angle numReturn(*this);
-		radians += 1.0;
+		radians = normalize(radians += ONE_DEGREE);
 		return numReturn;
 	}
 
@@ -191,27 +199,19 @@ public:
 	 // Prefix decrement --x
 	Angle& operator--()
 	{
-		radians -= ONE_DEGREE;
+		radians = normalize(radians -= ONE_DEGREE);
 		return *this;
 	}
 	// Postfix decrement x--
 	Angle operator--(int postfix)
 	{
 		Angle numReturn(*this);
-		radians -= ONE_DEGREE;
+		radians= normalize(radians -= ONE_DEGREE);
 		return numReturn;
 	}
 };
 
-/********************************
-	 * NEGATIVE OPERATOR
-	 * Negates the value of the angle
-	 ********************************/
-inline Angle& operator-(Angle& num)
-{
-	num.radians -= TWO_PI/2;
-	return num;
-}
+
 
 /********************************
 * EQUALS OPERATOR
@@ -240,8 +240,11 @@ inline bool operator!=(const Angle& lhs, const Angle& rhs)
 inline ostream & operator<<(ostream& out,
 	                    const Angle& rhs)
 {
-	out << "The angle: "
-		<< rhs.radians;
+	out.setf(ios::fixed);     // "fixed" means don't use scientific notation
+	out.setf(ios::showpoint); // "showpoint" means always show the decimal point
+	out.precision(1);         // Set the precision to 1 decimal place of accuracy.
+
+	out << rhs.getDegrees();
 	return out;
 }
 
@@ -252,6 +255,9 @@ inline ostream & operator<<(ostream& out,
 inline istream& operator>>(istream& in,
 	                       Angle& rhs)
 {
-	in >> rhs.radians;
+	double degrees;
+	in >> degrees;
+	if(not in.fail())
+	    rhs.setDegrees(degrees);
 	return in;
 }
