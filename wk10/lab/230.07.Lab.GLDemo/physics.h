@@ -10,6 +10,11 @@ using namespace std;
 #define  M_PI  3.1415926535897932384626433
 #endif
 
+double gravityFromAltitude(double altitude);
+double densityFromAltitude(double altitude);
+double dragFromMach(double mach);
+double speedOfSoundFromAltitude(double altitude);
+
 inline double computeMach(double speed, double speedOfSound)
 {
 	if (speedOfSound == 0.0)
@@ -56,10 +61,14 @@ inline double linearInterpolation(double d0, double r0,
 	                              double d1, double r1,
 	                              double d)
 {
+	double range;
     // r = r0 + (r1 - r0) (d - d0) / (d1 - d0)
-	assert(abs(d1 - d0) >= abs(d - d0));
-	double range = r0 + (r1 - r0) * (d - d0) / (d1 - d0);
-	assert(abs(r1 - r0) >= abs(range - r0));
+	
+	if ((d1 - d0) != 0.0)
+		 range = r0 + (r1 - r0) * (d - d0) / (d1 - d0);
+	else
+		 range = 0.0;
+
 	return range;
 }
 

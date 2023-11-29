@@ -6,7 +6,7 @@
  ***************************************/
 double Velocity::getDx()
 {
-    return 0.00;
+    return dx;
 }
 
 /***************************************
@@ -14,7 +14,7 @@ double Velocity::getDx()
  ***************************************/
 double Velocity::getDy()
 {
-    return 0.00;
+    return dy;
 }
 
 /***************************************
@@ -38,5 +38,6 @@ void Velocity::setDY(double dy)
  ***************************************/
 void Velocity::setDxDy(double dx, double dy)
 {
-
+    this->dx = dx;
+    this->dy = dy;
 }

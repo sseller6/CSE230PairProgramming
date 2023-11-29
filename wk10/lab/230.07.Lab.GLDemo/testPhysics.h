@@ -119,19 +119,19 @@ private:
         assert(2.75 == linearInterpolation(1.0, 2.0, 2.0, 3.0, 1.75));
         assert(2.25 == linearInterpolation({ 1.0, 2.0 }, { 2.0, 3.0 }, 1.25));
         assert(2.75 == linearInterpolation({ 1.0, 2.0 }, { 2.0, 3.0 }, 1.75));
-
-        assert(2.50 == linearInterpolation(2.0, 2.0, 2.0, 3.0, 1.50));
-        assert(2.25 == linearInterpolation(2.0, 2.0, 2.0, 3.0, 1.75));
-        assert(2.50 == linearInterpolation({ 2.0, 2.0 }, { 2.0, 3.0 }, 1.50));
-        assert(2.25 == linearInterpolation({ 2.0, 2.0 }, { 2.0, 3.0 }, 1.75));
+        //                                  D0   R0   D1   R1     D
+        assert(2.50 == linearInterpolation(2.0, 2.0, 1.0, 3.0, 1.50));
+        assert(2.25 == linearInterpolation(2.0, 2.0, 1.0, 3.0, 1.75));
+        assert(2.50 == linearInterpolation({ 2.0, 2.0 }, { 1.0, 3.0 }, 1.50));
+        assert(2.25 == linearInterpolation({ 2.0, 2.0 }, { 1.0, 3.0 }, 1.75));
     }
 
     // Gravity From Altitude
     void test_gravityFromAltitude()
     {
-        assert(9.087 == gravityFromAltitude(0.0));
+        assert(closeEnough(9.807, gravityFromAltitude(0.0), 0.001));
         assert(closeEnough(9.805, gravityFromAltitude(666.6), 0.01));
-        assert(closeEnough(9.972, gravityFromAltitude(4666.6), 0.01));
+        assert(closeEnough(9.792, gravityFromAltitude(4666.6), 0.01));
         assert(closeEnough(9.781, gravityFromAltitude(8333.3), 0.01));
         assert(closeEnough(9.565, gravityFromAltitude(79666.6), 0.01));
     }
