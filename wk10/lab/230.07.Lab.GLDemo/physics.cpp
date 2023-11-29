@@ -1,4 +1,3 @@
-
 #include "physics.h"
 
 // Linear interpolation

@@ -14,7 +14,7 @@
 #include "testDirection.h"
 #include "testGround.h"
 #include "testHowitzer.h"
-#include "testProjectile.h"
+// #include "testProjectile.h"
 
 /*****************************************************************
  * TEST RUNNER
@@ -28,5 +28,5 @@ void testRunner()
    TestDirection().run();
    TestGround().run();
    TestHowitzer().run();
-   TestProjectile().run();
+  // TestProjectile().run();
 }

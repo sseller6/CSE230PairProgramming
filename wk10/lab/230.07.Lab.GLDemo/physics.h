@@ -4,6 +4,12 @@
 #include <cmath>
 #include <cassert>
 
+using namespace std;
+
+#ifndef  M_PI
+#define  M_PI  3.1415926535897932384626433
+#endif
+
 inline double computeMach(double speed, double speedOfSound)
 {
 	if (speedOfSound == 0.0)

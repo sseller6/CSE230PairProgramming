@@ -102,7 +102,7 @@ void Direction::setLeft()
 /***************************************
  * GET RADIANS
  ***************************************/
-double Direction::getRadians()
+double Direction::getRadians() const
 {
 	return radians;
 }
@@ -110,7 +110,7 @@ double Direction::getRadians()
 /***************************************
  * GET DEGREES
  ***************************************/
-double Direction::getDegrees()
+double Direction::getDegrees() const
 {
 	return degrees;
 }
@@ -124,7 +124,7 @@ double Direction::getDegrees()
  * OUTPUT
  *     r : radians from 0 to 2pi
  **************************************************/
-double convertDegreesToRadians(double d)
+double Direction::convertDegreesToRadians(double d)
 {
     double pi = 3.14159265359;
     double r;
@@ -133,7 +133,7 @@ double convertDegreesToRadians(double d)
     return r;
 }
 
-double normalize(double angle)
+double Direction::normalize(double angle)
 {
 	// For anything greater than 2π
 	while (angle > TWO_PI)

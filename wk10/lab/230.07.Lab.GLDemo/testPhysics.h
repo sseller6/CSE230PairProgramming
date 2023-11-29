@@ -4,7 +4,6 @@
 #include <cmath>
 #include <iostream>
 #include "physics.h"
-#include "physics.cpp"
 #include <cassert>
 
 using namespace std;
