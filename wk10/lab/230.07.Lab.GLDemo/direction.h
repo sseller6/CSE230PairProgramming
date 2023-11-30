@@ -20,7 +20,8 @@ public:
 
     // Methods
     void assign(Direction rhs);
-    double convertDegreesToRadians(double d);
+    double convertDegreesToRadians(double degrees);
+    double convertRadiansToDegrees(double radians);
     double normalize(double radians);
 
     // Reverse
@@ -35,10 +36,9 @@ public:
 
     // Getters
     double getRadians() const;
-    double getDegrees() const;
+    double getDegrees() ;
 
 private:
     // Attributes
     double radians;
-    double degrees;
 };

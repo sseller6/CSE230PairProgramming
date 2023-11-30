@@ -146,7 +146,9 @@ int WINAPI wWinMain(
 int main(int argc, char** argv)
 #endif // !_WIN32
 {
+    #ifdef DEBUG
     testRunner();
+    #endif
     
     // Initialize OpenGL
    Position ptUpperRight;

@@ -1,7 +1,15 @@
-﻿#include "direction.h"
-#include <math.h>            // for normalize()
+﻿
+#include "direction.h"
+#include <cmath>            // for normalize()
 
-#define TWO_PI 6.28318530718 // for normlaize()
+
+#ifndef TWO_PI
+#define TWO_PI 6.28318530717958647693 
+#endif
+
+#ifndef  M_PI
+#define  M_PI  3.1415926535897932384626433
+#endif
 
 // Constructors
 
@@ -37,7 +45,7 @@ void Direction::assign(Direction rhs)
 void Direction::reverse()
 {
 	// Set radians to the opposite side of where it's pointing.
-	radians += 3.14;
+	radians += M_PI;
 	// Then normalize it.
 	radians = normalize(radians);
 
@@ -52,17 +60,17 @@ void Direction::reverse()
 /***************************************
  * SET RADIANS
  ***************************************/
-void Direction::setRadians(double rhs)
+void Direction::setRadians(double radians)
 {
-    radians = rhs;
+    this->radians = normalize(radians);
 }
 
 /***************************************
  * SET DEGREES
  ***************************************/
-void Direction::setDegrees(double rhs)
+void Direction::setDegrees(double degrees)
 {
-	degrees = rhs;
+	radians = convertDegreesToRadians(degrees);
 }
 
 /***************************************
@@ -110,27 +118,31 @@ double Direction::getRadians() const
 /***************************************
  * GET DEGREES
  ***************************************/
-double Direction::getDegrees() const
+double Direction::getDegrees() 
 {
-	return degrees;
+	return convertRadiansToDegrees(radians);
 }
 
 /*************************************************
  * RADIANS FROM DEGEES
  * Convert degrees to radians:
- *     radians / 2pi = degrees / 360
+ *  radians = (degrees * PI) / 180
  * INPUT
  *     d : degrees from 0 to 360
  * OUTPUT
  *     r : radians from 0 to 2pi
  **************************************************/
-double Direction::convertDegreesToRadians(double d)
+double Direction::convertDegreesToRadians(double degrees)
 {
-    double pi = 3.14159265359;
-    double r;
-    r = (d / 360) * (2 * pi);
-	r = normalize(r);
-    return r;
+    return normalize((degrees * M_PI) / 180);
+}
+
+/***************************************************
+* RADIANS TO DEGREES
+***************************************************/
+double Direction::convertRadiansToDegrees(double radians)
+{
+	return (normalize(radians) * 180) / M_PI;
 }
 
 double Direction::normalize(double angle)

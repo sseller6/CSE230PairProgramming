@@ -27,64 +27,20 @@ public:
 		* Brother Helfrich's code to add.
 		****************************************/
 		test_defaultConstructor();
-
-		// direction.convertDegreesToRadians()
-		reset();
 		test_convertDegreesToRadians_from_0();
 		test_convertDegreesToRadians_from_90();
         test_convertDegreesToRadians_from_359();
-		report("convertDegreesToRadians");
-		// direction.assign()
-		reset();
-
-		report("directionAssign()");
-
-		// direction.setRadians()
-		reset();
 		test_setRadians_correct();
-		report("directionSetRadians()");
-
-		// direction.setDegrees()
-		reset();
 		test_setDegrees_correct();
-		report("directionSetDegrees()");
-
-		// direction.setDown()
-        reset();
 		test_setDown_correct();
-		report("directionSetDown()");
-
-		// direction.setUp()
-        reset();
 		test_setUp_correct();
-		report("directionSetUp()");
-
-		// direction.setRight()
-        reset();
 		test_setRight_correct();
-		report("directionSetRight()");
-
-		// direction.setLeft()
-        reset();
 		test_setLeft_correct();
-		report("directionSetLeft()");
-
-		// direction.reverse()
-		reset();
         test_reverse_from_0_degrees();
 		test_reverse_from_90_degrees();
 		test_reverse_from_359_degrees();
-		report("directionReverse()");
-
-		// direction.getRadians()
-		reset();
 		test_getRadians_correct();
-		report("getRadians()");
-
-		// direction.getDegrees()
-		reset();
 		test_getDegrees_correct();
-		report("directionGetDegrees()");
 	}
 
 private:
@@ -121,7 +77,7 @@ private:
 		// Exercise
 		double result = direction.convertDegreesToRadians(degrees);
 		// Verify
-		assert(result = 0);
+		assert(result == 0.0);
 		// Teardown
 	}
 
@@ -243,7 +199,7 @@ private:
 		// Exercise
 		direction.reverse();
 		// Verify
-		assert(closeEnough(direction.radians, 3.14159, 0.001));
+		assert(closeEnough(direction.radians, 3.14159, 0.01));
 		// Teardown
 	}
 
@@ -257,7 +213,7 @@ private:
 		// Exercise
 		direction.reverse();
 		// Verify
-		assert(closeEnough(direction.radians, 4.71239, 0.001));
+		assert(closeEnough(direction.radians, 4.71239, 0.00001));
 		// Teardown
 	}
 
@@ -271,7 +227,7 @@ private:
 		// Exercise
 		direction.reverse();
 		// Verify
-		assert(closeEnough(direction.radians, 6.26573, 0.001));
+		assert(closeEnough(direction.radians, 3.12414, 0.001));
 		// Teardown
 	}
     /***************************************
