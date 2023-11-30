@@ -30,7 +30,7 @@
     <ClCompile Include="ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lab07.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="howitzer.cpp">
@@ -45,10 +45,10 @@
     <ClCompile Include="direction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simulator.cpp">
+    <ClCompile Include="physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics.cpp">
+    <ClCompile Include="simulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,13 +101,13 @@
     <ClInclude Include="howitzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simulator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="velocity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
