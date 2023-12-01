@@ -78,7 +78,10 @@ void Howitzer::raise(double radians)
  ***************************************/
 double Howitzer::getPosition()
 {
-
+	if (pUI->isUp())
+		pDemo->angle += (pDemo->angle >= 0 ? -0.003 : 0.003);
+	if (pUI->isDown())
+		pDemo->angle += (pDemo->angle >= 0 ? 0.003 : -0.003);
 }
 
 /***************************************
