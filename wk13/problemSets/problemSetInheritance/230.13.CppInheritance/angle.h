@@ -155,16 +155,6 @@ public:
 	}
 
 	/********************************
-	 * ASSIGNMENT OPERATOR
-	 * Assigns the value of the angle
-	 ********************************/
-	Angle& operator=(const Angle& rhs)
-	{
-		radians = rhs.radians;
-		return *this;
-	}
-
-	/********************************
 	* NEGATIVE OPERATOR
 	* Negates the value of the angle
 	********************************/
@@ -186,11 +176,11 @@ public:
 		return *this;
 	}
 	// Postfix increment x++
-	virtual Angle* operator++(int postfix)
+	virtual Angle operator++(int postfix)
 	{
 		Angle numReturn(*this);
 		radians = normalize(radians += ONE_DEGREE);
-		return &numReturn;
+		return numReturn;
 	}
 
 	/********************************
@@ -204,11 +194,11 @@ public:
 		return *this;
 	}
 	// Postfix decrement x--
-	virtual Angle* operator--(int postfix)
+	virtual Angle operator--(int postfix)
 	{
 		Angle numReturn(*this);
 		radians = normalize(radians -= ONE_DEGREE);
-		return &numReturn;
+		return numReturn;
 	}
 };
 
@@ -321,12 +311,16 @@ public:
 		radians = normalize(radians += PI / 8);
 		return *this;
 	}
-	// Postfix increment x++
-	AngleRadians* operator++(int postfix)
-	{
-		AngleRadians numReturn(*this);
-		radians = normalize(radians += PI / 8);
-		return &numReturn;
+	// Overloaded postfix increment operator (++)
+	Angle operator++(int) {
+		// Increment the radians value
+		radians += PI /8;
+
+		// Normalize the radians if necessary
+		radians = normalize(radians);
+
+		// Return a copy of the modified AngleRadians object cast as Angle
+		return Angle(*this);
 	}
 
 	/********************************
@@ -340,11 +334,18 @@ public:
 		return *this;
 	}
 	// Postfix decrement x--
-	AngleRadians* operator--(int postfix)
+    virtual AngleRadians operator--(int postfix)
 	{
 		AngleRadians numReturn(*this);
 		radians = normalize(radians -= PI / 8);
-		return &numReturn;
-	}
+		return numReturn;
+    }
 
+	// Postfix decrement x--
+	virtual Angle operator--(int postfix)
+	{
+		Angle numReturn(*this);
+		radians = normalize(radians -= ONE_DEGREE);
+		return numReturn;
+	}
 };
