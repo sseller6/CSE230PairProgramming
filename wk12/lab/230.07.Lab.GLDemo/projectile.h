@@ -24,7 +24,7 @@ public:
     void     fire(Position position, double time,
                   double angle, double velocity);
     void     advance(double time);
-    void     draw();
+    void     draw(ogstream& gout);
     bool     flying();
 
     // Getters

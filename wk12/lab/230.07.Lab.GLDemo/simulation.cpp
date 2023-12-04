@@ -22,7 +22,7 @@ void Simulation::display(ogstream& gout, const Interface* pUI)
 	ground.draw(gout);
 
 	// draw the howitzer
-	howitzer.draw(gout);
+	howitzer.draw(gout, time);
 
 	// draw the projectile
 	projectile.draw(gout);

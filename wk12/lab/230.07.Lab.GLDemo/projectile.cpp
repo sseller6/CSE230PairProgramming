@@ -11,6 +11,8 @@
 
 #include "projectile.h"
 
+using namespace std;
+
 // Constructors
 
 /***************************************
@@ -61,7 +63,7 @@ void Projectile::advance(double time)
 /***************************************
  * DRAW
  ***************************************/
-void Projectile::draw()
+void Projectile::draw(ogstream& gout)
 {
 }
 
