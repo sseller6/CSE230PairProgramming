@@ -10,6 +10,8 @@ void Simulation::reset()
 
 void Simulation::fire()
 {
+	if (pUI->isSpace())
+		pDemo->time = 0.0;
 }
 
 void Simulation::display(ogstream& gout, const Interface* pUI)

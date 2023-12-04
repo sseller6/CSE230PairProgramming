@@ -14,7 +14,6 @@
 #include "velocity.h"
 #include "uiInteract.h"
 
-using namespace std;
 
 // Constructors
 
@@ -54,7 +53,10 @@ void Howitzer::generatePosition(double size)
  ***************************************/
 void Howitzer::rotate(double radians)
 {
-
+	if (pUI->isRight())
+		pDemo->angle += 0.05;
+	if (pUI->isLeft())
+		pDemo->angle -= 0.05;
 }
 
 /***************************************
@@ -78,10 +80,7 @@ void Howitzer::raise(double radians)
  ***************************************/
 double Howitzer::getPosition()
 {
-	if (pUI->isUp())
-		pDemo->angle += (pDemo->angle >= 0 ? -0.003 : 0.003);
-	if (pUI->isDown())
-		pDemo->angle += (pDemo->angle >= 0 ? 0.003 : -0.003);
+
 }
 
 /***************************************
