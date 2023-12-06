@@ -275,6 +275,14 @@ public:
 		radians = radians;
 	}
 
+	/*
+	* NON DEFAULT CONSTRUCTOR
+	*/
+	AngleRadians(Angle angle)
+	{
+		this->radians = angle.radians;
+	}
+
 	/********************************
 	 * COPY CONSTRUCTOR
 	 ********************************/
@@ -294,7 +302,7 @@ public:
 		out.setf(ios::showpoint); // "showpoint" means always show the decimal point
 		out.precision(2);         // Set the precision to 2 decimal place of accuracy.
 
-		out << radians;
+		out << radians << "radians";
 	}
 
 	/********************************
@@ -306,7 +314,7 @@ public:
 	 * Increments data.
 	 ********************************/
 	 // Prefix increment ++x
-	AngleRadians& operator++()
+	Angle& operator++()
 	{
 		radians = normalize(radians += PI / 8);
 		return *this;
@@ -328,24 +336,16 @@ public:
 	 * Decrements data.
 	 ********************************/
 	 // Prefix decrement --x
-	 AngleRadians& operator--()
+	 Angle& operator--()
 	{
 		radians = normalize(radians -= PI / 8);
 		return *this;
 	}
 	// Postfix decrement x--
-    virtual AngleRadians operator--(int postfix)
+    virtual Angle operator--(int postfix)
 	{
-		AngleRadians numReturn(*this);
+		Angle numReturn(*this);
 		radians = normalize(radians -= PI / 8);
 		return numReturn;
     }
-
-	// Postfix decrement x--
-	virtual Angle operator--(int postfix)
-	{
-		Angle numReturn(*this);
-		radians = normalize(radians -= ONE_DEGREE);
-		return numReturn;
-	}
 };
