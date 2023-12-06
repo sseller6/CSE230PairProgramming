@@ -9,8 +9,8 @@
 
 #pragma once
 
-#include <iostream>
 #include "direction.h"
+#include "uiDraw.h"
 
 using namespace std;
 
