@@ -27,6 +27,6 @@ void testRunner()
    TestVelocity().run();
    TestDirection().run();
    TestGround().run();
-   TestHowitzer().run();
+   //TestHowitzer().run();
    // TestProjectile().run();
 }

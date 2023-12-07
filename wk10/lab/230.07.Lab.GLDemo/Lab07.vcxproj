@@ -165,6 +165,7 @@
     <ClInclude Include="test.h" />
     <ClInclude Include="testGround.h" />
     <ClInclude Include="testHowitzer.h" />
+    <ClInclude Include="testPhysics.h" />
     <ClInclude Include="testPosition.h" />
     <ClInclude Include="testProjectile.h" />
     <ClInclude Include="testSimulator.h" />
