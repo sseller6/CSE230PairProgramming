@@ -11,6 +11,8 @@
 #define  M_PI  3.1415926535897932384626433
 #endif
 
+#define ONE_DEGREE (M_PI / 180)
+
 // Constructors
 
 /***************************************
@@ -161,3 +163,76 @@ double Direction::normalize(double angle)
 
 	return angle;
 }
+
+/********************************
+	 * ASSIGNMENT OPERATOR
+	 * Assigns the value of the angle
+	 ********************************/
+Direction& Direction::operator=(const Direction& rhs)
+{
+	radians = rhs.radians;
+	return *this;
+}
+
+/********************************
+* NEGATIVE OPERATOR
+* Negates the value of the angle
+********************************/
+Direction& Direction::operator-()
+{
+	Direction negated;
+	negated.radians = normalize(radians - M_PI);
+	return negated;
+}
+
+/********************************
+ * INCREMENT OPERATOR
+ * Increments data.
+ ********************************/
+ // Prefix increment ++x
+Direction& Direction::operator++()
+{
+	radians = normalize(radians += ONE_DEGREE);
+	return *this;
+}
+Direction Direction::operator++(int postfix)
+{
+	Direction numReturn(*this);
+	radians = normalize(radians += ONE_DEGREE);
+	return numReturn;
+}
+
+/********************************
+ * DECREMENT OPERATOR
+ * Decrements data.
+ ********************************/
+ // Prefix decrement --x
+Direction& Direction::operator--()
+{
+	radians = normalize(radians -= ONE_DEGREE);
+	return *this;
+}
+// Postfix decrement x--
+Direction Direction::operator--(int postfix)
+{
+	Direction numReturn(*this);
+	radians = normalize(radians -= ONE_DEGREE);
+	return numReturn;
+}
+
+/*
+* PLUS EQUALS OPERATOR 
+*/
+Direction& Direction::operator+=(const double value)
+{
+	radians += convertDegreesToRadians(value);
+}
+
+/*
+*  MINUS EQUALS OPERATOR
+*/
+Direction& Direction::operator-=(const double value)
+{
+	radians -= convertDegreesToRadians(value);
+}
+

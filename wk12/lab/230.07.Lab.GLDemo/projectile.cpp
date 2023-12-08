@@ -10,6 +10,7 @@
 #pragma once
 
 #include "projectile.h"
+#include "uiDraw.h"
 
 using namespace std;
 

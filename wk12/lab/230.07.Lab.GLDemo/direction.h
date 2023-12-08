@@ -38,6 +38,17 @@ public:
     double getRadians() const;
     double getDegrees() ;
 
+    // Operators
+    Direction& operator=(const Direction& rhs);
+    Direction& operator-();
+    Direction& operator++();
+    Direction  operator++(int postfix);
+    Direction& operator--();
+    Direction  operator--(int postfix);
+    Direction& operator+=(const double value);
+    Direction& operator-=(const double value);
+
+
 private:
     // Attributes
     double radians;

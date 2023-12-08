@@ -27,8 +27,10 @@ public:
 	// Methods
 	void draw(ogstream& gout, double flightTime); // figure out gout.
     void generatePosition(double size);
-    void rotate(double radians);
-    void raise(double radians);
+    void rotateRight();
+	void rotateLeft();
+    void raiseUp();
+	void raiseDown();
 
 	// Getters
 	double getPosition();

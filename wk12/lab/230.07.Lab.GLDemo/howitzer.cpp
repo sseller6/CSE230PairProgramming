@@ -14,6 +14,9 @@
 #include "velocity.h"
 #include "uiInteract.h"
 
+#define ONE_DEGREE 1.0
+#define ONE_HALF_DEGREE 0.5
+
 
 // Constructors
 
@@ -21,8 +24,10 @@
  * Default Constructor
  ***************************************/
 Howitzer::Howitzer()
+    : muzzleVelocity(827.0)
 {
-}
+    
+}   
 
 /***************************************
  * NON-Default Constructor
@@ -36,7 +41,7 @@ Howitzer::Howitzer() // I'm not sure what to do for the non-default constructor
  ***************************************/
 void Howitzer::draw(ogstream& gout, double flightTime)
 {
-
+    gout.drawHowitzer(position, 2, flightTime);
 }
 
 /***************************************
@@ -48,29 +53,40 @@ void Howitzer::generatePosition(double size)
 }
 
 /***************************************
- * ROTATE
+ * ROTATE RIGHT
  * Moves the Howitzer by a large amount.
  ***************************************/
-void Howitzer::rotate(double radians)
+void Howitzer::rotateRight()
 {
-	if (pUI->isRight())
-		pDemo->angle += 0.05;
-	if (pUI->isLeft())
-		pDemo->angle -= 0.05;
+    elevation += ONE_DEGREE;
 }
 
 /***************************************
- * RAISE 
+ * ROTATE LEFT
+ * Moves the Howitzer by a large amount.
+ ***************************************/
+void Howitzer::rotateLeft()
+{
+    elevation -= ONE_DEGREE;
+}
+/***************************************
+ * RAISE UP
  * Moves the Howitzer by a little.
  ***************************************/
-void Howitzer::raise(double radians)
+void Howitzer::raiseUp()
 {
 	// move by a little
-	if (pUI->isUp())
-		pDemo->angle += (pDemo->angle >= 0 ? -0.003 : 0.003);
-	if (pUI->isDown())
-		pDemo->angle += (pDemo->angle >= 0 ? 0.003 : -0.003);
+    elevation += ONE_HALF_DEGREE;
+}
 
+/***************************************
+ * RAISE DOWN
+ * Moves the Howitzer by a little.
+ ***************************************/
+void Howitzer::raiseDown()
+{
+    // move by a little
+    elevation -= ONE_HALF_DEGREE;
 }
 
 // Getters

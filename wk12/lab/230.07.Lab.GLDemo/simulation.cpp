@@ -4,14 +4,40 @@ Simulation::Simulation(Position ptUpperRight)
 {
 }
 
+void Simulation::run(const Interface* pUI)
+{
+	// Check to see if the howitzer has been fired
+	if (isFired)
+	{
+		// Check to see if projectile has hit the ground
+		if (!ground.hitGround())
+		{
+			projectile.advance();
+		}
+		else if (hitTarget())
+		{
+			win();
+		}
+		else
+		{
+		    lose();
+		}
+	}
+	else
+	{
+		getInput();
+	}
+}
+
 void Simulation::reset()
 {
 }
 
 void Simulation::fire()
 {
-	if (pUI->isSpace())
-		pDemo->time = 0.0;
+	time = 0.00;
+	// projectile.fire(projectile.getPosition(), time,
+	//	            howitzer.getMuzzleAngle(), howitzer.getMuzzleVelocity());
 }
 
 void Simulation::display(ogstream& gout, const Interface* pUI)
@@ -36,12 +62,23 @@ void Simulation::display(ogstream& gout, const Interface* pUI)
 		 << time << "seconds\n";
 }
 
-void Simulation::update(const Interface* pUI)
-{
-}
-
 void Simulation::getInput(const Interface* pUI)
 {
+	// move a large amount
+	if (pUI->isRight())
+		howitzer.rotateRight();
+	if (pUI->isLeft())
+		howitzer.rotateLeft();
+
+	// move by a little
+	if (pUI->isUp())
+		howitzer.raiseUp();
+	if (pUI->isDown())
+		howitzer.raiseDown();
+
+	// fire that gun
+	if (pUI->isSpace())
+		fire();
 }
 
 bool Simulation::hitTarget()

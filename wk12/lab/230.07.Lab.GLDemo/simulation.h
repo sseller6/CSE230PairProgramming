@@ -15,21 +15,22 @@ class Simulation
 {
 public:
     Simulation(Position ptUpperRight);                     // Constructor
+    void run(const Interface* pUI);
     void reset();                                          // Resets entire simulation
     void fire();                                           // Starts the simulation
     void display(ogstream& gout, const Interface* pUI);    // Displays the objects
-    void update(const Interface* pUI);                     // Updates the simulation by one frame
     void getInput(const Interface* pUI);                   // Gets the keyboard input
 private:
     bool   hitTarget();                                    // Tests if projectile hits the target
     double getHeightMeters();                              // Retruns the heght in meters
 
     // Attributes
-    Position  ptUpperRight;        // size of the screen
-    Ground ground;                 // the ground
-    Howitzer howitzer;             // the howitzer
+    Position   ptUpperRight;       // size of the screen
+    Ground     ground;             // the ground
+    Howitzer   howitzer;           // the howitzer
     Projectile projectile;         // the howitzer bullet
-    double time;                   // time since last fire
+    double     time;               // time since last fire
+    bool       isFired;            // true if the howitzer has been fired    
 
 
     // Position  projectilePath[20];  // path of the projectile
