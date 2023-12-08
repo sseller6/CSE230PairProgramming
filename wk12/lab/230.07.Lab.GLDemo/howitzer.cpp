@@ -14,6 +14,7 @@
 #include "velocity.h"
 #include "uiInteract.h"
 
+
 #define ONE_DEGREE 1.0
 #define ONE_HALF_DEGREE 0.5
 
@@ -94,15 +95,23 @@ void Howitzer::raiseDown()
 /***************************************
  * GET POSITION
  ***************************************/
-double Howitzer::getPosition()
+Position Howitzer::getPosition()
 {
-
+    return position;
 }
 
 /***************************************
  * GET MUZZLE VELOCITY
  ***************************************/
-Velocity Howitzer::getMuzzleVelocity()
+double Howitzer::getMuzzleVelocity()
 {
+    return muzzleVelocity;
+}
 
+/***************************************
+ * GET MUZZLE ANGLE
+ ***************************************/
+double Howitzer::getMuzzleAngle() 
+{
+    return elevation.getRadians();
 }

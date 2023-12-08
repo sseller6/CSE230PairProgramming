@@ -82,4 +82,106 @@ inline double linearInterpolation(const Mapping& zero,
 		                       d);
 }
 
-// More Needed later
+/***********************************************
+ * COMPUTE HORIZONTAL COMPONENT
+ * Find the horizontal component of a velocity or acceleration.
+ * The equation is:
+ *     sin(a) = x / total
+ * This can be expressed graphically:
+ *      x
+ *    +-----
+ *    |   /
+ *  y |  / total
+ *    |a/
+ *    |/
+ * INPUT
+ *     aRadians : angle, in radians
+ *     total : total velocity or acceleration
+ * OUTPUT
+ *     x : the vertical component of the total
+ ***********************************************/
+inline double computeHorizontalComponent(double aRadians, double total)
+{
+	double x;
+	x = sin(aRadians) * total;
+	return x;
+}
+
+/***********************************************
+ * COMPUTE VERTICAL COMPONENT
+ * Find the vertical component of a velocity or acceleration.
+ * The equation is:
+ *     cos(a) = y / total
+ * This can be expressed graphically:
+ *      x
+ *    +-----
+ *    |   /
+ *  y |  / total
+ *    |a/
+ *    |/
+ * INPUT
+ *     aRadians : angle, in radians
+ *     total : total velocity or acceleration
+ * OUTPUT
+ *     y : the vertical component of the total
+ ***********************************************/
+inline double computeVerticalComponent(double aRadians, double total)
+{
+	// Find vertical component of a velocity or accelration.
+	double y;
+	y = cos(aRadians) * total;
+	return y;
+}
+
+/************************************************
+ * COMPUTE TOTAL COMPONENT
+ * Given the horizontal and vertical components of
+ * something (velocity or acceleration), determine
+ * the total component. To do this, use the Pythagorean Theorem:
+ *    x^2 + y^2 = t^2
+ * where:
+ *      x
+ *    +-----
+ *    |   /
+ *  y |  / total
+ *    | /
+ *    |/
+ * INPUT
+ *    x : horizontal component
+ *    y : vertical component
+ * OUTPUT
+ *    total : total component
+ ***********************************************/
+inline double computeTotalComponent(double x, double y)
+{
+	double total;
+	total = sqrt((x * x) + (y * y));
+	return total;
+}
+
+/***********************************************
+ * COMPUTE ACCELERATION
+ ***********************************************/
+inline double computeAcceleration(double force, double mass)
+{
+	return force / mass;
+}
+
+/***********************************************
+ * COMPUTE ACCELERATION
+ ***********************************************/
+inline double computeVelocity(double velocity, double acceleration, double timeInterval)
+{
+	// Find the new velocity.
+	return velocity + (acceleration * timeInterval);
+}
+
+/*****************************************************************
+* COMPUTE NEW POSITION
+* Calculates the new x or y value based on physics.
+*****************************************************************/
+inline double computeNewPosition(double position, double velocity, double acceleration, double time)
+{
+	return position + (velocity * time) + ((acceleration * (time * time) / 2));
+}
+

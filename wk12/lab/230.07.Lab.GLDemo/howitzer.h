@@ -33,8 +33,9 @@ public:
 	void raiseDown();
 
 	// Getters
-	double getPosition();
-    Velocity getMuzzleVelocity();
+	Position  getPosition();
+    double    getMuzzleVelocity();
+	double    getMuzzleAngle();
 
     // Setters
     void setMuzzleVelocity(Velocity velocity);
@@ -43,5 +44,5 @@ private:
     // Attributes
     Position position;
     double muzzleVelocity;
-    Direction elevation;
+    Direction elevation; // This is our angle.
 };

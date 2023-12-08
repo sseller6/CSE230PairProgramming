@@ -1,8 +1,11 @@
 #pragma once
 
-#include <vector>
+#include "direction.h"
 #include "position.h"
+#include <vector>
 #include "velocity.h"
+
+
 
 using namespace std;
 
@@ -23,7 +26,7 @@ public:
     void     reset();
     void     fire(Position position, double time,
                   double angle, double velocity);
-    void     advance(double time);
+    void     advance(double timeInterval);
     void     draw(ogstream& gout);
     bool     flying();
 
@@ -52,5 +55,8 @@ private:
     // Attrubutes
     double mass;
     double radius;
+    Direction angle;
+    Position position;
+    Velocity velocity;
     vector<PositionVelocityTime> flightPath;
 };

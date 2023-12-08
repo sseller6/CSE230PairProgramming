@@ -25,7 +25,7 @@ void Simulation::run(const Interface* pUI)
 	}
 	else
 	{
-		getInput();
+		getInput(pUI);
 	}
 }
 
@@ -35,9 +35,10 @@ void Simulation::reset()
 
 void Simulation::fire()
 {
+	isFired = true;
 	time = 0.00;
-	// projectile.fire(projectile.getPosition(), time,
-	//	            howitzer.getMuzzleAngle(), howitzer.getMuzzleVelocity());
+	projectile.fire(projectile.getPosition(), time,
+		            howitzer.getMuzzleAngle(), howitzer.getMuzzleVelocity());
 }
 
 void Simulation::display(ogstream& gout, const Interface* pUI)

@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include "physics.h"
 #include "projectile.h"
 #include "uiDraw.h"
 
@@ -57,8 +58,46 @@ void Projectile::fire(Position position, double time,
  * ADVANCE
  * Advance the projectile farther along.
  ***************************************/
-void Projectile::advance(double time)
-{
+void Projectile::advance(double timeInterval)
+{   
+	double speed = computeTotalComponent(velocity.getDx(), velocity.getDy());
+	double altitude = position.getMetersY();
+
+	// Compute Drag
+	double dragForce = forceFromDrag(densityFromAltitude(altitude),
+									 dragFromMach(computeMach(speed, speedOfSoundFromAltitude(altitude))),
+								     radius,
+								     speed);
+
+	// Compute Gravity
+	double gravityForce = gravityFromAltitude(altitude);
+	
+	// Sum Forces
+	double netXForce = computeHorizontalComponent(angle.getRadians(), dragForce);
+	double netYForce = computeVerticalComponent(angle.getRadians(), dragForce) + gravityForce;
+
+	// Compute Change in acceleration
+	double ddx = computeAcceleration(netXForce, mass);
+	double ddy = computeAcceleration(netYForce, mass);
+
+	// Compute change in velocity
+	double dx = computeVelocity(speed, ddx, timeInterval);
+	double dy = computeVelocity(speed, ddy, timeInterval);
+
+	// Update position
+	position.setMeters(computeNewPosition(position.getMetersX(), dx, ddx, timeInterval),
+		               computeNewPosition(position.getMetersY(), dy, ddy, timeInterval));
+
+	// update Velocity
+	velocity.addDX();
+	velocity.addDY();
+
+	PositionVelocityTime pvt(position, velocity, // time);
+
+	// Add to flight path
+	if (flightPath.size() > 10)
+		flightPath.erase(flightPath.begin());
+	flightPath.push_back(pvt)
 }
 
 /***************************************

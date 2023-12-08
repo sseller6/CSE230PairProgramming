@@ -30,6 +30,7 @@ private:
     Howitzer   howitzer;           // the howitzer
     Projectile projectile;         // the howitzer bullet
     double     time;               // time since last fire
+    double     timeInterval;       // step
     bool       isFired;            // true if the howitzer has been fired    
 
 
