@@ -4,7 +4,7 @@
 /***************************************
  * GET DX
  ***************************************/
-double Velocity::getDx()
+double Velocity::getDX()
 {
     return dx;
 }
@@ -12,7 +12,7 @@ double Velocity::getDx()
 /***************************************
  * GET DY
  ***************************************/
-double Velocity::getDy()
+double Velocity::getDY()
 {
     return dy;
 }
@@ -40,4 +40,20 @@ void Velocity::setDxDy(double dx, double dy)
 {
     this->dx = dx;
     this->dy = dy;
+}
+
+/***************************************
+* ADD DX
+****************************************/
+void Velocity::addDX(double dx)
+{
+    this->dx += dx;
+}
+
+/***************************************
+* ADD DY
+****************************************/
+void Velocity::addDY(double dy)
+{
+    this->dy += dy;
 }

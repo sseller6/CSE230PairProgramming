@@ -10,27 +10,35 @@ void Simulation::run(const Interface* pUI)
 	if (isFired)
 	{
 		// Check to see if projectile has hit the ground
-		if (!ground.hitGround())
+		if (projectile.flying())
 		{
-			projectile.advance();
-		}
-		else if (hitTarget())
-		{
-			win();
+			projectile.advance(timeInterval);
 		}
 		else
 		{
-		    lose();
+			if (hitTarget())
+			{
+				win();
+			}
+			else
+			{
+				lose();
+			}
 		}
 	}
 	else
 	{
 		getInput(pUI);
 	}
+	
 }
 
 void Simulation::reset()
 {
+	ground.reset(howitzer.position); // Fixed by making simulation friend of howitzer figure out better way later
+	projectile.reset();
+	isFired = false;
+	time = 0.0;
 }
 
 void Simulation::fire()
@@ -43,9 +51,6 @@ void Simulation::fire()
 
 void Simulation::display(ogstream& gout, const Interface* pUI)
 {
-	// draws everything
-	
-	ogstream gout(Position(10.0, ptUpperRight.getPixelsY() - 20.0));
 
 	// draw the ground first
 	ground.draw(gout);
@@ -90,4 +95,16 @@ bool Simulation::hitTarget()
 double Simulation::getHeightMeters()
 {
 	return 0.0;
+}
+
+void Simulation::win()
+{
+	// Display vicotry <- lol "vicotry"
+	projectile.reset();
+}
+
+void Simulation::lose()
+{
+	// Display you suck
+	projectile.reset();
 }

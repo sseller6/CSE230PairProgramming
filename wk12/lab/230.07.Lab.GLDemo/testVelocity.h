@@ -75,8 +75,8 @@ private:
         Velocity velocity;
         // Exercise
         velocity.setDxDy(50, 100);
-        double dxResult = velocity.getDx();
-        double dyResult = velocity.getDy();
+        double dxResult = velocity.getDX();
+        double dyResult = velocity.getDY();
         // Verify
         assert(dxResult == 50);
         assert(dyResult == 100);
@@ -92,7 +92,7 @@ private:
         Velocity velocity;
         velocity.setDxDy(50, 100);
         // Exercise
-        double result = velocity.getDx();
+        double result = velocity.getDX();
         // Verify
         assert(result == 50);
         // Teardown
@@ -106,7 +106,7 @@ private:
         Velocity velocity;
         velocity.setDxDy(50, 100);
         // Exercise
-        double result = velocity.getDy();
+        double result = velocity.getDY();
         // Verify
         assert(result == 100);
         // Teardown

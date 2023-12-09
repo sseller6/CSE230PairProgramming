@@ -15,11 +15,14 @@ private:
 	double dy;
 	
 public:
+	// Methods
+	void addDX(double dx);
+	void addDY(double dy);
 	// Setters
 	void setDX(double dx);
 	void setDY(double dy);
 	void setDxDy(double dx, double dy);
 	// Getters
-	double getDx();
-	double getDy();
+	double getDX();
+	double getDY();
 };

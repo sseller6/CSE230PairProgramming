@@ -20,6 +20,8 @@ public:
     void fire();                                           // Starts the simulation
     void display(ogstream& gout, const Interface* pUI);    // Displays the objects
     void getInput(const Interface* pUI);                   // Gets the keyboard input
+    void win();
+    void lose();
 private:
     bool   hitTarget();                                    // Tests if projectile hits the target
     double getHeightMeters();                              // Retruns the heght in meters

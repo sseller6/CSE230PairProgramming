@@ -45,10 +45,10 @@
     <ClCompile Include="direction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics.cpp">
+    <ClCompile Include="simulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simulation.cpp">
+    <ClCompile Include="physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,8 +113,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="NewFile.txt" />
   </ItemGroup>
 </Project>

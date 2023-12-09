@@ -28,13 +28,6 @@ Howitzer::Howitzer()
     : muzzleVelocity(827.0)
 {
     
-}   
-
-/***************************************
- * NON-Default Constructor
- ***************************************/
-Howitzer::Howitzer() // I'm not sure what to do for the non-default constructor
-{
 }
 
 /***************************************

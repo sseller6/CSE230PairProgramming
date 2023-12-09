@@ -39,8 +39,8 @@ public:
     double   getCurrentTime();
 
     // Setters
-    void     setMass();
-    void     setRadius();
+    void     setMass(double mass);
+    void     setRadius(double radius);
 
 
 private:
@@ -50,13 +50,10 @@ private:
         Position pt;
         Velocity v;
         double   t;
-    };
+    } pvt;
 
     // Attrubutes
     double mass;
     double radius;
-    Direction angle;
-    Position position;
-    Velocity velocity;
     vector<PositionVelocityTime> flightPath;
 };

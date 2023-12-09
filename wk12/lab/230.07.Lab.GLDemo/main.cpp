@@ -30,12 +30,12 @@ using namespace std;
  **************************************/
 void callBack(const Interface* pUI, void* p)
 {
-    // Initialize graphics out.
-    ogstream gout;
-
     // the first step is to cast the void pointer into a game object. This
     // is the first step of every single callback function in OpenGL. 
     Simulation* pSimulation = (Simulation*)p;
+    
+    // Initialize graphics out.
+    ogstream gout;   
 
     // Call the simulator to run
     pSimulation->run(pUI);

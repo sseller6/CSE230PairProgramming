@@ -185,3 +185,11 @@ inline double computeNewPosition(double position, double velocity, double accele
 	return position + (velocity * time) + ((acceleration * (time * time) / 2));
 }
 
+/*****************************************************************
+* ANGLE FROM COMPONENTS
+* Compute angle from velocity components
+*****************************************************************/
+inline double angleFromComponents(double dx, double dy)
+{
+	return atan2(dx, dy);
+}

@@ -15,14 +15,15 @@
 using namespace std;
 
 class TestHowitzer;
+class Simulation;
 
 class Howitzer
 {
 	friend TestHowitzer;
+	friend Simulation;
 public:
 	// Constructors
 	Howitzer();
-	Howitzer(double position); // should the non-defualt constuctor have position as a parameter?
 
 	// Methods
 	void draw(ogstream& gout, double flightTime); // figure out gout.

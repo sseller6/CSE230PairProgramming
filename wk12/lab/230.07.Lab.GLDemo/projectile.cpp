@@ -43,6 +43,7 @@ Projectile::Projectile(double mass, double radius)
  ***************************************/
 void Projectile::reset()
 {
+
 }
 
 /***************************************
@@ -52,6 +53,11 @@ void Projectile::reset()
 void Projectile::fire(Position position, double time,
 	                  double angle, double velocity)
 {
+	pvt.pt = position;
+	pvt.v.setDX(computeHorizontalComponent(angle, velocity));
+	pvt.v.setDY(computeVerticalComponent(angle,velocity));
+	pvt.t = time;
+	flightPath.push_back(pvt);
 }
 
 /***************************************
@@ -60,8 +66,9 @@ void Projectile::fire(Position position, double time,
  ***************************************/
 void Projectile::advance(double timeInterval)
 {   
-	double speed = computeTotalComponent(velocity.getDx(), velocity.getDy());
-	double altitude = position.getMetersY();
+	double angle = angleFromComponents(pvt.v.getDX(), pvt.v.getDY());
+	double speed = computeTotalComponent(pvt.v.getDX(), pvt.v.getDY());
+	double altitude = pvt.pt.getMetersY();
 
 	// Compute Drag
 	double dragForce = forceFromDrag(densityFromAltitude(altitude),
@@ -73,8 +80,8 @@ void Projectile::advance(double timeInterval)
 	double gravityForce = gravityFromAltitude(altitude);
 	
 	// Sum Forces
-	double netXForce = computeHorizontalComponent(angle.getRadians(), dragForce);
-	double netYForce = computeVerticalComponent(angle.getRadians(), dragForce) + gravityForce;
+	double netXForce = computeHorizontalComponent(angle, dragForce);
+	double netYForce = computeVerticalComponent(angle, dragForce) + gravityForce;
 
 	// Compute Change in acceleration
 	double ddx = computeAcceleration(netXForce, mass);
@@ -85,19 +92,18 @@ void Projectile::advance(double timeInterval)
 	double dy = computeVelocity(speed, ddy, timeInterval);
 
 	// Update position
-	position.setMeters(computeNewPosition(position.getMetersX(), dx, ddx, timeInterval),
-		               computeNewPosition(position.getMetersY(), dy, ddy, timeInterval));
+	pvt.pt.setMeters(computeNewPosition(pvt.pt.getMetersX(), dx, ddx, timeInterval),
+		             computeNewPosition(pvt.pt.getMetersY(), dy, ddy, timeInterval));
 
 	// update Velocity
-	velocity.addDX();
-	velocity.addDY();
+	pvt.v.addDX(dx);
+	pvt.v.addDY(dy);
 
-	PositionVelocityTime pvt(position, velocity, // time);
+	// update time
+	pvt.t += timeInterval;
 
 	// Add to flight path
-	if (flightPath.size() > 10)
-		flightPath.erase(flightPath.begin());
-	flightPath.push_back(pvt)
+	flightPath.push_back(pvt);
 }
 
 /***************************************
@@ -105,6 +111,7 @@ void Projectile::advance(double timeInterval)
  ***************************************/
 void Projectile::draw(ogstream& gout)
 {
+	gout.drawProjectile(pvt.pt);
 }
 
 /***************************************
@@ -166,13 +173,15 @@ double Projectile::getCurrentTime()
 /***************************************
  * SET MASS
  ***************************************/
-void Projectile::setMass()
+void Projectile::setMass(double mass)
 {
+	this->mass = mass;
 }
 
 /***************************************
  * SET RADIUS
  ***************************************/
-void Projectile::setRadius()
+void Projectile::setRadius(double radius)
 {
+	this->radius = radius;
 }

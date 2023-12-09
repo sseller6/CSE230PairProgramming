@@ -226,6 +226,7 @@ Direction Direction::operator--(int postfix)
 Direction& Direction::operator+=(const double value)
 {
 	radians += convertDegreesToRadians(value);
+	return *this;
 }
 
 /*
@@ -234,5 +235,6 @@ Direction& Direction::operator+=(const double value)
 Direction& Direction::operator-=(const double value)
 {
 	radians -= convertDegreesToRadians(value);
+	return *this;
 }
 
