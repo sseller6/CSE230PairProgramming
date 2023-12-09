@@ -2,6 +2,7 @@
 
 #include "direction.h"
 #include "position.h"
+#include "uiDraw.h"
 #include <vector>
 #include "velocity.h"
 

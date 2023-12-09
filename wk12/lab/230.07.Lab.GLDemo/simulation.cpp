@@ -1,6 +1,11 @@
 #include "simulation.h"
 
 Simulation::Simulation(Position ptUpperRight)
+	: ptUpperRight(ptUpperRight),
+	  ground(ptUpperRight),
+	  time(0.0),
+	  timeInterval(0.5),
+	  isFired(false)
 {
 }
 
@@ -65,7 +70,11 @@ void Simulation::display(ogstream& gout, const Interface* pUI)
 	gout.setf(ios::fixed | ios::showpoint);
 	gout.precision(2);
 	gout << "Time since the bullet was fired: "
-		 << time << "seconds\n";
+		<< time << "seconds\n"
+		<< "Muzzle Angle: " << howitzer.getMuzzleAngle() << "radians\n"
+		<< "Is Fired: " << isFired << "\n"
+		<< "Bullet Location: " << projectile.getPosition().getPixelsX() << "x Pixels\n"
+		<< "                 " << projectile.getPosition().getPixelsY() << "y Pixels\n";
 }
 
 void Simulation::getInput(const Interface* pUI)
