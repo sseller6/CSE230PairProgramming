@@ -168,7 +168,7 @@ inline double computeAcceleration(double force, double mass)
 }
 
 /***********************************************
- * COMPUTE ACCELERATION
+ * COMPUTE VELOCITY
  ***********************************************/
 inline double computeVelocity(double velocity, double acceleration, double timeInterval)
 {

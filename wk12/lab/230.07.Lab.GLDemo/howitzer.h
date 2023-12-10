@@ -24,7 +24,7 @@ class Howitzer
 public:
 	// Constructors
 	Howitzer();
-
+	Howitzer(Position ptUpperRight);
 	// Methods
 	void draw(ogstream& gout, double flightTime); // figure out gout.
     void generatePosition(double size);

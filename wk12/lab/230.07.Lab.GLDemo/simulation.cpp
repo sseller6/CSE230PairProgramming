@@ -3,16 +3,19 @@
 Simulation::Simulation(Position ptUpperRight)
 	: ptUpperRight(ptUpperRight),
 	  ground(ptUpperRight),
+	  projectile(46.7, 0.077445),
 	  time(0.0),
 	  timeInterval(0.5),
 	  isFired(false)
 {
+	howitzer.position.setPixelsX(Position(ptUpperRight).getPixelsX() / 2.0);
+	ground.reset(howitzer.position);
 }
 
 void Simulation::run(const Interface* pUI)
 {
 	// Check to see if the howitzer has been fired
-	if (isFired)
+ 	if (isFired)
 	{
 		// Check to see if projectile has hit the ground
 		if (projectile.flying())
@@ -35,7 +38,6 @@ void Simulation::run(const Interface* pUI)
 	{
 		getInput(pUI);
 	}
-	
 }
 
 void Simulation::reset()
@@ -48,14 +50,16 @@ void Simulation::reset()
 
 void Simulation::fire()
 {
+	cout << "Sim Fired" << endl;
 	isFired = true;
 	time = 0.00;
-	projectile.fire(projectile.getPosition(), time,
+	projectile.fire(howitzer.getPosition(), time,
 		            howitzer.getMuzzleAngle(), howitzer.getMuzzleVelocity());
 }
 
-void Simulation::display(ogstream& gout, const Interface* pUI)
+void Simulation::display(const Interface* pUI)
 {
+	ogstream gout(Position(10.0, ptUpperRight.getPixelsY() - 20.0));
 
 	// draw the ground first
 	ground.draw(gout);

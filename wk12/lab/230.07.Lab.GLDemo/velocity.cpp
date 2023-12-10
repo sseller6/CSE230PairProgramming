@@ -1,4 +1,6 @@
 #include "velocity.h"
+#include <iostream>
+using namespace std;
 
 
 /***************************************
@@ -45,15 +47,17 @@ void Velocity::setDxDy(double dx, double dy)
 /***************************************
 * ADD DX
 ****************************************/
-void Velocity::addDX(double dx)
+void Velocity::addX(double dx)
 {
     this->dx += dx;
+    cout << "added dx" << dx << endl;
 }
 
 /***************************************
 * ADD DY
 ****************************************/
-void Velocity::addDY(double dy)
+void Velocity::addY(double dy)
 {
-    this->dy += dy;
+    this-> dy += dy;
+    cout << "added dy" << dy << endl;
 }

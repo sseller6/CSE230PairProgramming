@@ -16,8 +16,8 @@ private:
 	
 public:
 	// Methods
-	void addDX(double dx);
-	void addDY(double dy);
+	void addX(double dx);
+	void addY(double dy);
 	// Setters
 	void setDX(double dx);
 	void setDY(double dy);

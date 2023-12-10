@@ -18,7 +18,7 @@ public:
     void run(const Interface* pUI);
     void reset();                                          // Resets entire simulation
     void fire();                                           // Starts the simulation
-    void display(ogstream& gout, const Interface* pUI);    // Displays the objects
+    void display(const Interface* pUI);    // Displays the objects
     void getInput(const Interface* pUI);                   // Gets the keyboard input
     void win();
     void lose();

@@ -53,6 +53,7 @@ void Projectile::reset()
 void Projectile::fire(Position position, double time,
 	                  double angle, double velocity)
 {
+	cout << "Projectile Fired" << endl;
 	pvt.pt = position;
 	pvt.v.setDX(computeHorizontalComponent(angle, velocity));
 	pvt.v.setDY(computeVerticalComponent(angle,velocity));
@@ -66,6 +67,11 @@ void Projectile::fire(Position position, double time,
  ***************************************/
 void Projectile::advance(double timeInterval)
 {   
+	cout << "PVT before: p: " << pvt.pt << ", v: " << pvt.v.getDX() << "x " << pvt.v.getDY() << "y, t: " << pvt.t << endl;
+	
+	// update time
+	pvt.t += timeInterval;
+
 	double angle = angleFromComponents(pvt.v.getDX(), pvt.v.getDY());
 	double speed = computeTotalComponent(pvt.v.getDX(), pvt.v.getDY());
 	double altitude = pvt.pt.getMetersY();
@@ -75,35 +81,45 @@ void Projectile::advance(double timeInterval)
 									 dragFromMach(computeMach(speed, speedOfSoundFromAltitude(altitude))),
 								     radius,
 								     speed);
+	cout << "drag: " << dragForce << endl;
 
 	// Compute Gravity
 	double gravityForce = gravityFromAltitude(altitude);
+	cout << "gravity: " << gravityForce << endl;
 	
 	// Sum Forces
 	double netXForce = computeHorizontalComponent(angle, dragForce);
 	double netYForce = computeVerticalComponent(angle, dragForce) + gravityForce;
+	cout << "netXForce: " << netXForce << ", netYForce: " << netYForce << endl;
 
-	// Compute Change in acceleration
-	double ddx = computeAcceleration(netXForce, mass);
-	double ddy = computeAcceleration(netYForce, mass);
+	// Compute Acceleration
+	double ddx = -computeAcceleration(netXForce, mass);
+	double ddy = -computeAcceleration(netYForce, mass);
+	cout << "accX: " << ddx << ", accY: " << ddy << endl;
+
+	double velX = ddx * timeInterval;
+	double velY = ddy * timeInterval;
+	cout << "velX: " << velX << ", velY: " << velY << endl;
 
 	// Compute change in velocity
-	double dx = computeVelocity(speed, ddx, timeInterval);
-	double dy = computeVelocity(speed, ddy, timeInterval);
+	pvt.v.addX(velX);
+	pvt.v.addY(velY);
+
+	// double dx = computeVelocity(speed, ddx, timeInterval);
+	// pvt.v.addX(ddx, timeInterval);
+	// double dy = computeVelocity(speed, ddy, timeInterval);
+	// pvt.v.addY(ddy, timeInterval);
 
 	// Update position
-	pvt.pt.setMeters(computeNewPosition(pvt.pt.getMetersX(), dx, ddx, timeInterval),
-		             computeNewPosition(pvt.pt.getMetersY(), dy, ddy, timeInterval));
+	pvt.pt.setMetersX(computeNewPosition(pvt.pt.getMetersX(), pvt.v.getDX(), ddx, timeInterval));
+	pvt.pt.setMetersY(computeNewPosition(pvt.pt.getMetersX(), pvt.v.getDY(), ddy, timeInterval));
 
-	// update Velocity
-	pvt.v.addDX(dx);
-	pvt.v.addDY(dy);
-
-	// update time
-	pvt.t += timeInterval;
 
 	// Add to flight path
 	flightPath.push_back(pvt);
+
+	cout << "PVT after: p: " << pvt.pt << ", v: " << pvt.v.getDX() << "x " << pvt.v.getDY() << "y, t: " << pvt.t << endl;
+	cout << "advanced\n" << endl;
 }
 
 /***************************************
@@ -111,7 +127,16 @@ void Projectile::advance(double timeInterval)
  ***************************************/
 void Projectile::draw(ogstream& gout)
 {
-	gout.drawProjectile(pvt.pt);
+	int count = 0;
+	//decleration of vector iterator
+	vector<PositionVelocityTime>::iterator iter = flightPath.begin();
+
+	for (iter; iter < flightPath.end(); iter++)
+	{
+		PositionVelocityTime bullet = *iter;
+		gout.drawProjectile(bullet.pt, 0.5 * (double)count);
+		count++;
+	}
 }
 
 /***************************************
@@ -119,7 +144,7 @@ void Projectile::draw(ogstream& gout)
  ***************************************/
 bool Projectile::flying()
 {
-	return false;
+	return true;
 }
 
 /***************************************

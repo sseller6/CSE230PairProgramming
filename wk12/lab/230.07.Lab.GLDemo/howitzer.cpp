@@ -29,12 +29,18 @@ Howitzer::Howitzer()
 {
 }
 
+Howitzer::Howitzer(Position ptUpperRight)
+    : muzzleVelocity(827.0),
+      position((ptUpperRight.getPixelsX() / 2.0), 0)
+{
+}
+
 /***************************************
  * DRAW
  ***************************************/
 void Howitzer::draw(ogstream& gout, double flightTime)
 {
-    gout.drawHowitzer(position, 2, flightTime);
+    gout.drawHowitzer(position, getMuzzleAngle(), flightTime);
 }
 
 /***************************************
