@@ -123,6 +123,7 @@ void Projectile::advance(double timeInterval)
 	cout << "advanced\n" << endl;
 }
 
+//TODO FIX BULLET FLIGHT PATH GRAPHICS
 /***************************************
  * DRAW
  ***************************************/
@@ -135,17 +136,36 @@ void Projectile::draw(ogstream& gout)
 	for (iter; iter < flightPath.end(); iter++)
 	{
 		PositionVelocityTime bullet = *iter;
-		gout.drawProjectile(bullet.pt, 0.0);
+		gout.drawProjectile(bullet.pt);
 		count++;
 	}
 }
 
 /***************************************
  * FLYING
+ * Is the projectile flying? 
  ***************************************/
 bool Projectile::flying()
 {
-	return true;
+	if (pvt.pt.getMetersY() > 0)
+		return true;
+	else
+		return false;
+}
+
+void Projectile::display()
+{
+	vector<PositionVelocityTime>::iterator iter = flightPath.begin();
+	PositionVelocityTime pvt;
+
+	for (iter; iter < flightPath.end(); iter++)
+	{
+		pvt = *iter;
+	}
+
+	cout << "Distance: "  << pvt.pt.getMetersX() << " meters" << endl;
+	cout << "Altitude: "  << pvt.pt.getMetersY() << " meters" << endl;
+	cout << "Hang Time: " << pvt.t << " seconds" << endl;
 }
 
 /***************************************
